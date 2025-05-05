@@ -216,6 +216,10 @@
             animation: spin 1s linear infinite;
         }
 
+        .row {
+            justify-content: center;
+        }
+
         @keyframes spin {
             to {
                 transform: rotate(360deg);
@@ -266,7 +270,7 @@
         <i class="fas fa-moon  fa-2x"></i>
     </button>
 
-    <button id="downloadCV" class="btn" style="position: fixed;right: 12px;top: 20px;z-index: 90;width: 10vh;">
+    <button id="downloadCV" class="btn hud-corner" style="position: fixed;right: 12px;top: 20px;z-index: 90; border: none;pointer-events: all;">
         <img src="CV.png" alt="Download CV" style="width: 100%;">
     </button>
     <!-- Main Content -->
@@ -274,7 +278,7 @@
     <div class="container py-5">
         <!-- Hero Section -->
         <section class="row text-center py-5">
-            <div class="col-md-4">
+            <div class="col-md-4" style="min-width: 300px;">
                 <div class="profile-container">
                     <img src="https://avatars.githubusercontent.com/u/30174373?v=4" alt="Ketan Dutt"
                         class="profile-img">
@@ -294,23 +298,23 @@
                 <div class="social-links"
                     style="display: flex !important;justify-content: space-evenly !important;align-content: center;">
                     <a href="mailto:ketan6196@gmail.com" class="text-white" style="text-decoration: none;">
-                        <i class="fa-solid fa-envelope fa-4x"></i>
+                        <i class="fa-solid fa-envelope fa-3x"></i>
                     </a>
                     <a href="https://github.com/KetanDutt" target="_blank" class="text-white"
                         style="text-decoration: none;">
-                        <i class="fa-brands fa-github fa-4x"></i>
+                        <i class="fa-brands fa-github fa-3x"></i>
                     </a>
                     <a href="https://www.linkedin.com/in/ketan-dutt-006104b7/" target="_blank" class="text-white "
                         style="text-decoration: none;">
-                        <i class="fa-brands fa-linkedin fa-4x"></i>
+                        <i class="fa-brands fa-linkedin fa-3x"></i>
                     </a>
                     <a href="https://www.facebook.com/k10dutt" target="_blank" class="text-white "
                         style="text-decoration: none;">
-                        <i class="fa-brands fa-square-facebook fa-4x"></i>
+                        <i class="fa-brands fa-square-facebook fa-3x"></i>
                     </a>
                     <a href="https://www.instagram.com/k10.dutt/" target="_blank" class="text-white "
                         style="text-decoration: none;">
-                        <i class="fa-brands fa-instagram fa-4x"></i>
+                        <i class="fa-brands fa-instagram fa-3x"></i>
                     </a>
                 </div>
             </div>
@@ -391,7 +395,7 @@
                     </div>
                 </div>
                 <ul>
-                    <li><strong>Led a team</strong> of 12 talented developers in creating and maintaining unique and
+                    <li><strong>Led a team</strong> of talented developers in creating and maintaining unique and
                         exciting games for clients.</li>
                     <li><strong>Managed Scrum meetings</strong> and coordinated tasks for the team.</li>
                     <li>Developed games and proofs-of-concept (POCs) for US clients, utilizing <strong>Unity</strong> on
@@ -1021,8 +1025,7 @@
                             flex-direction: row;
                             flex-wrap: nowrap;
                         ">
-                                <a href="mailto:ketan6196@gmail.com" class="text-white"
-                                    style="text-decoration: none;">
+                                <a href="mailto:ketan6196@gmail.com" class="text-white" style="text-decoration: none;">
                                     <i class="fa-solid fa-envelope fa-3x"></i>
                                 </a>
                                 <a href="https://github.com/KetanDutt" target="_blank" class="text-white"
@@ -1077,7 +1080,7 @@
     </script> -->
     <script>
         // Initialize particles.js
-        particlesJS('particles-js', { "particles": { "number": { "value": 120, "density": { "enable": true, "value_area": 800 } }, "color": { "value": "#ccc" },"opacity": { "value": 0.5 }, "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" }, "polygon": { "nb_sides": 5 }, "image": { "src": "img/github.svg", "width": 100, "height": 100 } }, "opacity": { "value": 0.5, "random": false, "anim": { "enable": false, "speed": 1, "opacity_min": 0.1, "sync": false } }, "size": { "value": 3, "random": true, "anim": { "enable": false, "speed": 40, "size_min": 0.1, "sync": false } }, "line_linked": { "enable": true, "distance": 150, "color": "#aaa", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 6, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, "attract": { "enable": false, "rotateX": 600, "rotateY": 1200 } } }, "interactivity": { "detect_on": "window", "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": false, "mode": "push" }, "resize": true }, "modes": { "grab": { "distance": 400, "line_linked": { "opacity": 1 } }, "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 }, "repulse": { "distance": 100, "duration": 0.4 }, "push": { "particles_nb": 4 }, "remove": { "particles_nb": 2 } } }, "retina_detect": true });
+        particlesJS('particles-js', { "particles": { "number": { "value": 120, "density": { "enable": true, "value_area": 800 } }, "color": { "value": "#ccc" }, "opacity": { "value": 0.5 }, "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" }, "polygon": { "nb_sides": 5 }, "image": { "src": "img/github.svg", "width": 100, "height": 100 } }, "opacity": { "value": 0.5, "random": false, "anim": { "enable": false, "speed": 1, "opacity_min": 0.1, "sync": false } }, "size": { "value": 3, "random": true, "anim": { "enable": false, "speed": 40, "size_min": 0.1, "sync": false } }, "line_linked": { "enable": true, "distance": 150, "color": "#aaa", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 6, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, "attract": { "enable": false, "rotateX": 600, "rotateY": 1200 } } }, "interactivity": { "detect_on": "window", "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": false, "mode": "push" }, "resize": true }, "modes": { "grab": { "distance": 400, "line_linked": { "opacity": 1 } }, "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 }, "repulse": { "distance": 100, "duration": 0.4 }, "push": { "particles_nb": 4 }, "remove": { "particles_nb": 2 } } }, "retina_detect": true });
 
         // CV Download
         document.getElementById('downloadCV').addEventListener('click', () => {
@@ -1093,7 +1096,7 @@
             // In a real implementation, this would link to your actual CV
             setTimeout(() => {
                 const link = document.createElement('a');
-                link.href = '#';
+                link.href = 'Ketan_Dutt_CV.pdf';
                 link.download = 'Ketan_Dutt_CV.pdf';
                 document.body.appendChild(link);
                 link.click();
