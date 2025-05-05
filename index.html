@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
     <style>
         :root {
             --primary-color: #6e48aa;
@@ -260,11 +261,12 @@
     <div class="hud-corner hud-bottom-right"></div>
 
     <!-- Theme Toggle -->
-    <button id="themeToggle" class="btn btn-sm position-fixed top-0 end-0 m-3" style="display: none;">
-        <i class="fas fa-moon"></i>
+    <button id="themeToggle" class="btn btn-sm"
+        style="position: fixed;left: 20px;top: 20px;z-index: 90; display: none;">
+        <i class="fas fa-moon  fa-2x"></i>
     </button>
 
-    <button id="downloadCV" class="btn" style="position: fixed;right: 12px;top: 20px;z-index: 90;width: 7vw;">
+    <button id="downloadCV" class="btn" style="position: fixed;right: 12px;top: 20px;z-index: 90;width: 10vh;">
         <img src="CV.png" alt="Download CV" style="width: 100%;">
     </button>
     <!-- Main Content -->
@@ -289,23 +291,24 @@
                 <h3 class="h5 mb-4">Lead Software Developer with 7 years of experience</h3>
 
 
-                <div class="social-links d-flex justify-content-center gap-3">
-                    <a href="mailto:ketan6196@gmail.com" class="text-white me-3" style="text-decoration: none;">
+                <div class="social-links"
+                    style="display: flex !important;justify-content: space-evenly !important;align-content: center;">
+                    <a href="mailto:ketan6196@gmail.com" class="text-white" style="text-decoration: none;">
                         <i class="fa-solid fa-envelope fa-4x"></i>
                     </a>
-                    <a href="https://github.com/KetanDutt" target="_blank" class="text-white me-3"
+                    <a href="https://github.com/KetanDutt" target="_blank" class="text-white"
                         style="text-decoration: none;">
                         <i class="fa-brands fa-github fa-4x"></i>
                     </a>
-                    <a href="https://www.linkedin.com/in/ketan-dutt-006104b7/" target="_blank" class="text-white me-3"
+                    <a href="https://www.linkedin.com/in/ketan-dutt-006104b7/" target="_blank" class="text-white "
                         style="text-decoration: none;">
                         <i class="fa-brands fa-linkedin fa-4x"></i>
                     </a>
-                    <a href="https://www.facebook.com/k10dutt" target="_blank" class="text-white me-3"
+                    <a href="https://www.facebook.com/k10dutt" target="_blank" class="text-white "
                         style="text-decoration: none;">
                         <i class="fa-brands fa-square-facebook fa-4x"></i>
                     </a>
-                    <a href="https://www.instagram.com/k10.dutt/" target="_blank" class="text-white me-3"
+                    <a href="https://www.instagram.com/k10.dutt/" target="_blank" class="text-white "
                         style="text-decoration: none;">
                         <i class="fa-brands fa-instagram fa-4x"></i>
                     </a>
@@ -871,7 +874,7 @@
             <h2 class="section-header">Game Dev Stats</h2>
 
             <div class="row text-center">
-                <div class="col-md-3 col-md-6 mb-4">
+                <div class="col-md-3 col-6 mb-4">
                     <div class="card experience-card p-3 h-100">
                         <div class="stat-icon mb-2">
                             <i class="fas fa-code fa-3x text-primary"></i>
@@ -881,7 +884,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-3 col-md-6 mb-4">
+                <div class="col-md-3 col-6 mb-4">
                     <div class="card experience-card p-3 h-100">
                         <div class="stat-icon mb-2">
                             <i class="fas fa-gamepad fa-3x text-primary"></i>
@@ -891,7 +894,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-3 col-md-6 mb-4">
+                <div class="col-md-3 col-6 mb-4">
                     <div class="card experience-card p-3 h-100">
                         <div class="stat-icon mb-2">
                             <i class="fas fa-users fa-3x text-primary"></i>
@@ -901,7 +904,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-3 col-md-6 mb-4">
+                <div class="col-md-3 col-6 mb-4">
                     <div class="card experience-card p-3 h-100">
                         <div class="stat-icon mb-2">
                             <i class="fas fa-download fa-3x text-primary"></i>
@@ -959,7 +962,7 @@
         <section class="py-4">
             <h2 class="section-header">Contact Me</h2>
 
-            <div class="row">
+            <div class="row p-3">
                 <div class="col-md-6" style="display: none;">
                     <div class="card experience-card p-4 h-100">
                         <form id="contactForm">
@@ -1011,26 +1014,32 @@
                                 <span>Available for freelance projects</span>
                             </div>
 
-                            <div class="social-links">
-                                <a href="mailto:ketan6196@gmail.com" class="text-white me-3"
+                            <div class="social-links" style="
+                            display: flex;
+                            justify-content: space-evenly;
+                            align-items: center;
+                            flex-direction: row;
+                            flex-wrap: nowrap;
+                        ">
+                                <a href="mailto:ketan6196@gmail.com" class="text-white"
                                     style="text-decoration: none;">
-                                    <i class="fa-solid fa-envelope fa-4x"></i>
+                                    <i class="fa-solid fa-envelope fa-3x"></i>
                                 </a>
-                                <a href="https://github.com/KetanDutt" target="_blank" class="text-white me-3"
+                                <a href="https://github.com/KetanDutt" target="_blank" class="text-white"
                                     style="text-decoration: none;">
-                                    <i class="fa-brands fa-github fa-4x"></i>
+                                    <i class="fa-brands fa-github fa-3x"></i>
                                 </a>
                                 <a href="https://www.linkedin.com/in/ketan-dutt-006104b7/" target="_blank"
-                                    class="text-white me-3" style="text-decoration: none;">
-                                    <i class="fa-brands fa-linkedin fa-4x"></i>
+                                    class="text-white" style="text-decoration: none;">
+                                    <i class="fa-brands fa-linkedin fa-3x"></i>
                                 </a>
-                                <a href="https://www.facebook.com/k10dutt" target="_blank" class="text-white me-3"
+                                <a href="https://www.facebook.com/k10dutt" target="_blank" class="text-white"
                                     style="text-decoration: none;">
-                                    <i class="fa-brands fa-square-facebook fa-4x"></i>
+                                    <i class="fa-brands fa-square-facebook fa-3x"></i>
                                 </a>
-                                <a href="https://www.instagram.com/k10.dutt/" target="_blank" class="text-white me-3"
+                                <a href="https://www.instagram.com/k10.dutt/" target="_blank" class="text-white"
                                     style="text-decoration: none;">
-                                    <i class="fa-brands fa-instagram fa-4x"></i>
+                                    <i class="fa-brands fa-instagram fa-3x"></i>
                                 </a>
                             </div>
                         </div>
@@ -1045,41 +1054,30 @@
         <p>&copy; 2023 Ketan Dutt. All rights reserved.</p>
     </footer> -->
 
+    <!-- <div id="Venta-Clouds" style="position: fixed;width: 100%;height: 100%;top: 0px;z-index: -1;left: 0px;"> -->
+
+    </div>
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.clouds.min.js"></script> -->
+    <!-- <script>
+        VANTA.CLOUDS({
+            el: "#Venta-Clouds",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00
+        })
+    </script> -->
     <script>
         // Initialize particles.js
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 60 },
-                color: { value: "#9d50bb" },
-                shape: { type: "circle" },
-                opacity: { value: 0.5 },
-                size: { value: 3 },
-                line_linked: {
-                    enable: true,
-                    distance: 150,
-                    color: "#6e48aa",
-                    opacity: 0.4,
-                    width: 1
-                },
-                move: {
-                    enable: true,
-                    speed: 2,
-                    direction: "none"
-                }
-            },
-            interactivity: {
-                events: {
-                    onhover: { enable: true, mode: "grab" },
-                    onclick: { enable: true, mode: "push" }
-                }
-            }
-        });
+        particlesJS('particles-js', { "particles": { "number": { "value": 120, "density": { "enable": true, "value_area": 800 } }, "color": { "value": "#ccc" },"opacity": { "value": 0.5 }, "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" }, "polygon": { "nb_sides": 5 }, "image": { "src": "img/github.svg", "width": 100, "height": 100 } }, "opacity": { "value": 0.5, "random": false, "anim": { "enable": false, "speed": 1, "opacity_min": 0.1, "sync": false } }, "size": { "value": 3, "random": true, "anim": { "enable": false, "speed": 40, "size_min": 0.1, "sync": false } }, "line_linked": { "enable": true, "distance": 150, "color": "#aaa", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 6, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, "attract": { "enable": false, "rotateX": 600, "rotateY": 1200 } } }, "interactivity": { "detect_on": "window", "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" }, "resize": true }, "modes": { "grab": { "distance": 400, "line_linked": { "opacity": 1 } }, "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 }, "repulse": { "distance": 100, "duration": 0.4 }, "push": { "particles_nb": 4 }, "remove": { "particles_nb": 2 } } }, "retina_detect": true });
 
         // CV Download
         document.getElementById('downloadCV').addEventListener('click', () => {
