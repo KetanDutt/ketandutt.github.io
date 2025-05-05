@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ketan Dutt - Game Developer Portfolio</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <style>
+        :root {
+            --primary-color: #6e48aa;
+            --secondary-color: #9d50bb;
+            --dark-color: #1a1a2e;
+            --light-color: #f8f9fa;
+            --accent-color: #ff6b6b;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark-color);
+            color: var(--light-color) !important;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Interactive Background */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background: linear-gradient(135deg, var(--dark-color) 0%, #16213e 100%);
+            will-change: transform;
+        }
+
+        /* Game UI Elements */
+        .hud-corner {
+            width: 120px;
+            height: 120px;
+            border: 3px solid rgba(110, 72, 170, 0.5);
+            position: fixed;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .hud-top-left {
+            top: 15px;
+            left: 15px;
+            border-right: none;
+            border-bottom: none;
+            border-radius: 15px 0 0 0;
+        }
+
+        .hud-bottom-right {
+            bottom: 15px;
+            right: 15px;
+            border-left: none;
+            border-top: none;
+            border-radius: 0 0 15px 0;
+        }
+
+        /* Profile Section */
+        .profile-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid var(--primary-color);
+            box-shadow: 0 10px 30px rgba(110, 72, 170, 0.5);
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .profile-container:hover .profile-img {
+            transform: scale(1.1);
+        }
+
+        /* Section Headers */
+        .section-header {
+            position: relative;
+            margin-bottom: 2rem;
+            display: inline-block;
+        }
+
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 2px;
+        }
+
+        /* Experience Cards */
+        .experience-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid var(--primary-color);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(10px);
+            will-change: transform, box-shadow;
+            color: var(--light-color) !important;
+        }
+
+        .experience-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .company-logo {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            border-radius: 8px;
+            background: white;
+            padding: 5px;
+        }
+
+        /* Skill Bars */
+        .skill-bar-container {
+            margin-bottom: 1rem;
+        }
+
+        .skill-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 4px;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .hud-corner {
+                width: 80px;
+                height: 80px;
+            }
+
+            .profile-container {
+                width: 120px;
+                height: 120px;
+            }
+        }
+
+        .console-animation {
+            width: 80px;
+            height: 80px;
+            border: 5px solid var(--primary-color);
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .z-index-9999 {
+            z-index: 9999;
+        }
+
+        .hud-top-right {
+            top: 15px;
+            right: 15px;
+            border-left: none;
+            border-bottom: none;
+            border-radius: 0 15px 0 0;
+        }
+
+        .hud-bottom-left {
+            bottom: 15px;
+            left: 15px;
+            border-right: none;
+            border-top: none;
+            border-radius: 0 0 0 15px;
+        }
+
+        /* Add pixelated font option for game-style text */
+        @font-face {
+            font-family: 'Press Start 2P';
+            src: url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        }
+
+        .pixel-text {
+            font-family: 'Press Start 2P', cursive;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Interactive Background -->
+    <div id="particles-js"></div>
+
+    <!-- Game UI Elements -->
+    <div class="hud-corner hud-top-left"></div>
+    <div class="hud-corner hud-bottom-right"></div>
+
+    <!-- Main Content -->
+    <div class="container py-5">
+        <!-- Hero Section -->
+        <section class="text-center py-5">
+            <div class="profile-container">
+                <img src="https://avatars.githubusercontent.com/u/30174373?v=4" alt="Ketan Dutt" class="profile-img">
+            </div>
+            <h1 class="display-4 fw-bold mt-4 mb-2">Ketan Dutt</h1>
+            <h2 class="h4  mb-4">Lead Software Developer with 7 years of experience</h2>
+
+            <div class="d-flex justify-content-center gap-3 mb-5">
+                <a href="mailto:ketan6196@gmail.com" class="btn btn-outline-light">
+                    <i class="fas fa-envelope me-2"></i>Email
+                </a>
+                <a href="tel:+919999748948" class="btn btn-outline-light">
+                    <i class="fas fa-phone me-2"></i>Call
+                </a>
+                <button id="downloadCV" class="btn btn-primary">
+                    <i class="fas fa-download me-2"></i>Download CV
+                </button>
+            </div>
+
+            <div class="social-links d-flex justify-content-center gap-3">
+                <a href="https://www.linkedin.com/in/ketan-dutt-006104b7/" target="_blank" class="text-white">
+                    <i class="fab fa-linkedin fa-2x"></i>
+                </a>
+                <a href="https://github.com/KetanDutt" target="_blank" class="text-white">
+                    <i class="fab fa-github fa-2x"></i>
+                </a>
+                <a href="https://ketandutt.github.io" target="_blank" class="text-white">
+                    <i class="fas fa-globe fa-2x"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- Summary Section -->
+        <section class="py-4">
+            <h2 class="section-header">Summary</h2>
+            <div class="card experience-card p-4">
+                <p class="mb-0">Passionate Game Developer skilled in creating innovative 2D, 3D, and AR games using
+                    Unity, LibGDX, and Godot. Proven track record in leading development teams, managing projects, and
+                    solving complex problems. Strong background in backend and server-side development. Dedicated to
+                    delivering high-quality gaming experiences and driving project success.</p>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="py-4">
+            <h2 class="section-header">Experience</h2>
+
+            <!-- Round The Clock Technologies -->
+            <div class="card experience-card p-4">
+                <div class="d-flex align-items-start mb-3">
+                    <img src="https://logo.clearbit.com/rtctek.com" alt="Round The Clock Technologies"
+                        class="company-logo me-3">
+                    <div>
+                        <h3 class="h5 mb-1">Lead Software Engineer</h3>
+                        <div class="d-flex flex-wrap align-items-center  mb-2">
+                            <span class="me-3">Round The Clock Technologies Pvt. Ltd.</span>
+                            <span class="me-3"><i class="fas fa-map-marker-alt me-1"></i> Noida</span>
+                            <span><i class="fas fa-calendar-alt me-1"></i> March 2023 - May 2024</span>
+                        </div>
+                    </div>
+                </div>
+                <ul>
+                    <li><strong>Led a team</strong> of 12 talented developers in creating and maintaining unique and
+                        exciting games for clients.</li>
+                    <li><strong>Managed Scrum meetings</strong> and coordinated tasks for the team.</li>
+                    <li>Developed games and proofs-of-concept (POCs) for US clients, utilizing <strong>Unity</strong> on
+                        <strong>Android</strong> and <strong>iOS</strong> in <strong>2D</strong>, <strong>3D</strong>,
+                        and <strong>AR platforms</strong>.
+                    </li>
+                    <li>Improved <strong>project delivery speed</strong> by <strong>30%</strong> through effective team
+                        leadership and project management.</li>
+                </ul>
+            </div>
+
+            <!-- Extramarks Education -->
+            <div class="card experience-card p-4">
+                <div class="d-flex align-items-start mb-3">
+                    <img src="https://logo.clearbit.com/extramarks.com" alt="Extramarks Education"
+                        class="company-logo me-3">
+                    <div>
+                        <h3 class="h5 mb-1">Senior Game Developer</h3>
+                        <div class="d-flex flex-wrap align-items-center  mb-2">
+                            <span class="me-3">Extramarks Education India Pvt. Ltd.</span>
+                            <span class="me-3"><i class="fas fa-map-marker-alt me-1"></i> Noida</span>
+                            <span><i class="fas fa-calendar-alt me-1"></i> November 2021 - May 2022</span>
+                        </div>
+                    </div>
+                </div>
+                <ul>
+                    <li>Received <strong>"Rookie Rockstar Award"</strong> within the first two months.</li>
+                    <li>Designed a system using the <strong>Phaser Game Framework</strong> that enabled rapid
+                        prototyping and testing for game creation.</li>
+                    <li>Coworkers have used this system to develop over <strong>15 games</strong> and it is still in use
+                        today.</li>
+                    <li>Completed <strong>6 games</strong> using this system.</li>
+                    <li>Maintained and modified existing <strong>Unity projects</strong> to fix errors and adapt to new
+                        requirements.</li>
+                </ul>
+            </div>
+
+            <!-- Rendered Ideas -->
+            <div class="card experience-card p-4">
+                <div class="d-flex align-items-start mb-3">
+                    <img src="https://logo.clearbit.com/renderedideas.com" alt="Rendered Ideas"
+                        class="company-logo me-3">
+                    <div>
+                        <h3 class="h5 mb-1">Game Developer</h3>
+                        <div class="d-flex flex-wrap align-items-center  mb-2">
+                            <span class="me-3">Rendered Ideas Softgame Pvt. Ltd.</span>
+                            <span class="me-3"><i class="fas fa-map-marker-alt me-1"></i> Mumbai</span>
+                            <span><i class="fas fa-calendar-alt me-1"></i> June 2018 - November 2021</span>
+                        </div>
+                    </div>
+                </div>
+                <ul>
+                    <li>Worked on more than <strong>20 games</strong> with backend and server-side development.</li>
+                    <li>Developed <strong>2D and 3D games</strong> using <strong>LibGDX</strong>,
+                        <strong>Unity</strong>, and <strong>Godot Game Engine</strong>.
+                    </li>
+                    <li>Published on <strong>Google Play Store</strong>, <strong>Amazon App Store</strong>, <strong>Roku
+                            Channel Store</strong>, and various <strong>HTML-based platforms</strong>.</li>
+                    <li>Managed <strong>backend</strong>, <strong>server-side development</strong>, <strong>ad/in-app
+                            purchase (IAP) management</strong>, and <strong>cross-promotion</strong>.</li>
+                </ul>
+            </div>
+
+            <!-- Akashvaani -->
+            <div class="card experience-card p-4">
+                <div class="d-flex align-items-start mb-3">
+                    <img src="https://logo.clearbit.com/akashvaani.com" alt="Akashvaani" class="company-logo me-3">
+                    <div>
+                        <h3 class="h5 mb-1">Trainee Developer</h3>
+                        <div class="d-flex flex-wrap align-items-center  mb-2">
+                            <span class="me-3">Akashvaani.com</span>
+                            <span class="me-3"><i class="fas fa-map-marker-alt me-1"></i> Gurugram</span>
+                            <span><i class="fas fa-calendar-alt me-1"></i> May 2017 - June 2018</span>
+                        </div>
+                    </div>
+                </div>
+                <ul>
+                    <li>Assisted in the development of <strong>web and software applications</strong>.</li>
+                    <li>Participated in <strong>code reviews</strong> and contributed to <strong>debugging</strong> and
+                        <strong>testing processes</strong>.
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="py-4">
+            <h2 class="section-header">Skills</h2>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card experience-card p-4 h-100">
+                        <h3 class="h5 mb-3">Game Engines</h3>
+
+                        <div class="skill-bar-container">
+                            <div class="skill-label">
+                                <span>Unity Game Engine</span>
+                                <span>Advanced</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                            <div class="mt-2">
+                                <span class="badge bg-secondary me-1 mb-1">C#</span>
+                                <span class="badge bg-secondary me-1 mb-1">2D</span>
+                                <span class="badge bg-secondary me-1 mb-1">3D</span>
+                                <span class="badge bg-secondary me-1 mb-1">AR</span>
+                                <span class="badge bg-secondary me-1 mb-1">VR</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-bar-container">
+                            <div class="skill-label">
+                                <span>Godot Game Engine</span>
+                                <span>Advanced</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                            <div class="mt-2">
+                                <span class="badge bg-secondary me-1 mb-1">GDScript</span>
+                                <span class="badge bg-secondary me-1 mb-1">2D</span>
+                                <span class="badge bg-secondary me-1 mb-1">3D</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-bar-container">
+                            <div class="skill-label">
+                                <span>Unreal Game Engine</span>
+                                <span>Intermediate</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 70%"></div>
+                            </div>
+                            <div class="mt-2">
+                                <span class="badge bg-secondary me-1 mb-1">Blueprints</span>
+                                <span class="badge bg-secondary me-1 mb-1">C++</span>
+                                <span class="badge bg-secondary me-1 mb-1">Level Design</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mt-4 mt-md-0">
+                    <div class="card experience-card p-4 h-100">
+                        <h3 class="h5 mb-3">Programming Languages</h3>
+
+                        <div class="skill-bar-container">
+                            <div class="skill-label">
+                                <span>BrightScript</span>
+                                <span>Expert</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 95%"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill-bar-container">
+                            <div class="skill-label">
+                                <span>C#</span>
+                                <span>Advanced</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill-bar-container">
+                            <div class="skill-label">
+                                <span>GDScript</span>
+                                <span>Advanced</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill-bar-container">
+                            <div class="skill-label">
+                                <span>JavaScript</span>
+                                <span>Advanced</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill-bar-container">
+                            <div class="skill-label">
+                                <span>Python</span>
+                                <span>Intermediate</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 70%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Add after Skills section -->
+        <section class="py-4">
+            <h2 class="section-header">Game Projects</h2>
+
+            <div class="row">
+                <!-- Project 1 -->
+                <div class="col-md-4 mb-4">
+                    <div class="card experience-card h-100">
+                        <div class="card-img-top game-thumbnail"
+                            style="background-image: url('https://via.placeholder.com/400x225');"></div>
+                        <div class="card-body">
+                            <h3 class="h5">3D Adventure Game</h3>
+                            <p class=" small">Unity | C# | 3D Modeling</p>
+                            <p>An immersive adventure game with puzzle-solving mechanics and dynamic environments.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a href="#" class="btn btn-sm btn-outline-light">View Details</a>
+                                <div class="platform-icons">
+                                    <i class="fab fa-android me-1" title="Android"></i>
+                                    <i class="fab fa-apple me-1" title="iOS"></i>
+                                    <i class="fas fa-desktop" title="Windows"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="col-md-4 mb-4">
+                    <div class="card experience-card h-100">
+                        <div class="card-img-top game-thumbnail"
+                            style="background-image: url('https://via.placeholder.com/400x225');"></div>
+                        <div class="card-body">
+                            <h3 class="h5">AR Educational App</h3>
+                            <p class=" small">Unity | AR Foundation | C#</p>
+                            <p>Interactive learning experience using augmented reality to visualize complex concepts.
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a href="#" class="btn btn-sm btn-outline-light">View Details</a>
+                                <div class="platform-icons">
+                                    <i class="fab fa-android me-1" title="Android"></i>
+                                    <i class="fab fa-apple me-1" title="iOS"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="col-md-4 mb-4">
+                    <div class="card experience-card h-100">
+                        <div class="card-img-top game-thumbnail"
+                            style="background-image: url('https://via.placeholder.com/400x225');"></div>
+                        <div class="card-body">
+                            <h3 class="h5">2D Platformer</h3>
+                            <p class=" small">Godot | GDScript | Pixel Art</p>
+                            <p>Retro-style platformer with custom physics and hand-drawn animations.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a href="#" class="btn btn-sm btn-outline-light">View Details</a>
+                                <div class="platform-icons">
+                                    <i class="fab fa-html5" title="Web"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <a href="#" class="btn btn-primary">View All Projects</a>
+            </div>
+            </style>
+
+            <!-- Education Section -->
+            <section class="py-4">
+                <h2 class="section-header">Education</h2>
+
+                <div class="card experience-card p-4">
+                    <div class="d-flex align-items-start">
+                        <div class="me-4">
+                            <i class="fas fa-graduation-cap fa-3x text-primary"></i>
+                        </div>
+                        <div>
+                            <h3 class="h5 mb-1">B. Tech in Information Technology</h3>
+                            <div class="d-flex flex-wrap align-items-center  mb-2">
+                                <span class="me-3">Kurukshetra University</span>
+                                <span><i class="fas fa-calendar-alt me-1"></i> 2013 - 2017</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Awards Section -->
+            <section class="py-4">
+                <h2 class="section-header">Awards</h2>
+
+                <div class="card experience-card p-4">
+                    <div class="d-flex align-items-start">
+                        <div class="me-4">
+                            <i class="fas fa-trophy fa-3x text-warning"></i>
+                        </div>
+                        <div>
+                            <h3 class="h5 mb-1">Rookie Rockstar</h3>
+                            <div class="d-flex flex-wrap align-items-center  mb-2">
+                                <span class="me-3">Extramarks Education</span>
+                                <span><i class="fas fa-calendar-alt me-1"></i> January 2022</span>
+                            </div>
+                            <p class="mb-0">Awarded for exceptional performance and rapid integration into the team,
+                                contributing significantly to project success within the first two months.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Add after Awards section -->
+            <section class="py-4">
+                <h2 class="section-header">Testimonials</h2>
+
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="card experience-card h-100">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-3">
+                                    <img src="https://via.placeholder.com/60" alt="Client" class="rounded-circle me-3"
+                                        width="60" height="60">
+                                    <div>
+                                        <h4 class="h6 mb-0">John Smith</h4>
+                                        <p class=" small mb-0">CEO, Game Studio</p>
+                                    </div>
+                                </div>
+                                <p class="mb-0">"Ketan's technical expertise and leadership were instrumental in
+                                    delivering our
+                                    AR project on time. His problem-solving skills are exceptional, and he consistently
+                                    went
+                                    above and beyond to ensure quality."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+                        <div class="card experience-card h-100">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-3">
+                                    <img src="https://via.placeholder.com/60" alt="Colleague"
+                                        class="rounded-circle me-3" width="60" height="60">
+                                    <div>
+                                        <h4 class="h6 mb-0">Sarah Johnson</h4>
+                                        <p class=" small mb-0">Lead Designer</p>
+                                    </div>
+                                </div>
+                                <p class="mb-0">"Working with Ketan was a pleasure. His understanding of game mechanics
+                                    and
+                                    ability to translate design concepts into functional systems made our collaboration
+                                    seamless
+                                    and productive."</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-4 text-center">
+        <p>&copy; 2023 Ketan Dutt. All rights reserved.</p>
+    </footer>
+
+    <div id="console-loader"
+        class="d-flex justify-content-center align-items-center position-fixed top-0 start-0 w-100 h-100 bg-dark z-index-9999">
+        <div class="text-center">
+            <div class="console-animation mb-3"></div>
+            <p class="text-white">Loading portfolio...</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <script>
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+                document.getElementById('console-loader').style.opacity = '0';
+                setTimeout(function () {
+                    document.getElementById('console-loader').style.display = 'none';
+                }, 500);
+            }, 1000);
+        });
+
+        // Initialize particles.js
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 60 },
+                color: { value: "#9d50bb" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5 },
+                size: { value: 3 },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#6e48aa",
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none"
+                }
+            },
+            interactivity: {
+                events: {
+                    onhover: { enable: true, mode: "grab" },
+                    onclick: { enable: true, mode: "push" }
+                }
+            }
+        });
+
+        // CV Download
+        document.getElementById('downloadCV').addEventListener('click', () => {
+            Swal.fire({
+                title: 'Download Starting',
+                text: 'Your CV will download shortly',
+                icon: 'success',
+                timer: 2000,
+                showConfirmButton: false
+            });
+
+            // In a real implementation, this would link to your actual CV
+            setTimeout(() => {
+                const link = document.createElement('a');
+                link.href = '#';
+                link.download = 'Ketan_Dutt_CV.pdf';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }, 1000);
+        });
+
+        // Animate experience cards on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.experience-card').forEach(card => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.5s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+
+</html>
