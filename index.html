@@ -207,6 +207,10 @@
         }
 
         /* Console Loader */
+        #console-loader {
+            transition: opacity 0.5s ease-out;
+        }
+
         .console-animation {
             width: 80px;
             height: 80px;
@@ -1256,13 +1260,11 @@
 
         // Hide loader when page loads
         window.addEventListener('load', function () {
+            document.getElementById('console-loader').style.opacity = '0';
             setTimeout(function () {
-                document.getElementById('console-loader').style.opacity = '0';
-                setTimeout(function () {
-                    document.getElementById('console-loader').style.display = "none";
-                    document.getElementById('console-loader').className = document.getElementById('console-loader').className.replace("d-flex", "");
-                }, 500);
-            }, 1000);
+                document.getElementById('console-loader').style.display = "none";
+                document.getElementById('console-loader').className = document.getElementById('console-loader').className.replace("d-flex", "");
+            }, 500);
         });
     </script>
 </body>
