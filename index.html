@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ketan Dutt - Game Developer Portfolio</title>
+    <title>Loading...</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -274,52 +274,27 @@
         <i class="fas fa-moon  fa-2x"></i>
     </button>
 
-    <button id="downloadCV" class="btn hud-corner" style="position: fixed;right: 12px;top: 20px;z-index: 90; border: none;pointer-events: all;">
+    <button id="downloadCV" class="btn hud-corner" style="position: fixed;right: 12px;top: 20px;z-index: 90; border: none;pointer-events: all; display: none;">
         <img src="CV.png" alt="Download CV" style="width: 100%;">
     </button>
     <!-- Main Content -->
 
     <div class="container py-5">
         <!-- Hero Section -->
-        <section class="row text-center py-5">
+        <section class="row text-center py-5" id="hero-section">
             <div class="col-md-4" style="min-width: 300px;">
                 <div class="profile-container">
-                    <img src="https://avatars.githubusercontent.com/u/30174373?v=4" alt="Ketan Dutt"
-                        class="profile-img">
+                    <img id="profile-img" src="" alt="" class="profile-img">
                 </div>
             </div>
             <div class="col-md-8">
-                <h1 class="display-4 fw-bold mt-4 mb-2">Ketan Dutt</h1>
-                <h2 class="h5  mb-4">
-                    <span class="badge bg-primary me-1">🎮 Game Dev</span>
-                    <span class="badge bg-secondary me-1">💻 Tech Enthusiast</span>
-                    <!-- <span class="badge bg-success me-1">🎨 Hobby Artist</span> -->
-                    <span class="badge bg-info  me-1">🥁 Music Lover</span>
+                <h1 class="display-4 fw-bold mt-4 mb-2" id="profile-name"></h1>
+                <h2 class="h5  mb-4" id="profile-badges">
+                    <!-- Badges injected here -->
                 </h2>
-                <h3 class="h5 mb-4">Lead Software Developer with 7 years of experience</h3>
-
-
-                <div class="social-links"
-                    style="display: flex !important;justify-content: space-evenly !important;align-content: center;">
-                    <a href="mailto:ketan6196@gmail.com" class="text-white" style="text-decoration: none;">
-                        <i class="fa-solid fa-envelope fa-3x"></i>
-                    </a>
-                    <a href="https://github.com/KetanDutt" target="_blank" class="text-white"
-                        style="text-decoration: none;">
-                        <i class="fa-brands fa-github fa-3x"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/ketan-dutt-006104b7/" target="_blank" class="text-white "
-                        style="text-decoration: none;">
-                        <i class="fa-brands fa-linkedin fa-3x"></i>
-                    </a>
-                    <a href="https://www.facebook.com/k10dutt" target="_blank" class="text-white "
-                        style="text-decoration: none;">
-                        <i class="fa-brands fa-square-facebook fa-3x"></i>
-                    </a>
-                    <a href="https://www.instagram.com/k10.dutt/" target="_blank" class="text-white "
-                        style="text-decoration: none;">
-                        <i class="fa-brands fa-instagram fa-3x"></i>
-                    </a>
+                <h3 class="h5 mb-4" id="profile-subtitle"></h3>
+                <div class="social-links" id="social-links" style="display: flex !important;justify-content: space-evenly !important;align-content: center;">
+                     <!-- Social links injected here -->
                 </div>
             </div>
         </section>
@@ -328,43 +303,8 @@
         <section class="py-4">
             <h2 class="section-header">Current Focus</h2>
             <div class="card experience-card p-4">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="d-flex align-items-center mb-3">
-                            <i class="fas fa-tools fa-2x text-primary me-3"></i>
-                            <div>
-                                <h3 class="h5 mb-1">Working With</h3>
-                                <p class="mb-0">Unity, Godot, and Roku Game Engine</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="d-flex align-items-center mb-3">
-                            <i class="fas fa-graduation-cap fa-2x text-primary me-3"></i>
-                            <div>
-                                <h3 class="h5 mb-1">Learning</h3>
-                                <p class="mb-0">Game AI, multiplayer networking, and game design patterns</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="d-flex align-items-center mb-3">
-                            <i class="fas fa-hands-helping fa-2x text-primary me-3"></i>
-                            <div>
-                                <h3 class="h5 mb-1">Open To</h3>
-                                <p class="mb-0">Game jams, open-source games, or game development tools</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="d-flex align-items-center mb-3">
-                            <i class="fas fa-bullseye fa-2x text-primary me-3"></i>
-                            <div>
-                                <h3 class="h5 mb-1">2025 Goal</h3>
-                                <p class="mb-0">Contribute to a major open-source game engine project</p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="row" id="current-focus-container">
+                    <!-- Dynamic Content -->
                 </div>
             </div>
         </section>
@@ -373,115 +313,15 @@
         <section class="py-4">
             <h2 class="section-header">Summary</h2>
             <div class="card experience-card p-4">
-                <p class="mb-0">Passionate Game Developer skilled in creating innovative 2D, 3D, and AR games using
-                    Unity, LibGDX, and Godot. Proven track record in leading development teams, managing projects, and
-                    solving complex problems. Strong background in backend and server-side development. Dedicated to
-                    delivering high-quality gaming experiences and driving project success.</p>
+                <p class="mb-0" id="summary-text"></p>
             </div>
         </section>
 
         <!-- Experience Section -->
         <section class="py-4">
             <h2 class="section-header">Experience</h2>
-
-            <!-- Round The Clock Technologies -->
-            <div class="card experience-card p-4">
-                <div class="d-flex align-items-start mb-3">
-                    <img src="https://logo.clearbit.com/rtctek.com" alt="Round The Clock Technologies"
-                        class="company-logo me-3" loading="lazy">
-                    <div>
-                        <h3 class="h5 mb-1">Lead Software Engineer</h3>
-                        <div class="d-flex flex-wrap align-items-center  mb-2">
-                            <span class="me-3">Round The Clock Technologies Pvt. Ltd.</span>
-                            <span class="me-3"><i class="fas fa-map-marker-alt me-1"></i> Noida</span>
-                            <span><i class="fas fa-calendar-alt me-1"></i> March 2023 - May 2024</span>
-                        </div>
-                    </div>
-                </div>
-                <ul>
-                    <li><strong>Led a team</strong> of talented developers in creating and maintaining unique and
-                        exciting games for clients.</li>
-                    <li><strong>Managed Scrum meetings</strong> and coordinated tasks for the team.</li>
-                    <li>Developed games and proofs-of-concept (POCs) for US clients, utilizing <strong>Unity</strong> on
-                        <strong>Android</strong> and <strong>iOS</strong> in <strong>2D</strong>, <strong>3D</strong>,
-                        and <strong>AR platforms</strong>.
-                    </li>
-                    <li>Improved <strong>project delivery speed</strong> by <strong>30%</strong> through effective team
-                        leadership and project management.</li>
-                </ul>
-            </div>
-
-            <!-- Extramarks Education -->
-            <div class="card experience-card p-4">
-                <div class="d-flex align-items-start mb-3">
-                    <img src="https://logo.clearbit.com/extramarks.com" alt="Extramarks Education"
-                        class="company-logo me-3" loading="lazy">
-                    <div>
-                        <h3 class="h5 mb-1">Senior Game Developer</h3>
-                        <div class="d-flex flex-wrap align-items-center  mb-2">
-                            <span class="me-3">Extramarks Education India Pvt. Ltd.</span>
-                            <span class="me-3"><i class="fas fa-map-marker-alt me-1"></i> Noida</span>
-                            <span><i class="fas fa-calendar-alt me-1"></i> November 2021 - May 2022</span>
-                        </div>
-                    </div>
-                </div>
-                <ul>
-                    <li>Received <strong>"Rookie Rockstar Award"</strong> within the first two months.</li>
-                    <li>Designed a system using the <strong>Phaser Game Framework</strong> that enabled rapid
-                        prototyping and testing for game creation.</li>
-                    <li>Coworkers have used this system to develop over <strong>15 games</strong> and it is still in use
-                        today.</li>
-                    <li>Completed <strong>6 games</strong> using this system.</li>
-                    <li>Maintained and modified existing <strong>Unity projects</strong> to fix errors and adapt to new
-                        requirements.</li>
-                </ul>
-            </div>
-
-            <!-- Rendered Ideas -->
-            <div class="card experience-card p-4">
-                <div class="d-flex align-items-start mb-3">
-                    <img src="https://logo.clearbit.com/renderedideas.com" alt="Rendered Ideas"
-                        class="company-logo me-3" loading="lazy">
-                    <div>
-                        <h3 class="h5 mb-1">Game Developer</h3>
-                        <div class="d-flex flex-wrap align-items-center  mb-2">
-                            <span class="me-3">Rendered Ideas Softgame Pvt. Ltd.</span>
-                            <span class="me-3"><i class="fas fa-map-marker-alt me-1"></i> Mumbai</span>
-                            <span><i class="fas fa-calendar-alt me-1"></i> June 2018 - November 2021</span>
-                        </div>
-                    </div>
-                </div>
-                <ul>
-                    <li>Worked on more than <strong>20 games</strong> with backend and server-side development.</li>
-                    <li>Developed <strong>2D and 3D games</strong> using <strong>LibGDX</strong>,
-                        <strong>Unity</strong>, and <strong>Godot Game Engine</strong>.
-                    </li>
-                    <li>Published on <strong>Google Play Store</strong>, <strong>Amazon App Store</strong>, <strong>Roku
-                            Channel Store</strong>, and various <strong>HTML-based platforms</strong>.</li>
-                    <li>Managed <strong>backend</strong>, <strong>server-side development</strong>, <strong>ad/in-app
-                            purchase (IAP) management</strong>, and <strong>cross-promotion</strong>.</li>
-                </ul>
-            </div>
-
-            <!-- Akashvaani -->
-            <div class="card experience-card p-4">
-                <div class="d-flex align-items-start mb-3">
-                    <img src="https://logo.clearbit.com/akashvaani.com" alt="Akashvaani" class="company-logo me-3" loading="lazy">
-                    <div>
-                        <h3 class="h5 mb-1">Trainee Developer</h3>
-                        <div class="d-flex flex-wrap align-items-center  mb-2">
-                            <span class="me-3">Akashvaani.com</span>
-                            <span class="me-3"><i class="fas fa-map-marker-alt me-1"></i> Gurugram</span>
-                            <span><i class="fas fa-calendar-alt me-1"></i> May 2017 - June 2018</span>
-                        </div>
-                    </div>
-                </div>
-                <ul>
-                    <li>Assisted in the development of <strong>web and software applications</strong>.</li>
-                    <li>Participated in <strong>code reviews</strong> and contributed to <strong>debugging</strong> and
-                        <strong>testing processes</strong>.
-                    </li>
-                </ul>
+            <div id="experience-container">
+                <!-- Dynamic Content -->
             </div>
         </section>
 
@@ -493,52 +333,8 @@
                 <div class="col-md-6">
                     <div class="card experience-card p-4 h-100">
                         <h3 class="h5 mb-3">Game Engines</h3>
-
-                        <div class="skill-bar-container">
-                            <div class="skill-label">
-                                <span>Unity Game Engine</span>
-                                <span>Advanced</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 90%"></div>
-                            </div>
-                            <div class="mt-2">
-                                <span class="badge bg-secondary me-1 mb-1">C#</span>
-                                <span class="badge bg-secondary me-1 mb-1">2D</span>
-                                <span class="badge bg-secondary me-1 mb-1">3D</span>
-                                <span class="badge bg-secondary me-1 mb-1">AR</span>
-                                <span class="badge bg-secondary me-1 mb-1">VR</span>
-                            </div>
-                        </div>
-
-                        <div class="skill-bar-container">
-                            <div class="skill-label">
-                                <span>Godot Game Engine</span>
-                                <span>Advanced</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%"></div>
-                            </div>
-                            <div class="mt-2">
-                                <span class="badge bg-secondary me-1 mb-1">GDScript</span>
-                                <span class="badge bg-secondary me-1 mb-1">2D</span>
-                                <span class="badge bg-secondary me-1 mb-1">3D</span>
-                            </div>
-                        </div>
-
-                        <div class="skill-bar-container">
-                            <div class="skill-label">
-                                <span>Unreal Game Engine</span>
-                                <span>Intermediate</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 70%"></div>
-                            </div>
-                            <div class="mt-2">
-                                <span class="badge bg-secondary me-1 mb-1">Blueprints</span>
-                                <span class="badge bg-secondary me-1 mb-1">C++</span>
-                                <span class="badge bg-secondary me-1 mb-1">Level Design</span>
-                            </div>
+                        <div id="skills-game-engines">
+                            <!-- Dynamic -->
                         </div>
                     </div>
                 </div>
@@ -546,55 +342,8 @@
                 <div class="col-md-6 mt-4 mt-md-0">
                     <div class="card experience-card p-4 h-100">
                         <h3 class="h5 mb-3">Programming Languages</h3>
-
-                        <div class="skill-bar-container">
-                            <div class="skill-label">
-                                <span>BrightScript</span>
-                                <span>Expert</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 95%"></div>
-                            </div>
-                        </div>
-
-                        <div class="skill-bar-container">
-                            <div class="skill-label">
-                                <span>C#</span>
-                                <span>Advanced</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 90%"></div>
-                            </div>
-                        </div>
-
-                        <div class="skill-bar-container">
-                            <div class="skill-label">
-                                <span>GDScript</span>
-                                <span>Advanced</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%"></div>
-                            </div>
-                        </div>
-
-                        <div class="skill-bar-container">
-                            <div class="skill-label">
-                                <span>JavaScript</span>
-                                <span>Advanced</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%"></div>
-                            </div>
-                        </div>
-
-                        <div class="skill-bar-container">
-                            <div class="skill-label">
-                                <span>Python</span>
-                                <span>Intermediate</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 70%"></div>
-                            </div>
+                        <div id="skills-languages">
+                            <!-- Dynamic -->
                         </div>
                     </div>
                 </div>
@@ -614,90 +363,8 @@
         <!-- Toolbox Section -->
         <section class="py-4">
             <h2 class="section-header">Development Toolbox</h2>
-
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <div class="card experience-card p-4 h-100">
-                        <h3 class="h5 mb-3">Game Engines</h3>
-                        <div class="d-flex flex-wrap gap-2">
-                            <span class="badge bg-secondary p-2 d-flex align-items-center">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unity/unity-original.svg"
-                                    width="20" height="20" class="me-1" loading="lazy">
-                                Unity
-                            </span>
-                            <span class="badge bg-secondary p-2 d-flex align-items-center">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/godot/godot-original.svg"
-                                    width="20" height="20" class="me-1" loading="lazy">
-                                Godot
-                            </span>
-                            <span class="badge bg-secondary p-2 d-flex align-items-center">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unrealengine/unrealengine-original.svg"
-                                    width="20" height="20" class="me-1" loading="lazy">
-                                Unreal
-                            </span>
-                            <span class="badge bg-secondary p-2 d-flex align-items-center">
-                                <i class="fas fa-gamepad me-1"></i>
-                                Roku Game Engine
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 mb-4">
-                    <div class="card experience-card p-4 h-100">
-                        <h3 class="h5 mb-3">Languages</h3>
-                        <div class="d-flex flex-wrap gap-2">
-                            <span class="badge bg-secondary p-2 d-flex align-items-center">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg"
-                                    width="20" height="20" class="me-1" loading="lazy">
-                                C#
-                            </span>
-                            <span class="badge bg-secondary p-2 d-flex align-items-center">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-                                    width="20" height="20" class="me-1" loading="lazy">
-                                JavaScript
-                            </span>
-                            <span class="badge bg-secondary p-2 d-flex align-items-center">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
-                                    width="20" height="20" class="me-1" loading="lazy">
-                                Python
-                            </span>
-                            <span class="badge bg-secondary p-2 d-flex align-items-center">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
-                                    width="20" height="20" class="me-1" loading="lazy">
-                                Java
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 mb-4">
-                    <div class="card experience-card p-4 h-100">
-                        <h3 class="h5 mb-3">Tools & Platforms</h3>
-                        <div class="d-flex flex-wrap gap-2">
-                            <span class="badge bg-secondary p-2 d-flex align-items-center">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
-                                    width="20" height="20" class="me-1" loading="lazy">
-                                Git
-                            </span>
-                            <span class="badge bg-secondary p-2 d-flex align-items-center">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
-                                    width="20" height="20" class="me-1" loading="lazy">
-                                GitHub
-                            </span>
-                            <span class="badge bg-secondary p-2 d-flex align-items-center">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visualstudio/visualstudio-plain.svg"
-                                    width="20" height="20" class="me-1" loading="lazy">
-                                VS Code
-                            </span>
-                            <span class="badge bg-secondary p-2 d-flex align-items-center">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-plain.svg"
-                                    width="20" height="20" class="me-1" loading="lazy">
-                                Photoshop
-                            </span>
-                        </div>
-                    </div>
-                </div>
+            <div class="row" id="toolbox-container">
+                <!-- Dynamic Content -->
             </div>
         </section>
 
@@ -705,264 +372,40 @@
         <section class="py-4">
             <h2 class="section-header">Demo Projects</h2>
 
-            <div class="row">
-                <!-- Project 1 -->
-                <div class="col-md-6 mb-4">
-                    <div class="card experience-card h-100">
-                        <div class="card-body">
-                            <h3 class="h5">Endless Runner Game</h3>
-                            <p class=" small">Basic 3D endless runner level prototype</p>
-                            <p class="mb-3">A demonstration of core runner game mechanics with procedural generation
-                                elements.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <span class="badge bg-secondary me-1">Unity</span>
-                                    <span class="badge bg-secondary">C#</span>
-                                </div>
-                                <div>
-                                    <a href="https://ketandutt.github.io/RunnerGame_Built/" target="_blank"
-                                        class="btn btn-sm btn-outline-light me-1">
-                                        <i class="fas fa-external-link-alt me-1"></i>Demo
-                                    </a>
-                                    <a href="https://github.com/KetanDutt/RunnerGame" target="_blank"
-                                        class="btn btn-sm btn-outline-light">
-                                        <i class="fab fa-github me-1"></i>Source
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="col-md-6 mb-4">
-                    <div class="card experience-card h-100">
-                        <div class="card-body">
-                            <h3 class="h5">UNO Game in Godot</h3>
-                            <p class=" small">A player vs computer UNO game</p>
-                            <p class="mb-3">Full implementation of UNO card game rules with AI opponent.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <span class="badge bg-secondary me-1">Godot</span>
-                                    <span class="badge bg-secondary">GDScript</span>
-                                </div>
-                                <div>
-                                    <a href="https://ketandutt.github.io/UNO_Godot/" target="_blank"
-                                        class="btn btn-sm btn-outline-light me-1">
-                                        <i class="fas fa-external-link-alt me-1"></i>Demo
-                                    </a>
-                                    <a href="https://github.com/KetanDutt/UNO_Godot" target="_blank"
-                                        class="btn btn-sm btn-outline-light">
-                                        <i class="fab fa-github me-1"></i>Source
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="col-md-6 mb-4">
-                    <div class="card experience-card h-100">
-                        <div class="card-body">
-                            <h3 class="h5">Ant Running Game</h3>
-                            <p class=" small">3D Running level demo</p>
-                            <p class="mb-3">Character controller demo with obstacle navigation.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <span class="badge bg-secondary me-1">Unity</span>
-                                    <span class="badge bg-secondary">C#</span>
-                                </div>
-                                <div>
-                                    <a href="https://ketandutt.github.io/Ants_Demo/" target="_blank"
-                                        class="btn btn-sm btn-outline-light me-1">
-                                        <i class="fas fa-external-link-alt me-1"></i>Demo
-                                    </a>
-                                    <a href="https://github.com/KetanDutt/Ants_Demo" target="_blank"
-                                        class="btn btn-sm btn-outline-light">
-                                        <i class="fab fa-github me-1"></i>Source
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 4 -->
-                <div class="col-md-6 mb-4">
-                    <div class="card experience-card h-100">
-                        <div class="card-body">
-                            <h3 class="h5">Car Parking Level Editor</h3>
-                            <p class=" small">Level Generator/Editor for car parking games</p>
-                            <p class="mb-3">Custom tool for designing and exporting parking challenge levels.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <span class="badge bg-secondary me-1">HTML</span>
-                                    <span class="badge bg-secondary">JavaScript</span>
-                                </div>
-                                <div>
-                                    <a href="https://ketandutt.github.io/MapGenerator/" target="_blank"
-                                        class="btn btn-sm btn-outline-light me-1">
-                                        <i class="fas fa-external-link-alt me-1"></i>Demo
-                                    </a>
-                                    <a href="https://github.com/KetanDutt/MapGenerator" target="_blank"
-                                        class="btn btn-sm btn-outline-light">
-                                        <i class="fab fa-github me-1"></i>Source
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="row" id="projects-container">
+                 <!-- Dynamic Content -->
             </div>
 
             <div class="text-center mt-3">
-                <button class="btn btn-outline-light" id="showMoreProjects">Show More Projects</button>
+                <button class="btn btn-outline-light" id="showMoreProjects" style="display: none;">Show More Projects</button>
             </div>
 
             <div id="moreProjects" class="row mt-3" style="display: none;">
-                <!-- Project 5 -->
-                <div class="col-md-6 mb-4">
-                    <div class="card experience-card h-100">
-                        <div class="card-body">
-                            <h3 class="h5">Chemistry Game Demo</h3>
-                            <p class=" small">A game to learn about valence electrons in chemistry</p>
-                            <p class="mb-3">Educational game demonstrating chemical bonding concepts.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <span class="badge bg-secondary me-1">Phaser</span>
-                                    <span class="badge bg-secondary">JavaScript</span>
-                                </div>
-                                <div>
-                                    <a href="https://ketandutt.github.io/ChemistryGame/" target="_blank"
-                                        class="btn btn-sm btn-outline-light me-1">
-                                        <i class="fas fa-external-link-alt me-1"></i>Demo
-                                    </a>
-                                    <a href="https://github.com/KetanDutt/ChemistryGame-Source" target="_blank"
-                                        class="btn btn-sm btn-outline-light">
-                                        <i class="fab fa-github me-1"></i>Source
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 6 -->
-                <div class="col-md-6 mb-4">
-                    <div class="card experience-card h-100">
-                        <div class="card-body">
-                            <h3 class="h5">Fighting Game Demo</h3>
-                            <p class=" small">Character animation demo for a fighting game</p>
-                            <p class="mb-3">Showcase of sprite animation and combat mechanics.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <span class="badge bg-secondary me-1">Phaser</span>
-                                    <span class="badge bg-secondary">JavaScript</span>
-                                </div>
-                                <div>
-                                    <a href="https://ketandutt.github.io/FightingDemo/" target="_blank"
-                                        class="btn btn-sm btn-outline-light me-1">
-                                        <i class="fas fa-external-link-alt me-1"></i>Demo
-                                    </a>
-                                    <a href="https://github.com/KetanDutt/FightingDemo" target="_blank"
-                                        class="btn btn-sm btn-outline-light">
-                                        <i class="fab fa-github me-1"></i>Source
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                 <!-- Dynamic Content -->
             </div>
         </section>
 
         <!-- Stats Section -->
         <section class="py-4">
             <h2 class="section-header">Game Dev Stats</h2>
-
-            <div class="row text-center">
-                <div class="col-md-3 col-6 mb-4">
-                    <div class="card experience-card p-3 h-100">
-                        <div class="stat-icon mb-2">
-                            <i class="fas fa-code fa-3x text-primary"></i>
-                        </div>
-                        <h3 class="h4 mb-0 counter" data-target="500000">500000+</h3>
-                        <p class=" mb-0">Lines of Code</p>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-6 mb-4">
-                    <div class="card experience-card p-3 h-100">
-                        <div class="stat-icon mb-2">
-                            <i class="fas fa-gamepad fa-3x text-primary"></i>
-                        </div>
-                        <h3 class="h4 mb-0 counter" data-target="40">40+</h3>
-                        <p class=" mb-0">Games Shipped</p>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-6 mb-4">
-                    <div class="card experience-card p-3 h-100">
-                        <div class="stat-icon mb-2">
-                            <i class="fas fa-users fa-3x text-primary"></i>
-                        </div>
-                        <h3 class="h4 mb-0 counter" data-target="12">12+</h3>
-                        <p class=" mb-0">Team Members Led</p>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-6 mb-4">
-                    <div class="card experience-card p-3 h-100">
-                        <div class="stat-icon mb-2">
-                            <i class="fas fa-download fa-3x text-primary"></i>
-                        </div>
-                        <h3 class="h4 mb-0 counter" data-target="1000000">1000000+</h3>
-                        <p class=" mb-0">Total Downloads</p>
-                    </div>
-                </div>
+            <div class="row text-center" id="stats-container">
+                 <!-- Dynamic Content -->
             </div>
         </section>
 
         <!-- Awards Section -->
         <section class="py-4">
             <h2 class="section-header">Awards</h2>
-
-            <div class="card experience-card p-4">
-                <div class="d-flex align-items-start">
-                    <div class="me-4">
-                        <i class="fas fa-trophy fa-3x text-warning"></i>
-                    </div>
-                    <div>
-                        <h3 class="h5 mb-1">Rookie Rockstar</h3>
-                        <div class="d-flex flex-wrap align-items-center  mb-2">
-                            <span class="me-3">Extramarks Education</span>
-                            <span><i class="fas fa-calendar-alt me-1"></i> January 2022</span>
-                        </div>
-                        <p class="mb-0">Awarded for exceptional performance and rapid integration into the team,
-                            contributing significantly to project success within the first two months.</p>
-                    </div>
-                </div>
+            <div id="awards-container">
+                 <!-- Dynamic Content -->
             </div>
         </section>
 
         <!-- Education Section -->
         <section class="py-4">
             <h2 class="section-header">Education</h2>
-
-            <div class="card experience-card p-4">
-                <div class="d-flex align-items-start">
-                    <div class="me-4">
-                        <i class="fas fa-graduation-cap fa-3x text-primary"></i>
-                    </div>
-                    <div>
-                        <h3 class="h5 mb-1">B. Tech in Information Technology</h3>
-                        <div class="d-flex flex-wrap align-items-center  mb-2">
-                            <span class="me-3">Kurukshetra University</span>
-                            <span><i class="fas fa-calendar-alt me-1"></i> 2013 - 2017</span>
-                        </div>
-                    </div>
-                </div>
+            <div id="education-container">
+                 <!-- Dynamic Content -->
             </div>
         </section>
 
@@ -995,54 +438,16 @@
                 </div>
 
                 <div class="col-md-12 mt-4 mt-md-0">
-                    <div class=" experience-card p-4 h-100 row">
-                        <div class="col-md-6">
+                    <div class=" experience-card p-4 h-100 row" id="contact-outer-container">
+                         <div class="col-md-6">
                             <h3 class="h5 mb-3">Direct Contact</h3>
-                            <ul class="list-unstyled">
-                                <li class="mb-3">
-                                    <i class="fas fa-envelope me-2 text-primary"></i>
-                                    <a href="mailto:ketan.dutt@yahoo.in" class="text-white">ketan.dutt@yahoo.in</a>
-                                </li>
-                                <li class="mb-3">
-                                    <i class="fas fa-envelope me-2 text-primary"></i>
-                                    <a href="mailto:ketan6196@gmail.com" class="text-white">ketan6196@gmail.com</a>
-                                </li>
-                                <li class="mb-3">
-                                    <i class="fas fa-phone me-2 text-primary"></i>
-                                    <a href="tel:+919999748948" class="text-white">+91 9999-748-948</a>
-                                </li>
-                                <li class="mb-3">
-                                    <i class="fas fa-map-marker-alt me-2 text-primary"></i>
-                                    <span>New Delhi, India</span>
-                                </li>
+                            <ul class="list-unstyled" id="contact-info-list">
+                                <!-- Dynamic -->
                             </ul>
                         </div>
                         <div class="col-md-6">
-                            <!-- <h3 class="h5 mb-3">Availability</h3>
-                            <div class="availability-badge mb-3">
-                                <span class="badge bg-success me-2">
-                                    <i class="fas fa-circle"></i>
-                                </span>
-                                <span>Available for freelance projects</span>
-                            </div> -->
-
-                            <div class="social-links row" style="display: flex;justify-content: space-around;align-items: center;flex-direction: row;align-content: space-around;height: 100%;">
-                                <a href="https://github.com/KetanDutt" target="_blank" class="text-white col-6"
-                                    style="text-decoration: none;">
-                                    <i class="fa-brands fa-github fa-3x"></i>
-                                </a>
-                                <a href="https://www.linkedin.com/in/ketan-dutt-006104b7/" target="_blank"
-                                    class="text-white col-6" style="text-decoration: none;">
-                                    <i class="fa-brands fa-linkedin fa-3x"></i>
-                                </a>
-                                <a href="https://www.facebook.com/k10dutt" target="_blank" class="text-white col-6"
-                                    style="text-decoration: none;">
-                                    <i class="fa-brands fa-square-facebook fa-3x"></i>
-                                </a>
-                                <a href="https://www.instagram.com/k10.dutt/" target="_blank" class="text-white col-6"
-                                    style="text-decoration: none;">
-                                    <i class="fa-brands fa-instagram fa-3x"></i>
-                                </a>
+                             <div class="social-links row" id="contact-social-links" style="display: flex;justify-content: space-around;align-items: center;flex-direction: row;align-content: space-around;height: 100%;">
+                                <!-- Dynamic -->
                             </div>
                         </div>
                     </div>
@@ -1051,82 +456,393 @@
         </section>
     </div>
 
-    <!-- Footer -->
-    <!-- <footer class="py-4 text-center">
-        <p>&copy; 2023 Ketan Dutt. All rights reserved.</p>
-    </footer> -->
-
-    <!-- <div id="Venta-Clouds" style="position: fixed;width: 100%;height: 100%;top: 0px;z-index: -1;left: 0px;"> -->
-
-    </div>
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.clouds.min.js"></script> -->
-    <!-- <script>
-        VANTA.CLOUDS({
-            el: "#Venta-Clouds",
-            mouseControls: true,
-            touchControls: true,
-            gyroControls: false,
-            minHeight: 200.00,
-            minWidth: 200.00
-        })
-    </script> -->
     <script>
-        // Initialize particles.js
-        particlesJS('particles-js', { "particles": { "number": { "value": 60, "density": { "enable": true, "value_area": 800 } }, "color": { "value": "#ccc" }, "opacity": { "value": 0.5 }, "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" }, "polygon": { "nb_sides": 5 }, "image": { "src": "img/github.svg", "width": 100, "height": 100 } }, "opacity": { "value": 0.5, "random": false, "anim": { "enable": false, "speed": 1, "opacity_min": 0.1, "sync": false } }, "size": { "value": 3, "random": true, "anim": { "enable": false, "speed": 40, "size_min": 0.1, "sync": false } }, "line_linked": { "enable": true, "distance": 150, "color": "#aaa", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 6, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, "attract": { "enable": false, "rotateX": 600, "rotateY": 1200 } } }, "interactivity": { "detect_on": "window", "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": false, "mode": "push" }, "resize": true }, "modes": { "grab": { "distance": 400, "line_linked": { "opacity": 1 } }, "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 }, "repulse": { "distance": 100, "duration": 0.4 }, "push": { "particles_nb": 4 }, "remove": { "particles_nb": 2 } } }, "retina_detect": true });
+        // Load Configuration
+        fetch('config.json')
+            .then(response => response.json())
+            .then(config => {
+                initializePortfolio(config);
+            })
+            .catch(error => {
+                console.error('Error loading config:', error);
+                document.getElementById('console-loader').innerHTML = '<p class="text-white text-center">Error loading configuration.<br>Please check console.</p>';
+            });
 
-        // CV Download
-        document.getElementById('downloadCV').addEventListener('click', () => {
-            // Swal.fire({
-            //     title: 'Download Starting',
-            //     text: 'Your CV will download shortly',
-            //     icon: 'success',
-            //     timer: 2000,
-            //     showConfirmButton: false,
-            //     theme: "dark"
-            // });
+        function initializePortfolio(config) {
+            // Meta & Theme
+            document.title = config.meta.title;
+            const root = document.documentElement;
+            for (const [key, value] of Object.entries(config.theme.colors)) {
+                root.style.setProperty(`--${key}-color`, value);
+            }
 
-            // In a real implementation, this would link to your actual CV
-            setTimeout(() => {
-                const link = document.createElement('a');
-                link.href = 'Ketan_Dutt_CV.pdf';
-                link.download = 'Ketan_Dutt_CV.pdf';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-            }, 500);
-        });
+            // CV Download Button
+            const downloadBtn = document.getElementById('downloadCV');
+            if (config.settings.show_cv_download) {
+                downloadBtn.style.display = 'block';
+                downloadBtn.onclick = () => {
+                     setTimeout(() => {
+                        const link = document.createElement('a');
+                        link.href = config.settings.cv_file_path;
+                        link.download = config.settings.cv_file_path;
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                    }, 500);
+                };
+            }
 
-        // Animate experience cards on scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = 1;
-                    entry.target.style.transform = 'translateY(0)';
+            // Profile
+            document.getElementById('profile-img').src = config.profile.image_url;
+            document.getElementById('profile-img').alt = config.profile.name;
+            document.getElementById('profile-name').textContent = config.profile.name;
+            document.getElementById('profile-subtitle').textContent = config.profile.subtitle;
+
+            const badgesContainer = document.getElementById('profile-badges');
+            config.profile.badges.forEach(badge => {
+                const span = document.createElement('span');
+                span.className = `badge ${badge.color_class} me-1`;
+                span.textContent = badge.text;
+                badgesContainer.appendChild(span);
+            });
+
+            const renderSocialLinks = (containerId, classNames = "text-white") => {
+                 const container = document.getElementById(containerId);
+                 container.innerHTML = '';
+                 config.profile.social_links.forEach(link => {
+                    const a = document.createElement('a');
+                    a.href = link.url;
+                    a.target = "_blank";
+                    a.className = classNames;
+                    if(containerId === 'contact-social-links') a.className += " col-6";
+                    a.style.textDecoration = "none";
+                    a.innerHTML = `<i class="${link.icon} fa-3x"></i>`;
+                    container.appendChild(a);
+                 });
+            };
+            renderSocialLinks('social-links');
+            renderSocialLinks('contact-social-links');
+
+
+            // Current Focus
+            const focusContainer = document.getElementById('current-focus-container');
+            config.current_focus.forEach(item => {
+                const col = document.createElement('div');
+                col.className = 'col-md-6';
+                col.innerHTML = `
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="${item.icon} fa-2x text-primary me-3"></i>
+                        <div>
+                            <h3 class="h5 mb-1">${item.title}</h3>
+                            <p class="mb-0">${item.text}</p>
+                        </div>
+                    </div>
+                `;
+                focusContainer.appendChild(col);
+            });
+
+            // Summary
+            document.getElementById('summary-text').textContent = config.summary;
+
+            // Experience
+            const expContainer = document.getElementById('experience-container');
+            config.experience.forEach(job => {
+                const card = document.createElement('div');
+                card.className = 'card experience-card p-4';
+
+                const listItems = job.description.map(desc => `<li>${desc.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</li>`).join('');
+
+                card.innerHTML = `
+                    <div class="d-flex align-items-start mb-3">
+                        <img src="${job.logo}" alt="${job.company}" class="company-logo me-3" loading="lazy">
+                        <div>
+                            <h3 class="h5 mb-1">${job.role}</h3>
+                            <div class="d-flex flex-wrap align-items-center mb-2">
+                                <span class="me-3">${job.company}</span>
+                                <span class="me-3"><i class="fas fa-map-marker-alt me-1"></i> ${job.location}</span>
+                                <span><i class="fas fa-calendar-alt me-1"></i> ${job.period}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <ul>${listItems}</ul>
+                `;
+                expContainer.appendChild(card);
+            });
+
+            // Skills
+            const renderSkillBars = (containerId, skills) => {
+                const container = document.getElementById(containerId);
+                skills.forEach(skill => {
+                    const div = document.createElement('div');
+                    div.className = 'skill-bar-container';
+                    let badgesHtml = '';
+                    if (skill.tags) {
+                        badgesHtml = '<div class="mt-2">' + skill.tags.map(tag => `<span class="badge bg-secondary me-1 mb-1">${tag}</span>`).join('') + '</div>';
+                    }
+                    div.innerHTML = `
+                        <div class="skill-label">
+                            <span>${skill.name}</span>
+                            <span>${skill.level}</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: ${skill.percentage}%"></div>
+                        </div>
+                        ${badgesHtml}
+                    `;
+                    container.appendChild(div);
+                });
+            };
+            renderSkillBars('skills-game-engines', config.skills.game_engines);
+            renderSkillBars('skills-languages', config.skills.programming_languages);
+
+            // Radar Chart
+            const ctx = document.getElementById('skillsRadar').getContext('2d');
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: config.skills.radar_chart.labels,
+                    datasets: [{
+                        label: 'Skill Level',
+                        data: config.skills.radar_chart.data,
+                        backgroundColor: 'rgba(110, 72, 170, 0.2)',
+                        borderColor: 'rgba(110, 72, 170, 1)',
+                        borderWidth: 2,
+                        pointBackgroundColor: 'rgba(110, 72, 170, 1)',
+                        pointRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        r: {
+                            min: 0,
+                            max: 100,
+                            angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                            pointLabels: { color: '#fff', font: { size: 12 } },
+                            ticks: { display: false }
+                        }
+                    },
+                    plugins: { legend: { labels: { color: '#fff' } } }
                 }
             });
-        }, { threshold: 0.1 });
 
-        document.querySelectorAll('.experience-card').forEach(card => {
-            card.style.opacity = 0;
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'all 0.5s ease';
-            observer.observe(card);
-        });
+            // Toolbox
+            const toolboxContainer = document.getElementById('toolbox-container');
+            const renderToolboxCategory = (title, items) => {
+                const col = document.createElement('div');
+                col.className = 'col-md-4 mb-4';
+                const itemsHtml = items.map(item => {
+                    let iconHtml = '';
+                    if (item.icon_url) {
+                        iconHtml = `<img src="${item.icon_url}" width="20" height="20" class="me-1" loading="lazy">`;
+                    } else if (item.icon_class) {
+                        iconHtml = `<i class="${item.icon_class} me-1"></i>`;
+                    }
+                    return `<span class="badge bg-secondary p-2 d-flex align-items-center">${iconHtml} ${item.name}</span>`;
+                }).join('');
 
-        // Theme Toggle
+                col.innerHTML = `
+                    <div class="card experience-card p-4 h-100">
+                        <h3 class="h5 mb-3">${title}</h3>
+                        <div class="d-flex flex-wrap gap-2">${itemsHtml}</div>
+                    </div>
+                `;
+                toolboxContainer.appendChild(col);
+            };
+            renderToolboxCategory("Game Engines", config.toolbox.game_engines);
+            renderToolboxCategory("Languages", config.toolbox.languages);
+            renderToolboxCategory("Tools & Platforms", config.toolbox.tools);
+
+
+            // Projects
+            const projectsContainer = document.getElementById('projects-container');
+            const moreProjectsContainer = document.getElementById('moreProjects');
+            const showMoreBtn = document.getElementById('showMoreProjects');
+            let hiddenProjectsCount = 0;
+
+            config.projects.forEach(project => {
+                const col = document.createElement('div');
+                col.className = 'col-md-6 mb-4';
+
+                const techBadges = project.technologies.map(t => `<span class="badge bg-secondary me-1">${t}</span>`).join('');
+
+                col.innerHTML = `
+                    <div class="card experience-card h-100">
+                        <div class="card-body">
+                            <h3 class="h5">${project.title}</h3>
+                            <p class="small">${project.subtitle}</p>
+                            <p class="mb-3">${project.description}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>${techBadges}</div>
+                                <div>
+                                    <a href="${project.demo_link}" target="_blank" class="btn btn-sm btn-outline-light me-1"><i class="fas fa-external-link-alt me-1"></i>Demo</a>
+                                    <a href="${project.source_link}" target="_blank" class="btn btn-sm btn-outline-light"><i class="fab fa-github me-1"></i>Source</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                if (project.hidden_initially) {
+                    moreProjectsContainer.appendChild(col);
+                    hiddenProjectsCount++;
+                } else {
+                    projectsContainer.appendChild(col);
+                }
+            });
+
+            if (hiddenProjectsCount > 0) {
+                showMoreBtn.style.display = 'inline-block';
+                showMoreBtn.addEventListener('click', function() {
+                    if (moreProjectsContainer.style.display === 'none') {
+                        moreProjectsContainer.style.display = 'flex';
+                        this.textContent = 'Show Less Projects';
+                    } else {
+                        moreProjectsContainer.style.display = 'none';
+                        this.textContent = 'Show More Projects';
+                    }
+                });
+            }
+
+            // Stats
+            const statsContainer = document.getElementById('stats-container');
+            config.stats.forEach(stat => {
+                const col = document.createElement('div');
+                col.className = 'col-md-3 col-6 mb-4';
+                col.innerHTML = `
+                    <div class="card experience-card p-3 h-100">
+                        <div class="stat-icon mb-2">
+                            <i class="${stat.icon} fa-3x text-primary"></i>
+                        </div>
+                        <h3 class="h4 mb-0 counter" data-target="${stat.value}">${stat.value}</h3>
+                        <p class="mb-0">${stat.label}</p>
+                    </div>
+                `;
+                statsContainer.appendChild(col);
+            });
+            // Init counters
+            initCounters();
+
+            // Awards
+            const awardsContainer = document.getElementById('awards-container');
+            config.awards.forEach(award => {
+                const card = document.createElement('div');
+                card.className = 'card experience-card p-4';
+                card.innerHTML = `
+                    <div class="d-flex align-items-start">
+                        <div class="me-4"><i class="${award.icon} fa-3x ${award.icon_color}"></i></div>
+                        <div>
+                            <h3 class="h5 mb-1">${award.title}</h3>
+                            <div class="d-flex flex-wrap align-items-center mb-2">
+                                <span class="me-3">${award.company}</span>
+                                <span><i class="fas fa-calendar-alt me-1"></i> ${award.date}</span>
+                            </div>
+                            <p class="mb-0">${award.description}</p>
+                        </div>
+                    </div>
+                `;
+                awardsContainer.appendChild(card);
+            });
+
+            // Education
+            const eduContainer = document.getElementById('education-container');
+            config.education.forEach(edu => {
+                 const card = document.createElement('div');
+                card.className = 'card experience-card p-4';
+                card.innerHTML = `
+                    <div class="d-flex align-items-start">
+                        <div class="me-4"><i class="${edu.icon} fa-3x text-primary"></i></div>
+                        <div>
+                            <h3 class="h5 mb-1">${edu.title}</h3>
+                            <div class="d-flex flex-wrap align-items-center mb-2">
+                                <span class="me-3">${edu.institution}</span>
+                                <span><i class="fas fa-calendar-alt me-1"></i> ${edu.period}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                eduContainer.appendChild(card);
+            });
+
+            // Contact
+            const contactList = document.getElementById('contact-info-list');
+            contactList.innerHTML = `
+                <li class="mb-3"><i class="fas fa-envelope me-2 text-primary"></i> <a href="mailto:${config.contact.email_primary}" class="text-white">${config.contact.email_primary}</a></li>
+                <li class="mb-3"><i class="fas fa-envelope me-2 text-primary"></i> <a href="mailto:${config.contact.email_secondary}" class="text-white">${config.contact.email_secondary}</a></li>
+                <li class="mb-3"><i class="fas fa-phone me-2 text-primary"></i> <a href="tel:${config.contact.phone.replace(/[\s-]/g, '')}" class="text-white">${config.contact.phone}</a></li>
+                <li class="mb-3"><i class="fas fa-map-marker-alt me-2 text-primary"></i> <span>${config.contact.location}</span></li>
+            `;
+
+
+            // Particles
+            particlesJS('particles-js', config.particles);
+
+            // Hide Loader
+            document.getElementById('console-loader').style.opacity = '0';
+            setTimeout(function () {
+                document.getElementById('console-loader').style.display = "none";
+                document.getElementById('console-loader').className = document.getElementById('console-loader').className.replace("d-flex", "");
+            }, 500);
+
+            // Observe Animations
+            observeAnimations();
+        }
+
+        function observeAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.experience-card').forEach(card => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'all 0.5s ease';
+                observer.observe(card);
+            });
+        }
+
+        function initCounters() {
+            const counters = document.querySelectorAll('.counter');
+            const speed = 200;
+
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                let count = 0; // Start from 0
+                const increment = target / speed;
+
+                const updateCount = () => {
+                    count += increment;
+                    const newCount = Math.ceil(count);
+                    if (newCount < target) {
+                        counter.innerText = newCount;
+                        requestAnimationFrame(updateCount);
+                    } else {
+                        counter.innerText = target.toLocaleString() + "+";
+                    }
+                };
+                updateCount();
+            });
+        }
+
+        // Theme Toggle Logic
         document.addEventListener('DOMContentLoaded', function () {
+            // Theme toggle is hidden by default in CSS, if needed it can be re-enabled or controlled via config
             const themeToggle = document.getElementById('themeToggle');
             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
             let currentTheme = prefersDark ? 'dark' : 'light';
 
-            // Set initial theme
             document.documentElement.setAttribute('data-theme', currentTheme);
             updateThemeIcon();
 
@@ -1148,52 +864,9 @@
             }
         });
 
-        // Counter animation
-        document.addEventListener('DOMContentLoaded', () => {
-            const counters = document.querySelectorAll('.counter');
-            const speed = 200;
-
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                let count = +counter.innerText;
-                const increment = target / speed;
-
-                if (count < target) {
-                    const updateCount = () => {
-                        count += increment;
-                        const newCount = Math.ceil(count);
-                        if (newCount < target) {
-                            counter.innerText = newCount;
-                            requestAnimationFrame(updateCount);
-                        } else {
-                            counter.innerText = target.toLocaleString() + "+";
-                        }
-                    };
-                    updateCount();
-                } else {
-                    counter.innerText = target.toLocaleString() + "+";
-                }
-            });
-        });
-
-        // Show more projects toggle
-        document.getElementById('showMoreProjects').addEventListener('click', function () {
-            const moreProjects = document.getElementById('moreProjects');
-            const button = this;
-
-            if (moreProjects.style.display === 'none') {
-                moreProjects.style.display = 'flex';
-                button.textContent = 'Show Less Projects';
-            } else {
-                moreProjects.style.display = 'none';
-                button.textContent = 'Show More Projects';
-            }
-        });
-
-        // Contact form handling
+        // Contact form handling (Keep as is)
         document.getElementById('contactForm').addEventListener('submit', function (e) {
             e.preventDefault();
-
             Swal.fire({
                 title: 'Message Sent!',
                 text: 'Thank you for reaching out. I will get back to you soon.',
@@ -1201,71 +874,7 @@
                 confirmButtonText: 'Great!',
                 theme: "dark"
             });
-
-            // In a real implementation, you would send the form data to your server
             this.reset();
-        });
-
-        // Skills Radar Chart
-        document.addEventListener('DOMContentLoaded', function () {
-            const ctx = document.getElementById('skillsRadar').getContext('2d');
-            const radarChart = new Chart(ctx, {
-                type: 'radar',
-                data:
-                {
-                    labels: ['Unity', 'BrightScript', 'Godot', 'C#', 'GDScript', 'Game Design', 'Team Leadership', 'Problem Solving', 'Backend'],
-                    datasets: [{
-                        label: 'Skill Level',
-                        data: [90, 95, 85, 90, 90, 90, 80, 90, 70],
-                        backgroundColor: 'rgba(110, 72, 170, 0.2)',
-                        borderColor: 'rgba(110, 72, 170, 1)',
-                        borderWidth: 2,
-                        pointBackgroundColor: 'rgba(110, 72, 170, 1)',
-                        pointRadius: 4
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        r: {
-                            min: 0,
-                            max: 100,
-                            angleLines: {
-                                color: 'rgba(255, 255, 255, 0.1)'
-                            },
-                            grid: {
-                                color: 'rgba(255, 255, 255, 0.1)'
-                            },
-                            pointLabels: {
-                                color: '#fff',
-                                font: {
-                                    size: 12
-                                }
-                            },
-                            ticks: {
-                                display: false
-                            }
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            labels: {
-                                color: '#fff'
-                            }
-                        }
-                    }
-                }
-            });
-            radarChart.update();
-        });
-
-        // Hide loader when page loads
-        window.addEventListener('load', function () {
-            document.getElementById('console-loader').style.opacity = '0';
-            setTimeout(function () {
-                document.getElementById('console-loader').style.display = "none";
-                document.getElementById('console-loader').className = document.getElementById('console-loader').className.replace("d-flex", "");
-            }, 500);
         });
     </script>
 </body>

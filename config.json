@@ -1,0 +1,275 @@
+{
+    "meta": {
+        "title": "Ketan Dutt - Game Developer Portfolio"
+    },
+    "theme": {
+        "colors": {
+            "primary": "#6e48aa",
+            "secondary": "#9d50bb",
+            "dark": "#1a1a2e",
+            "light": "#f8f9fa",
+            "accent": "#ff6b6b"
+        }
+    },
+    "settings": {
+        "show_cv_download": true,
+        "cv_file_path": "Ketan_Dutt_CV.pdf"
+    },
+    "profile": {
+        "image_url": "https://avatars.githubusercontent.com/u/30174373?v=4",
+        "name": "Ketan Dutt",
+        "badges": [
+            { "text": "🎮 Game Dev", "color_class": "bg-primary" },
+            { "text": "💻 Tech Enthusiast", "color_class": "bg-secondary" },
+            { "text": "🥁 Music Lover", "color_class": "bg-info" }
+        ],
+        "subtitle": "Lead Software Developer with 7 years of experience",
+        "social_links": [
+            { "icon": "fa-solid fa-envelope", "url": "mailto:ketan6196@gmail.com" },
+            { "icon": "fa-brands fa-github", "url": "https://github.com/KetanDutt" },
+            { "icon": "fa-brands fa-linkedin", "url": "https://www.linkedin.com/in/ketan-dutt-006104b7/" },
+            { "icon": "fa-brands fa-square-facebook", "url": "https://www.facebook.com/k10dutt" },
+            { "icon": "fa-brands fa-instagram", "url": "https://www.instagram.com/k10.dutt/" }
+        ]
+    },
+    "current_focus": [
+        {
+            "icon": "fas fa-tools",
+            "title": "Working With",
+            "text": "Unity, Godot, and Roku Game Engine"
+        },
+        {
+            "icon": "fas fa-graduation-cap",
+            "title": "Learning",
+            "text": "Game AI, multiplayer networking, and game design patterns"
+        },
+        {
+            "icon": "fas fa-hands-helping",
+            "title": "Open To",
+            "text": "Game jams, open-source games, or game development tools"
+        },
+        {
+            "icon": "fas fa-bullseye",
+            "title": "2025 Goal",
+            "text": "Contribute to a major open-source game engine project"
+        }
+    ],
+    "summary": "Passionate Game Developer skilled in creating innovative 2D, 3D, and AR games using Unity, LibGDX, and Godot. Proven track record in leading development teams, managing projects, and solving complex problems. Strong background in backend and server-side development. Dedicated to delivering high-quality gaming experiences and driving project success.",
+    "experience": [
+        {
+            "company": "Round The Clock Technologies Pvt. Ltd.",
+            "logo": "https://logo.clearbit.com/rtctek.com",
+            "role": "Lead Software Engineer",
+            "location": "Noida",
+            "period": "March 2023 - May 2024",
+            "description": [
+                "Led a team of talented developers in creating and maintaining unique and exciting games for clients.",
+                "Managed Scrum meetings and coordinated tasks for the team.",
+                "Developed games and proofs-of-concept (POCs) for US clients, utilizing Unity on Android and iOS in 2D, 3D, and AR platforms.",
+                "Improved project delivery speed by 30% through effective team leadership and project management."
+            ]
+        },
+        {
+            "company": "Extramarks Education India Pvt. Ltd.",
+            "logo": "https://logo.clearbit.com/extramarks.com",
+            "role": "Senior Game Developer",
+            "location": "Noida",
+            "period": "November 2021 - May 2022",
+            "description": [
+                "Received \"Rookie Rockstar Award\" within the first two months.",
+                "Designed a system using the Phaser Game Framework that enabled rapid prototyping and testing for game creation.",
+                "Coworkers have used this system to develop over 15 games and it is still in use today.",
+                "Completed 6 games using this system.",
+                "Maintained and modified existing Unity projects to fix errors and adapt to new requirements."
+            ]
+        },
+        {
+            "company": "Rendered Ideas Softgame Pvt. Ltd.",
+            "logo": "https://logo.clearbit.com/renderedideas.com",
+            "role": "Game Developer",
+            "location": "Mumbai",
+            "period": "June 2018 - November 2021",
+            "description": [
+                "Worked on more than 20 games with backend and server-side development.",
+                "Developed 2D and 3D games using LibGDX, Unity, and Godot Game Engine.",
+                "Published on Google Play Store, Amazon App Store, Roku Channel Store, and various HTML-based platforms.",
+                "Managed backend, server-side development, ad/in-app purchase (IAP) management, and cross-promotion."
+            ]
+        },
+        {
+            "company": "Akashvaani.com",
+            "logo": "https://logo.clearbit.com/akashvaani.com",
+            "role": "Trainee Developer",
+            "location": "Gurugram",
+            "period": "May 2017 - June 2018",
+            "description": [
+                "Assisted in the development of web and software applications.",
+                "Participated in code reviews and contributed to debugging and testing processes."
+            ]
+        }
+    ],
+    "skills": {
+        "game_engines": [
+            {
+                "name": "Unity Game Engine",
+                "level": "Advanced",
+                "percentage": 90,
+                "tags": ["C#", "2D", "3D", "AR", "VR"]
+            },
+            {
+                "name": "Godot Game Engine",
+                "level": "Advanced",
+                "percentage": 85,
+                "tags": ["GDScript", "2D", "3D"]
+            },
+            {
+                "name": "Unreal Game Engine",
+                "level": "Intermediate",
+                "percentage": 70,
+                "tags": ["Blueprints", "C++", "Level Design"]
+            }
+        ],
+        "programming_languages": [
+            {
+                "name": "BrightScript",
+                "level": "Expert",
+                "percentage": 95
+            },
+            {
+                "name": "C#",
+                "level": "Advanced",
+                "percentage": 90
+            },
+            {
+                "name": "GDScript",
+                "level": "Advanced",
+                "percentage": 85
+            },
+            {
+                "name": "JavaScript",
+                "level": "Advanced",
+                "percentage": 85
+            },
+            {
+                "name": "Python",
+                "level": "Intermediate",
+                "percentage": 70
+            }
+        ],
+        "radar_chart": {
+            "labels": ["Unity", "BrightScript", "Godot", "C#", "GDScript", "Game Design", "Team Leadership", "Problem Solving", "Backend"],
+            "data": [90, 95, 85, 90, 90, 90, 80, 90, 70]
+        }
+    },
+    "toolbox": {
+        "game_engines": [
+            { "name": "Unity", "icon_url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unity/unity-original.svg" },
+            { "name": "Godot", "icon_url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/godot/godot-original.svg" },
+            { "name": "Unreal", "icon_url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unrealengine/unrealengine-original.svg" },
+            { "name": "Roku Game Engine", "icon_class": "fas fa-gamepad" }
+        ],
+        "languages": [
+            { "name": "C#", "icon_url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" },
+            { "name": "JavaScript", "icon_url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+            { "name": "Python", "icon_url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+            { "name": "Java", "icon_url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" }
+        ],
+        "tools": [
+            { "name": "Git", "icon_url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
+            { "name": "GitHub", "icon_url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
+            { "name": "VS Code", "icon_url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visualstudio/visualstudio-plain.svg" },
+            { "name": "Photoshop", "icon_url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-plain.svg" }
+        ]
+    },
+    "projects": [
+        {
+            "title": "Endless Runner Game",
+            "subtitle": "Basic 3D endless runner level prototype",
+            "description": "A demonstration of core runner game mechanics with procedural generation elements.",
+            "technologies": ["Unity", "C#"],
+            "demo_link": "https://ketandutt.github.io/RunnerGame_Built/",
+            "source_link": "https://github.com/KetanDutt/RunnerGame"
+        },
+        {
+            "title": "UNO Game in Godot",
+            "subtitle": "A player vs computer UNO game",
+            "description": "Full implementation of UNO card game rules with AI opponent.",
+            "technologies": ["Godot", "GDScript"],
+            "demo_link": "https://ketandutt.github.io/UNO_Godot/",
+            "source_link": "https://github.com/KetanDutt/UNO_Godot"
+        },
+        {
+            "title": "Ant Running Game",
+            "subtitle": "3D Running level demo",
+            "description": "Character controller demo with obstacle navigation.",
+            "technologies": ["Unity", "C#"],
+            "demo_link": "https://ketandutt.github.io/Ants_Demo/",
+            "source_link": "https://github.com/KetanDutt/Ants_Demo"
+        },
+        {
+            "title": "Car Parking Level Editor",
+            "subtitle": "Level Generator/Editor for car parking games",
+            "description": "Custom tool for designing and exporting parking challenge levels.",
+            "technologies": ["HTML", "JavaScript"],
+            "demo_link": "https://ketandutt.github.io/MapGenerator/",
+            "source_link": "https://github.com/KetanDutt/MapGenerator"
+        },
+        {
+            "title": "Chemistry Game Demo",
+            "subtitle": "A game to learn about valence electrons in chemistry",
+            "description": "Educational game demonstrating chemical bonding concepts.",
+            "technologies": ["Phaser", "JavaScript"],
+            "demo_link": "https://ketandutt.github.io/ChemistryGame/",
+            "source_link": "https://github.com/KetanDutt/ChemistryGame-Source",
+            "hidden_initially": true
+        },
+        {
+            "title": "Fighting Game Demo",
+            "subtitle": "Character animation demo for a fighting game",
+            "description": "Showcase of sprite animation and combat mechanics.",
+            "technologies": ["Phaser", "JavaScript"],
+            "demo_link": "https://ketandutt.github.io/FightingDemo/",
+            "source_link": "https://github.com/KetanDutt/FightingDemo",
+            "hidden_initially": true
+        }
+    ],
+    "stats": [
+        { "icon": "fas fa-code", "value": "500000", "label": "Lines of Code" },
+        { "icon": "fas fa-gamepad", "value": "40", "label": "Games Shipped" },
+        { "icon": "fas fa-users", "value": "12", "label": "Team Members Led" },
+        { "icon": "fas fa-download", "value": "1000000", "label": "Total Downloads" }
+    ],
+    "awards": [
+        {
+            "icon": "fas fa-trophy",
+            "icon_color": "text-warning",
+            "title": "Rookie Rockstar",
+            "company": "Extramarks Education",
+            "date": "January 2022",
+            "description": "Awarded for exceptional performance and rapid integration into the team, contributing significantly to project success within the first two months."
+        }
+    ],
+    "education": [
+        {
+            "icon": "fas fa-graduation-cap",
+            "title": "B. Tech in Information Technology",
+            "institution": "Kurukshetra University",
+            "period": "2013 - 2017"
+        }
+    ],
+    "contact": {
+        "email_primary": "ketan.dutt@yahoo.in",
+        "email_secondary": "ketan6196@gmail.com",
+        "phone": "+91 9999-748-948",
+        "location": "New Delhi, India"
+    },
+    "particles": {
+        "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
+        "color": { "value": "#ccc" },
+        "opacity": { "value": 0.5 },
+        "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" }, "polygon": { "nb_sides": 5 } },
+        "size": { "value": 3, "random": true },
+        "line_linked": { "enable": true, "distance": 150, "color": "#aaa", "opacity": 0.4, "width": 1 },
+        "move": { "enable": true, "speed": 6, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
+    }
+}
