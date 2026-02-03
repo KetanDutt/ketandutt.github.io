@@ -1151,15 +1151,16 @@
 
             counters.forEach(counter => {
                 const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
+                let count = +counter.innerText;
                 const increment = target / speed;
 
                 if (count < target) {
                     const updateCount = () => {
-                        const newCount = Math.ceil(count + increment);
+                        count += increment;
+                        const newCount = Math.ceil(count);
                         if (newCount < target) {
                             counter.innerText = newCount;
-                            setTimeout(updateCount, 1);
+                            requestAnimationFrame(updateCount);
                         } else {
                             counter.innerText = target.toLocaleString() + "+";
                         }
