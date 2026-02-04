@@ -23,14 +23,12 @@ function initializePortfolio(config) {
     if (config.settings.show_cv_download) {
         downloadBtn.style.display = 'block';
         downloadBtn.onclick = () => {
-                setTimeout(() => {
-                const link = document.createElement('a');
-                link.href = config.settings.cv_file_path;
-                link.download = config.settings.cv_file_path;
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-            }, 500);
+            const link = document.createElement('a');
+            link.href = config.settings.cv_file_path;
+            link.download = config.settings.cv_file_path;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         };
     }
 
@@ -367,7 +365,7 @@ function initializePortfolio(config) {
 
 
     // Particles
-    if (window.innerWidth < 768) {
+    if (window.matchMedia("(max-width: 768px)").matches) {
         config.particles.number.value = 20; // Reduce particles on mobile
         config.particles.move.enable = true; // Ensure movement is enabled but maybe slower?
     }
@@ -389,16 +387,13 @@ function observeAnimations() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = 1;
-                entry.target.style.transform = 'translateY(0)';
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
             }
         });
     }, { threshold: 0.1 });
 
     document.querySelectorAll('.experience-card').forEach(card => {
-        card.style.opacity = 0;
-        card.style.transform = 'translateY(20px)';
-        card.style.transition = 'all 0.5s ease';
         observer.observe(card);
     });
 }
@@ -407,22 +402,32 @@ function initCounters() {
     const counters = document.querySelectorAll('.counter');
     const speed = 200;
 
-    counters.forEach(counter => {
-        const target = +counter.getAttribute('data-target');
-        let count = 0; // Start from 0
-        const increment = target / speed;
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counter = entry.target;
+                const target = +counter.getAttribute('data-target');
+                let count = 0; // Start from 0
+                const increment = target / speed;
 
-        const updateCount = () => {
-            count += increment;
-            const newCount = Math.ceil(count);
-            if (newCount < target) {
-                counter.innerText = newCount;
-                requestAnimationFrame(updateCount);
-            } else {
-                counter.innerText = target.toLocaleString() + "+";
+                const updateCount = () => {
+                    count += increment;
+                    const newCount = Math.ceil(count);
+                    if (newCount < target) {
+                        counter.innerText = newCount;
+                        requestAnimationFrame(updateCount);
+                    } else {
+                        counter.innerText = target.toLocaleString() + "+";
+                    }
+                };
+                updateCount();
+                observer.unobserve(counter);
             }
-        };
-        updateCount();
+        });
+    }, { threshold: 0.5 });
+
+    counters.forEach(counter => {
+        observer.observe(counter);
     });
 }
 

@@ -264,12 +264,12 @@
         "location": "New Delhi, India"
     },
     "particles": {
-        "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
+        "number": { "value": 30, "density": { "enable": true, "value_area": 800 } },
         "color": { "value": "#ccc" },
         "opacity": { "value": 0.5 },
         "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" }, "polygon": { "nb_sides": 5 } },
         "size": { "value": 3, "random": true },
         "line_linked": { "enable": true, "distance": 150, "color": "#aaa", "opacity": 0.4, "width": 1 },
-        "move": { "enable": true, "speed": 6, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
+        "move": { "enable": true, "speed": 3, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
     }
 }
