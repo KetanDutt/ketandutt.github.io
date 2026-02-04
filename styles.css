@@ -1,0 +1,235 @@
+:root {
+    --primary-color: #6e48aa;
+    --secondary-color: #9d50bb;
+    --dark-color: #1a1a2e;
+    --light-color: #f8f9fa;
+    --accent-color: #ff6b6b;
+    --bg-color: var(--dark-color);
+    --text-color: var(--light-color);
+    --card-bg: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="light"] {
+    --primary-color: #6e48aa;
+    --secondary-color: #9d50bb;
+    --dark-color: #1a1a2e;
+    --light-color: #333;
+    --accent-color: #ff6b6b;
+    --bg-color: #f8f9fa;
+    --text-color: #333;
+    --card-bg: rgba(0, 0, 0, 0.05);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Interactive Background */
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background: linear-gradient(135deg, var(--dark-color) 0%, #16213e 100%);
+    will-change: transform;
+}
+
+/* Game UI Elements */
+.hud-corner {
+    width: 120px;
+    height: 120px;
+    border: 3px solid rgba(110, 72, 170, 0.5);
+    position: fixed;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.hud-top-left {
+    top: 15px;
+    left: 15px;
+    border-right: none;
+    border-bottom: none;
+    border-radius: 15px 0 0 0;
+}
+
+.hud-top-right {
+    top: 15px;
+    right: 15px;
+    border-left: none;
+    border-bottom: none;
+    border-radius: 0 15px 0 0;
+}
+
+.hud-bottom-left {
+    bottom: 15px;
+    left: 15px;
+    border-right: none;
+    border-top: none;
+    border-radius: 0 0 0 15px;
+}
+
+.hud-bottom-right {
+    bottom: 15px;
+    right: 15px;
+    border-left: none;
+    border-top: none;
+    border-radius: 0 0 15px 0;
+}
+
+/* Profile Section */
+.profile-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid var(--primary-color);
+    box-shadow: 0 10px 30px rgba(110, 72, 170, 0.5);
+    aspect-ratio: 1 / 1;
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.profile-container:hover .profile-img {
+    transform: scale(1.1);
+}
+
+/* Section Headers */
+.section-header {
+    position: relative;
+    margin-bottom: 2rem;
+    display: inline-block;
+}
+
+.section-header::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    border-radius: 2px;
+}
+
+/* Experience Cards */
+.experience-card {
+    background: var(--card-bg);
+    border-left: 4px solid var(--primary-color);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(10px);
+    will-change: transform, box-shadow;
+
+    color: var(--text-color);
+}
+
+.experience-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    border-left: 4px solid var(--accent-color);
+}
+
+.company-logo {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    border-radius: 8px;
+    background: white;
+    padding: 5px;
+    aspect-ratio: 1 / 1;
+}
+
+/* Skill Bars */
+.skill-bar-container {
+    margin-bottom: 1rem;
+}
+
+.skill-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.skill-bar {
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.skill-progress {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    border-radius: 4px;
+}
+
+/* Stats Section */
+.stat-icon {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Game Project Cards */
+.game-thumbnail {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px 8px 0 0;
+}
+
+/* Console Loader */
+#console-loader {
+    transition: opacity 0.5s ease-out;
+}
+
+.console-animation {
+    width: 80px;
+    height: 80px;
+    border: 5px solid var(--primary-color);
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+}
+
+.row {
+    justify-content: center;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.z-index-9999 {
+    z-index: 9999;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .hud-corner {
+        width: 80px;
+        height: 80px;
+    }
+
+    .profile-container {
+        width: 240px;
+        height: 240px;
+    }
+}
