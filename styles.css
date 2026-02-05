@@ -50,6 +50,10 @@ body {
     z-index: 100;
 }
 
+.hud-corner.btn {
+    pointer-events: all;
+}
+
 .hud-top-left {
     top: 15px;
     left: 15px;
@@ -132,9 +136,14 @@ body {
     transition: all 0.3s ease;
     margin-bottom: 1.5rem;
     backdrop-filter: blur(10px);
-    will-change: transform, box-shadow;
-
     color: var(--text-color);
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.experience-card.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .experience-card:hover {
