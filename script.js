@@ -49,21 +49,28 @@ function initializePortfolio(config) {
     });
     badgesContainer.appendChild(badgesFragment);
 
-    const renderSocialLinks = (containerId, classNames = "text-white") => {
-            const container = document.getElementById(containerId);
-            container.innerHTML = '';
-            const fragment = document.createDocumentFragment();
-            config.profile.social_links.forEach(link => {
-                const a = document.createElement('a');
-                a.href = link.url;
-                a.target = "_blank";
-                a.className = classNames;
-                if(containerId === 'contact-social-links') a.className += " col-6";
-                a.style.textDecoration = "none";
-                a.innerHTML = `<i class="${link.icon} fa-3x"></i>`;
-                fragment.appendChild(a);
-            });
-            container.appendChild(fragment);
+    const socialBaseFragment = document.createDocumentFragment();
+    config.profile.social_links.forEach(link => {
+        const a = document.createElement('a');
+        a.href = link.url;
+        a.target = "_blank";
+        a.className = "text-white";
+        a.style.textDecoration = "none";
+        a.innerHTML = `<i class="${link.icon} fa-3x"></i>`;
+        socialBaseFragment.appendChild(a);
+    });
+
+    const renderSocialLinks = (containerId) => {
+        const container = document.getElementById(containerId);
+        container.innerHTML = '';
+        const fragment = socialBaseFragment.cloneNode(true);
+
+        if (containerId === 'contact-social-links') {
+            for (let i = 0; i < fragment.children.length; i++) {
+                fragment.children[i].classList.add('col-6');
+            }
+        }
+        container.appendChild(fragment);
     };
     renderSocialLinks('social-links');
     renderSocialLinks('contact-social-links');
