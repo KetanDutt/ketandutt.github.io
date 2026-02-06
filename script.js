@@ -414,10 +414,10 @@ function initCounters() {
                     count += increment;
                     const newCount = Math.ceil(count);
                     if (newCount < target) {
-                        counter.innerText = newCount;
+                        counter.textContent = newCount;
                         requestAnimationFrame(updateCount);
                     } else {
-                        counter.innerText = target.toLocaleString() + "+";
+                        counter.textContent = target.toLocaleString() + "+";
                     }
                 };
                 updateCount();
