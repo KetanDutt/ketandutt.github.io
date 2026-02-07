@@ -101,11 +101,12 @@ function initializePortfolio(config) {
     // Experience
     const expContainer = document.getElementById('experience-container');
     const expFragment = document.createDocumentFragment();
+    const boldRegex = /\*\*(.*?)\*\*/g;
     config.experience.forEach(job => {
         const card = document.createElement('div');
         card.className = 'card experience-card p-4';
 
-        const listItems = job.description.map(desc => `<li>${desc.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</li>`).join('');
+        const listItems = job.description.map(desc => `<li>${desc.replace(boldRegex, '<strong>$1</strong>')}</li>`).join('');
 
         card.innerHTML = `
             <div class="d-flex align-items-start mb-3">
