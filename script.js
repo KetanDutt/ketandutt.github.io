@@ -54,8 +54,12 @@ function initializePortfolio(config) {
         const a = document.createElement('a');
         a.href = link.url;
         a.target = "_blank";
+        a.rel = "noopener noreferrer";
         a.className = "text-white";
         a.style.textDecoration = "none";
+        if (link.name) {
+            a.setAttribute('aria-label', link.name);
+        }
         a.innerHTML = `<i class="${link.icon} fa-3x"></i>`;
         socialBaseFragment.appendChild(a);
     });
