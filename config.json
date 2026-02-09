@@ -12,24 +12,53 @@
         }
     },
     "settings": {
-        "show_cv_download": true,
+        "show_cv_download": false,
         "cv_file_path": "Ketan_Dutt_CV.pdf"
     },
     "profile": {
         "image_url": "https://avatars.githubusercontent.com/u/30174373?v=4",
         "name": "Ketan Dutt",
         "badges": [
-            { "text": "🎮 Game Dev", "color_class": "bg-primary" },
-            { "text": "💻 Tech Enthusiast", "color_class": "bg-secondary" },
-            { "text": "🥁 Music Lover", "color_class": "bg-info" }
+            {
+                "text": "🎮 Game Dev",
+                "color_class": "bg-primary"
+            },
+            {
+                "text": "💻 Tech Enthusiast",
+                "color_class": "bg-secondary"
+            },
+            {
+                "text": "🥁 Music Lover",
+                "color_class": "bg-info"
+            }
         ],
         "subtitle": "Lead Software Developer with 7 years of experience",
         "social_links": [
-            { "name": "Email", "icon": "fa-solid fa-envelope", "url": "mailto:ketan6196@gmail.com" },
-            { "name": "GitHub", "icon": "fa-brands fa-github", "url": "https://github.com/KetanDutt" },
-            { "name": "LinkedIn", "icon": "fa-brands fa-linkedin", "url": "https://www.linkedin.com/in/ketan-dutt-006104b7/" },
-            { "name": "Facebook", "icon": "fa-brands fa-square-facebook", "url": "https://www.facebook.com/k10dutt" },
-            { "name": "Instagram", "icon": "fa-brands fa-instagram", "url": "https://www.instagram.com/k10.dutt/" }
+            {
+                "name": "Email",
+                "icon": "fa-solid fa-envelope",
+                "url": "mailto:ketan6196@gmail.com"
+            },
+            {
+                "name": "GitHub",
+                "icon": "fa-brands fa-github",
+                "url": "https://github.com/KetanDutt"
+            },
+            {
+                "name": "LinkedIn",
+                "icon": "fa-brands fa-linkedin",
+                "url": "https://www.linkedin.com/in/ketan-dutt-006104b7/"
+            },
+            {
+                "name": "Facebook",
+                "icon": "fa-brands fa-square-facebook",
+                "url": "https://www.facebook.com/k10dutt"
+            },
+            {
+                "name": "Instagram",
+                "icon": "fa-brands fa-instagram",
+                "url": "https://www.instagram.com/k10.dutt/"
+            }
         ]
     },
     "current_focus": [
@@ -58,7 +87,7 @@
     "experience": [
         {
             "company": "Round The Clock Technologies Pvt. Ltd.",
-            "logo": "https://logo.clearbit.com/rtctek.com",
+            "logo": "https://img.logo.dev/name/rtctek?token=pk_M9SmZbgPQCKEjsa_ujK3SQ&retina=true",
             "role": "Lead Software Engineer",
             "location": "Noida",
             "period": "March 2023 - May 2024",
@@ -71,7 +100,7 @@
         },
         {
             "company": "Extramarks Education India Pvt. Ltd.",
-            "logo": "https://logo.clearbit.com/extramarks.com",
+            "logo": "https://img.logo.dev/name/Extramarks%20Education%20India%20Pvt.%20Ltd.?token=pk_M9SmZbgPQCKEjsa_ujK3SQ&retina=true",
             "role": "Senior Game Developer",
             "location": "Noida",
             "period": "November 2021 - May 2022",
@@ -85,7 +114,7 @@
         },
         {
             "company": "Rendered Ideas Softgame Pvt. Ltd.",
-            "logo": "https://logo.clearbit.com/renderedideas.com",
+            "logo": "https://img.logo.dev/renderedideas.com?token=pk_M9SmZbgPQCKEjsa_ujK3SQ&retina=true",
             "role": "Game Developer",
             "location": "Mumbai",
             "period": "June 2018 - November 2021",
@@ -98,7 +127,7 @@
         },
         {
             "company": "Akashvaani.com",
-            "logo": "https://logo.clearbit.com/akashvaani.com",
+            "logo": "https://img.logo.dev/akashvaani.com?token=pk_M9SmZbgPQCKEjsa_ujK3SQ&retina=true",
             "role": "Trainee Developer",
             "location": "Gurugram",
             "period": "May 2017 - June 2018",
@@ -114,19 +143,33 @@
                 "name": "Unity Game Engine",
                 "level": "Advanced",
                 "percentage": 90,
-                "tags": ["C#", "2D", "3D", "AR", "VR"]
+                "tags": [
+                    "C#",
+                    "2D",
+                    "3D",
+                    "AR",
+                    "VR"
+                ]
             },
             {
                 "name": "Godot Game Engine",
                 "level": "Advanced",
                 "percentage": 85,
-                "tags": ["GDScript", "2D", "3D"]
+                "tags": [
+                    "GDScript",
+                    "2D",
+                    "3D"
+                ]
             },
             {
                 "name": "Unreal Game Engine",
                 "level": "Intermediate",
                 "percentage": 70,
-                "tags": ["Blueprints", "C++", "Level Design"]
+                "tags": [
+                    "Blueprints",
+                    "C++",
+                    "Level Design"
+                ]
             }
         ],
         "programming_languages": [
@@ -157,28 +200,84 @@
             }
         ],
         "radar_chart": {
-            "labels": ["Unity", "BrightScript", "Godot", "C#", "GDScript", "Game Design", "Team Leadership", "Problem Solving", "Backend"],
-            "data": [90, 95, 85, 90, 90, 90, 80, 90, 70]
+            "labels": [
+                "Unity",
+                "BrightScript",
+                "Godot",
+                "C#",
+                "GDScript",
+                "Game Design",
+                "Team Leadership",
+                "Problem Solving",
+                "Backend"
+            ],
+            "data": [
+                90,
+                95,
+                85,
+                90,
+                90,
+                90,
+                80,
+                90,
+                70
+            ]
         }
     },
     "toolbox": {
         "game_engines": [
-            { "name": "Unity", "icon_url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unity/unity-original.svg" },
-            { "name": "Godot", "icon_url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/godot/godot-original.svg" },
-            { "name": "Unreal", "icon_url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unrealengine/unrealengine-original.svg" },
-            { "name": "Roku Game Engine", "icon_class": "fas fa-gamepad" }
+            {
+                "name": "Unity",
+                "icon_url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unity/unity-original.svg"
+            },
+            {
+                "name": "Godot",
+                "icon_url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/godot/godot-original.svg"
+            },
+            {
+                "name": "Unreal",
+                "icon_url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unrealengine/unrealengine-original.svg"
+            },
+            {
+                "name": "Roku Game Engine",
+                "icon_class": "fas fa-gamepad"
+            }
         ],
         "languages": [
-            { "name": "C#", "icon_url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" },
-            { "name": "JavaScript", "icon_url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
-            { "name": "Python", "icon_url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
-            { "name": "Java", "icon_url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" }
+            {
+                "name": "C#",
+                "icon_url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg"
+            },
+            {
+                "name": "JavaScript",
+                "icon_url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+            },
+            {
+                "name": "Python",
+                "icon_url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+            },
+            {
+                "name": "Java",
+                "icon_url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
+            }
         ],
         "tools": [
-            { "name": "Git", "icon_url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
-            { "name": "GitHub", "icon_url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
-            { "name": "VS Code", "icon_url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visualstudio/visualstudio-plain.svg" },
-            { "name": "Photoshop", "icon_url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-plain.svg" }
+            {
+                "name": "Git",
+                "icon_url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
+            },
+            {
+                "name": "GitHub",
+                "icon_url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+            },
+            {
+                "name": "VS Code",
+                "icon_url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visualstudio/visualstudio-plain.svg"
+            },
+            {
+                "name": "Photoshop",
+                "icon_url": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-plain.svg"
+            }
         ]
     },
     "projects": [
@@ -186,7 +285,10 @@
             "title": "Endless Runner Game",
             "subtitle": "Basic 3D endless runner level prototype",
             "description": "A demonstration of core runner game mechanics with procedural generation elements.",
-            "technologies": ["Unity", "C#"],
+            "technologies": [
+                "Unity",
+                "C#"
+            ],
             "demo_link": "https://ketandutt.github.io/RunnerGame_Built/",
             "source_link": "https://github.com/KetanDutt/RunnerGame"
         },
@@ -194,7 +296,10 @@
             "title": "UNO Game in Godot",
             "subtitle": "A player vs computer UNO game",
             "description": "Full implementation of UNO card game rules with AI opponent.",
-            "technologies": ["Godot", "GDScript"],
+            "technologies": [
+                "Godot",
+                "GDScript"
+            ],
             "demo_link": "https://ketandutt.github.io/UNO_Godot/",
             "source_link": "https://github.com/KetanDutt/UNO_Godot"
         },
@@ -202,7 +307,10 @@
             "title": "Ant Running Game",
             "subtitle": "3D Running level demo",
             "description": "Character controller demo with obstacle navigation.",
-            "technologies": ["Unity", "C#"],
+            "technologies": [
+                "Unity",
+                "C#"
+            ],
             "demo_link": "https://ketandutt.github.io/Ants_Demo/",
             "source_link": "https://github.com/KetanDutt/Ants_Demo"
         },
@@ -210,7 +318,10 @@
             "title": "Car Parking Level Editor",
             "subtitle": "Level Generator/Editor for car parking games",
             "description": "Custom tool for designing and exporting parking challenge levels.",
-            "technologies": ["HTML", "JavaScript"],
+            "technologies": [
+                "HTML",
+                "JavaScript"
+            ],
             "demo_link": "https://ketandutt.github.io/MapGenerator/",
             "source_link": "https://github.com/KetanDutt/MapGenerator"
         },
@@ -218,7 +329,10 @@
             "title": "Chemistry Game Demo",
             "subtitle": "A game to learn about valence electrons in chemistry",
             "description": "Educational game demonstrating chemical bonding concepts.",
-            "technologies": ["Phaser", "JavaScript"],
+            "technologies": [
+                "Phaser",
+                "JavaScript"
+            ],
             "demo_link": "https://ketandutt.github.io/ChemistryGame/",
             "source_link": "https://github.com/KetanDutt/ChemistryGame-Source",
             "hidden_initially": true
@@ -227,17 +341,36 @@
             "title": "Fighting Game Demo",
             "subtitle": "Character animation demo for a fighting game",
             "description": "Showcase of sprite animation and combat mechanics.",
-            "technologies": ["Phaser", "JavaScript"],
+            "technologies": [
+                "Phaser",
+                "JavaScript"
+            ],
             "demo_link": "https://ketandutt.github.io/FightingDemo/",
             "source_link": "https://github.com/KetanDutt/FightingDemo",
             "hidden_initially": true
         }
     ],
     "stats": [
-        { "icon": "fas fa-code", "value": "500000", "label": "Lines of Code" },
-        { "icon": "fas fa-gamepad", "value": "40", "label": "Games Shipped" },
-        { "icon": "fas fa-users", "value": "12", "label": "Team Members Led" },
-        { "icon": "fas fa-download", "value": "1000000", "label": "Total Downloads" }
+        {
+            "icon": "fas fa-code",
+            "value": "500000",
+            "label": "Lines of Code"
+        },
+        {
+            "icon": "fas fa-gamepad",
+            "value": "40",
+            "label": "Games Shipped"
+        },
+        {
+            "icon": "fas fa-users",
+            "value": "12",
+            "label": "Team Members Led"
+        },
+        {
+            "icon": "fas fa-download",
+            "value": "1000000",
+            "label": "Total Downloads"
+        }
     ],
     "awards": [
         {
@@ -264,12 +397,113 @@
         "location": "New Delhi, India"
     },
     "particles": {
-        "number": { "value": 30, "density": { "enable": true, "value_area": 800 } },
-        "color": { "value": "#ccc" },
-        "opacity": { "value": 0.5 },
-        "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" }, "polygon": { "nb_sides": 5 } },
-        "size": { "value": 3, "random": true },
-        "line_linked": { "enable": true, "distance": 150, "color": "#aaa", "opacity": 0.4, "width": 1 },
-        "move": { "enable": true, "speed": 3, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
+        "particles": {
+            "number": {
+                "value": 120,
+                "density": {
+                    "enable": true,
+                    "value_area": 800
+                }
+            },
+            "color": {
+                "value": "#ccc"
+            },
+            "shape": {
+                "type": "circle",
+                "stroke": {
+                    "width": 0,
+                    "color": "#000000"
+                },
+                "polygon": {
+                    "nb_sides": 5
+                },
+                "image": {
+                    "src": "img/github.svg",
+                    "width": 100,
+                    "height": 100
+                }
+            },
+            "opacity": {
+                "value": 0.5,
+                "random": false,
+                "anim": {
+                    "enable": false,
+                    "speed": 1,
+                    "opacity_min": 0.1,
+                    "sync": false
+                }
+            },
+            "size": {
+                "value": 3,
+                "random": true,
+                "anim": {
+                    "enable": false,
+                    "speed": 40,
+                    "size_min": 0.1,
+                    "sync": false
+                }
+            },
+            "line_linked": {
+                "enable": true,
+                "distance": 150,
+                "color": "#aaa",
+                "opacity": 0.4,
+                "width": 1
+            },
+            "move": {
+                "enable": true,
+                "speed": 6,
+                "direction": "none",
+                "random": false,
+                "straight": false,
+                "out_mode": "out",
+                "bounce": false,
+                "attract": {
+                    "enable": false,
+                    "rotateX": 600,
+                    "rotateY": 1200
+                }
+            }
+        },
+        "interactivity": {
+            "detect_on": "window",
+            "events": {
+                "onhover": {
+                    "enable": true,
+                    "mode": "repulse"
+                },
+                "onclick": {
+                    "enable": false,
+                    "mode": "push"
+                },
+                "resize": true
+            },
+            "modes": {
+                "grab": {
+                    "distance": 400,
+                    "line_linked": {
+                        "opacity": 1
+                    }
+                },
+                "bubble": {
+                    "distance": 400,
+                    "size": 40,
+                    "duration": 2,
+                    "opacity": 8,
+                    "speed": 3
+                },
+                "repulse": {
+                    "distance": 100,
+                    "duration": 0.4
+                },
+                "push": {
+                    "particles_nb": 4
+                },
+                "remove": {
+                    "particles_nb": 2
+                }
+            }
+        },
+        "retina_detect": true
     }
 }
