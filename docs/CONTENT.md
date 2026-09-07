@@ -21,6 +21,12 @@ A project has the following shape:
 
 `source` is required. `demo` is optional and should be omitted when no working public experience exists. Categories automatically become filter buttons. Keep category names consistent.
 
+## GitHub profile details
+
+`github.recentRepositories` powers the dedicated GitHub bento section. Keep this list to a small set of genuinely recent public repositories. Each entry accepts `name`, `description`, `language`, `updated`, `url`, and an optional `demo`.
+
+The live public-repository count is requested from GitHub’s public user API and updates both the hero and GitHub profile card. The configured `profile.publicRepos` value remains the resilient fallback.
+
 ## Experience
 
 Experience entries are displayed in file order, newest first. Use compact date ranges and summarize responsibilities and evidence in one paragraph. Avoid unverifiable metrics.

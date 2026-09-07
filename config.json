@@ -4,6 +4,13 @@
     "publicRepos": 55,
     "skills": ["Unity", "Godot", "Unreal Engine", "C#", "GDScript", "JavaScript", "TypeScript", "Python", "Phaser", "LibGDX", "BrightScript", "Node.js", "HTML & CSS", "PHP", "MySQL", "Arduino", "Git", "Photoshop"]
   },
+  "github": {
+    "recentRepositories": [
+      {"name": "JavaScript-Platformer", "description": "A playable platforming experiment for the open web.", "language": "JavaScript", "updated": "Sep 2026", "url": "https://github.com/KetanDutt/JavaScript-Platformer", "demo": "https://ketandutt.github.io/JavaScript-Platformer/"},
+      {"name": "RoboticArm", "description": "An Arduino-powered robotic arm built with C++.", "language": "C++", "updated": "Sep 2026", "url": "https://github.com/KetanDutt/RoboticArm"},
+      {"name": "MapGenerator", "description": "A browser-based map and parking-level generator.", "language": "JavaScript", "updated": "Sep 2026", "url": "https://github.com/KetanDutt/MapGenerator", "demo": "https://ketandutt.github.io/MapGenerator/"}
+    ]
+  },
   "focus": [
     {"icon": "🎮", "title": "Building", "text": "Playable browser experiences, an UNO game in Godot, and game-development experiments."},
     {"icon": "🤖", "title": "Exploring", "text": "AI agents, smart study tools, game AI, multiplayer networking, and design patterns."},

@@ -9,6 +9,7 @@ A fast, accessible, data-driven portfolio for [Ketan Dutt](https://github.com/Ke
 - Responsive glass UI with dark and light themes
 - Motion that respects `prefers-reduced-motion`
 - Filterable and searchable project gallery
+- Dedicated GitHub profile bento with recent repositories and live demos
 - Progressive GitHub repository-count refresh with caching and a static fallback
 - Semantic HTML, keyboard navigation, skip link, visible focus styles, and meaningful labels
 - Open Graph metadata, canonical URL, sitemap, robots rules, and web manifest

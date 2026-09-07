@@ -23,6 +23,7 @@ assert.doesNotMatch(html, /bootstrap|font-awesome|particles\.js|sweetalert/i, 'H
 assert.doesNotMatch(script, /innerHTML\s*=/, 'Structured config content should not be injected via innerHTML');
 
 assert.ok(Array.isArray(config.projects) && config.projects.length >= 8, 'At least eight portfolio projects are expected');
+assert.ok(Array.isArray(config.github.recentRepositories) && config.github.recentRepositories.length >= 3, 'Recent GitHub repositories are incomplete');
 assert.ok(Array.isArray(config.experience) && config.experience.length >= 4, 'Experience history is incomplete');
 assert.ok(Array.isArray(config.profile.skills) && config.profile.skills.length >= 10, 'Toolbox is incomplete');
 

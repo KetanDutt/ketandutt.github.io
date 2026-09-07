@@ -121,6 +121,28 @@ h1 span { color: transparent; background: linear-gradient(100deg, #a89bff, #6fdc
 .empty-state { padding: 35px; text-align: center; border-radius: 20px; color: var(--muted); }
 .center { margin-top: 28px; text-align: center; }
 
+.github-section { position: relative; }
+.github-bento { display: grid; grid-template-columns: .85fr 1.15fr; gap: 18px; align-items: stretch; }
+.github-profile-card { padding: 34px; display: flex; flex-direction: column; border-radius: var(--radius); }
+.github-profile-top { display: flex; align-items: center; gap: 18px; }
+.github-profile-top img { width: 80px; height: 80px; flex: 0 0 auto; border: 1px solid var(--line-bright); border-radius: 24px; background: var(--bg-soft); }
+.github-profile-top .eyebrow { margin-bottom: 2px; }
+.github-profile-top h3 { margin: 0; font-size: 1.7rem; letter-spacing: -.04em; }
+.github-profile-top p:last-child { margin: 2px 0 0; color: var(--muted); }
+.github-facts { margin: 38px 0; padding-block: 23px; display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; border-block: 1px solid var(--line); }
+.github-facts div { display: grid; }
+.github-facts strong { font-size: 1.35rem; letter-spacing: -.04em; }
+.github-facts span { color: var(--muted); font-size: .72rem; }
+.github-profile-link { width: 100%; margin-top: auto; }
+.github-repos { display: grid; gap: 12px; }
+.github-repo-card { padding: 24px 26px; border-radius: 21px; transition: transform .3s, border-color .3s, background .3s; }
+.github-repo-card:hover { transform: translateX(6px); border-color: var(--line-bright); background: var(--glass-strong); }
+.repo-header { display: flex; justify-content: space-between; gap: 20px; align-items: center; }
+.repo-header h3 { margin: 2px 0 0; font-size: 1.25rem; letter-spacing: -.03em; }
+.repo-kicker { color: var(--accent-2); font-size: .69rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.github-repo-card > p { margin: 12px 0 0; color: var(--muted); font-size: .9rem; }
+.repo-demo-link { display: inline-block; margin-top: 13px; color: var(--text); font-size: .8rem; font-weight: 700; text-decoration: none; }
+.repo-demo-link:hover { color: var(--accent-2); }
 .timeline { border-top: 1px solid var(--line); }
 .timeline-item { display: grid; grid-template-columns: 180px 1fr 1.25fr; gap: 30px; padding: 38px 10px; border-bottom: 1px solid var(--line); transition: background .25s, padding .25s; }
 .timeline-item:hover { padding-inline: 22px; background: rgba(255,255,255,.025); }
@@ -151,13 +173,14 @@ h1 span { color: transparent; background: linear-gradient(100deg, #a89bff, #6fdc
 
 @media (max-width: 900px) {
   .hero { min-height: auto; grid-template-columns: 1fr; padding-top: 150px; }.hero-copy { text-align: center; }.hero-lede { margin-inline: auto; }.hero-actions,.hero-meta { justify-content: center; }.hero-visual { width: min(520px,88%); margin: 45px auto 0; }
-  .section-heading { align-items: start; flex-direction: column; }.about-grid { grid-template-columns: 1fr; }.focus-grid { grid-template-columns: 1fr 1fr; }.timeline-item { grid-template-columns: 130px 1fr; }.timeline-description { grid-column: 2; }.contact-card { align-items: start; flex-direction: column; }
+  .section-heading { align-items: start; flex-direction: column; }.github-bento { grid-template-columns: 1fr; }.about-grid { grid-template-columns: 1fr; }.focus-grid { grid-template-columns: 1fr 1fr; }.timeline-item { grid-template-columns: 130px 1fr; }.timeline-description { grid-column: 2; }.contact-card { align-items: start; flex-direction: column; }
 }
 @media (max-width: 680px) {
   .shell { width: min(100% - 28px,1180px); }.site-header { top: 10px; padding-inline: 10px; }.nav { min-height: 60px; border-radius: 18px; }.brand-mark { width: 36px; height: 36px; }.menu-button { display: grid; }
   .nav-links { position: absolute; top: calc(100% + 8px); left: 10px; right: 10px; padding: 10px; align-items: stretch; flex-direction: column; background: var(--glass-strong); border: 1px solid var(--line); border-radius: 17px; box-shadow: var(--shadow); backdrop-filter: blur(24px); opacity: 0; visibility: hidden; transform: translateY(-8px); transition: .2s; }.nav-links.open { opacity: 1; visibility: visible; transform: none; }.nav-links a { padding: 12px; }
   .hero { padding-top: 125px; padding-bottom: 75px; gap: 20px; } h1 { font-size: clamp(3.35rem,17vw,5rem); }.hero-lede { font-size: 1rem; }.hero-meta { gap: 18px; justify-content: space-between; text-align: left; }.hero-meta strong { font-size: 1.15rem; }.hero-meta span { max-width: 80px; line-height: 1.3; }.portrait-orbit,.floating-chip { display: none; }.portrait-card { border-radius: 29px; }.portrait-card > img { border-radius: 21px; }
   .section { padding-block: 80px; }.section-heading { margin-bottom: 32px; }.section-heading h2,.about-copy h2,.contact-card h2 { font-size: clamp(2.5rem,13vw,3.7rem); }.project-toolbar { align-items: stretch; flex-direction: column; }.search { min-width: 0; padding-top: 7px; border-top: 1px solid var(--line); border-left: 0; }.projects-grid { grid-template-columns: 1fr; }.project-card { min-height: 340px; padding: 24px; }.project-bottom { align-items: start; flex-direction: column; }.project-links { align-self: end; }
+  .github-profile-card { padding: 26px 22px; }.github-profile-top { align-items: flex-start; }.github-profile-top img { width: 64px; height: 64px; border-radius: 19px; }.github-facts { margin: 28px 0; }.github-facts strong { font-size: 1.1rem; }.github-repo-card { padding: 22px; }.github-repo-card:hover { transform: translateY(-3px); }
   .timeline-item { grid-template-columns: 1fr; gap: 8px; padding: 27px 5px; }.timeline-description { grid-column: 1; margin-top: 12px; }.focus-grid { grid-template-columns: 1fr; }.about-copy,.skills-panel { min-height: 0; padding: 30px 24px; }.recognition { grid-template-columns: 1fr; }.award-company { text-align: left; }.contact-card { padding: 38px 25px; border-radius: 28px; }.contact-actions { width: 100%; min-width: 0; }.contact-actions .button { width: 100%; }.footer { align-items: flex-start; flex-direction: column; gap: 16px; }.footer > p { margin: 0; }
 }
 @media (prefers-reduced-motion: reduce) {

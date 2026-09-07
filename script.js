@@ -137,6 +137,26 @@
     $('#showMore').addEventListener('click', () => { state.expanded = !state.expanded; renderProjects(); if (!state.expanded) $('#work').scrollIntoView(); });
   }
 
+  function renderGitHub() {
+    const container = $('#githubRepos');
+    state.config.github.recentRepositories.forEach(repository => {
+      const card = create('article', 'github-repo-card glass');
+      const header = create('div', 'repo-header');
+      const identity = create('div');
+      identity.append(create('span', 'repo-kicker', `${repository.language} · Updated ${repository.updated}`), create('h3', '', repository.name));
+      header.append(identity, makeExternalLink(repository.url, `View ${repository.name} on GitHub`, '↗'));
+      card.append(header, create('p', '', repository.description));
+      if (repository.demo) {
+        const demo = create('a', 'repo-demo-link', 'Open live demo →');
+        demo.href = repository.demo;
+        demo.target = '_blank';
+        demo.rel = 'noopener noreferrer';
+        card.append(demo);
+      }
+      container.append(card);
+    });
+  }
+
   function renderExperience() {
     const container = $('#experienceList');
     state.config.experience.forEach(job => {
@@ -172,12 +192,13 @@
   }
 
   async function refreshGitHubCount(username, fallback) {
-    const counter = $('#repoCount');
-    counter.textContent = fallback;
+    const counters = [$('#repoCount'), $('#githubRepoCount')].filter(Boolean);
+    const updateCounters = value => counters.forEach(counter => { counter.textContent = value; });
+    updateCounters(fallback);
     const cacheKey = `github-profile-${username}`;
     try {
       const cached = JSON.parse(safeStorage('get', cacheKey) || 'null');
-      if (cached && Date.now() - cached.savedAt < 3_600_000) { counter.textContent = cached.publicRepos; return; }
+      if (cached && Date.now() - cached.savedAt < 3_600_000) { updateCounters(cached.publicRepos); return; }
       const controller = new AbortController();
       const timeout = setTimeout(() => controller.abort(), 3500);
       const response = await fetch(`https://api.github.com/users/${encodeURIComponent(username)}`, { signal: controller.signal, headers: { Accept: 'application/vnd.github+json' } });
@@ -185,7 +206,7 @@
       if (!response.ok) return;
       const profile = await response.json();
       if (Number.isInteger(profile.public_repos)) {
-        counter.textContent = profile.public_repos;
+        updateCounters(profile.public_repos);
         safeStorage('set', cacheKey, JSON.stringify({ publicRepos: profile.public_repos, savedAt: Date.now() }));
       }
     } catch { /* Static fallback keeps the portfolio useful offline and under API rate limits. */ }
@@ -201,6 +222,7 @@
       state.config = await response.json();
       initializeProjectControls();
       renderProjects();
+      renderGitHub();
       renderExperience();
       renderAbout();
       refreshGitHubCount(state.config.profile.github, state.config.profile.publicRepos);
