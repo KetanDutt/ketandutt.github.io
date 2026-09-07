@@ -319,8 +319,11 @@ h1 .line-accent { color: transparent; background: linear-gradient(100deg, var(--
 @keyframes floaty { 50% { transform: translateY(-9px); } }
 
 /* Marquee */
-.marquee { padding: 28px 0; border-block: 1px solid var(--glass-border); }
-.marquee-mask { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.marquee { padding: 16px 0; border-block: 1px solid var(--glass-border); }
+/* The mask clips the wide looping track horizontally and fades its edges, but it
+   must leave vertical headroom (padding-block) so hovered tiles can lift and their
+   shadows render without being clipped at the top/bottom of the strip. */
+.marquee-mask { overflow: hidden; padding-block: 16px; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
 .marquee-track { width: max-content; display: flex; align-items: center; animation: marquee 55s linear infinite; will-change: transform; }
 .marquee-track:hover { animation-play-state: paused; }
 /* Two identical groups translate -50% for a seamless, gapless loop. Each group
@@ -334,7 +337,7 @@ h1 .line-accent { color: transparent; background: linear-gradient(100deg, var(--
   transition: transform .25s var(--ease), box-shadow .25s var(--ease); }
 .marquee-chip .marquee-icon { width: 34px; height: 34px; display: block; transition: transform .25s var(--ease); }
 .marquee-group:hover .marquee-chip { box-shadow: inset 0 0 0 1px rgb(255 255 255 / .7), 0 14px 26px -12px rgb(0 0 0 / .55); }
-.marquee-chip:hover { transform: translateY(-4px); }
+.marquee-chip:hover { transform: translateY(-5px); }
 .marquee-chip:hover .marquee-icon { transform: scale(1.1); }
 @keyframes marquee { to { transform: translateX(-50%); } }
 
