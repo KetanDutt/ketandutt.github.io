@@ -536,6 +536,95 @@
     } catch { /* Static fallback keeps the portfolio useful offline and under API rate limits. */ }
   }
 
+  /* ---------------------------------- Marquee --------------------------------- */
+  // Languages, software and tools featured on the GitHub profile's "My Toolbox".
+  // Rendered as icons so the marquee loops seamlessly with no text or gaps.
+  const MARQUEE_ICONS = [
+    { slug: 'unity', label: 'Unity' },
+    { slug: 'godot', label: 'Godot' },
+    { slug: 'unreal', label: 'Unreal Engine' },
+    { slug: 'cs', label: 'C#' },
+    { slug: 'python', label: 'Python' },
+    { slug: 'js', label: 'JavaScript' },
+    { slug: 'ts', label: 'TypeScript' },
+    { slug: 'nodejs', label: 'Node.js' },
+    { slug: 'html', label: 'HTML' },
+    { slug: 'css', label: 'CSS' },
+    { slug: 'php', label: 'PHP' },
+    { slug: 'mysql', label: 'MySQL' },
+    { slug: 'flutter', label: 'Flutter' },
+    { slug: 'arduino', label: 'Arduino' },
+    { slug: 'git', label: 'Git' }
+  ];
+
+  const createMarqueeIcon = label => {
+    const icon = document.createElement('img');
+    icon.className = 'marquee-icon';
+    icon.width = 48;
+    icon.height = 48;
+    icon.loading = 'lazy';
+    icon.decoding = 'async';
+    icon.alt = '';
+    icon.setAttribute('draggable', 'false');
+    return icon;
+  };
+
+  // The loop uses two identical groups and translates by -50%. Each group must be
+  // at least as wide as the visible strip, so repeat the icons enough times to
+  // cover the widest viewport and keep the animation perfectly seamless.
+  function initializeMarquee() {
+    const track = $('#marqueeTrack');
+    const mask = $('#marqueeMask');
+    if (!track || !mask) return;
+
+    const buildGroup = hidden => {
+      const group = document.createElement('div');
+      group.className = 'marquee-group';
+      if (hidden) group.setAttribute('aria-hidden', 'true');
+      MARQUEE_ICONS.forEach(({ slug, label }) => {
+        const icon = createMarqueeIcon(label);
+        icon.src = `https://skillicons.dev/icons?i=${slug}`;
+        icon.title = label;
+        group.appendChild(icon);
+      });
+      return group;
+    };
+
+    const rebuild = () => {
+      while (track.firstChild) track.removeChild(track.firstChild);
+      // Measure one full pass to decide how many repeats each half needs.
+      const probe = buildGroup(false);
+      track.appendChild(probe);
+      const passWidth = probe.offsetWidth || 1;
+      track.removeChild(probe);
+      const visible = Math.max(mask.clientWidth || 800, 1);
+      const repeats = Math.max(1, Math.ceil(visible / passWidth) + 1);
+      const makeHalf = hidden => {
+        const half = document.createElement('div');
+        half.className = 'marquee-group';
+        if (hidden) half.setAttribute('aria-hidden', 'true');
+        for (let index = 0; index < repeats; index += 1) {
+          MARQUEE_ICONS.forEach(({ slug, label }) => {
+            const icon = createMarqueeIcon(label);
+            icon.src = `https://skillicons.dev/icons?i=${slug}`;
+            icon.title = label;
+            half.appendChild(icon);
+          });
+        }
+        return half;
+      };
+      track.appendChild(makeHalf(false));
+      track.appendChild(makeHalf(true));
+    };
+
+    rebuild();
+    let resizeTimer = null;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(rebuild, 150);
+    });
+  }
+
   /* ----------------------------------- Init ------------------------------------------ */
   async function initialize() {
     initializeTheme();
@@ -546,6 +635,7 @@
     initializeMagnetic();
     initializePortraitTilt();
     initializeModal();
+    initializeMarquee();
     $('#year').textContent = new Date().getFullYear();
     try {
       const response = await fetch('config.json');
