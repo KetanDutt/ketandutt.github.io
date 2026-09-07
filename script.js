@@ -424,11 +424,77 @@
       }
       skillCloud.append(pill);
     });
+    const specialtyRow = $('#specialtyRow');
+    if (specialtyRow && Array.isArray(state.config.profile.specialties)) {
+      state.config.profile.specialties.forEach(specialty => specialtyRow.append(create('span', 'specialty-chip', specialty)));
+    }
     const focusGrid = $('#focusGrid');
     state.config.focus.forEach(item => {
       const card = create('article', 'focus-card reveal');
       card.append(create('span', 'focus-icon', item.icon), create('h3', '', item.title), create('p', '', item.text));
       focusGrid.append(card);
+    });
+  }
+
+  /* ------------------------------- Recognition ------------------------------------- */
+  function renderAwards() {
+    const grid = $('#awardsGrid');
+    if (!grid || !Array.isArray(state.config.awards)) return;
+    state.config.awards.forEach(award => {
+      const card = create('article', 'award-card reveal');
+      const icon = create('div', 'award-icon', '✦');
+      icon.setAttribute('aria-hidden', 'true');
+      const copy = create('div');
+      copy.append(create('span', 'award-meta', `${award.issuer} · ${award.period}`), create('h3', '', award.title), create('p', '', award.description));
+      card.append(icon, copy);
+      grid.append(card);
+    });
+  }
+
+  /* ------------------------------- Foundations ------------------------------------- */
+  function renderFoundations() {
+    const educationList = $('#educationList');
+    const certificationList = $('#certificationList');
+    if (educationList && Array.isArray(state.config.education)) {
+      state.config.education.forEach(entry => {
+        const item = create('div', 'foundations-item');
+        item.append(create('span', 'foundations-period', entry.period));
+        const copy = create('div');
+        copy.append(create('p', 'foundations-title', entry.credential), create('p', 'foundations-sub', entry.school));
+        item.append(copy);
+        educationList.append(item);
+      });
+    }
+    if (certificationList && Array.isArray(state.config.certifications)) {
+      state.config.certifications.forEach(entry => {
+        const item = create('div', 'foundations-item');
+        item.append(create('span', 'foundations-period', entry.period));
+        const copy = create('div');
+        copy.append(create('p', 'foundations-title', entry.title), create('p', 'foundations-sub', entry.issuer));
+        item.append(copy);
+        certificationList.append(item);
+      });
+    }
+  }
+
+  /* ----------------------------------- Maker ---------------------------------------- */
+  function renderMaker() {
+    const grid = $('#makerGrid');
+    if (!grid || !Array.isArray(state.config.maker)) return;
+    state.config.maker.forEach(entry => {
+      const card = create('article', 'maker-card reveal');
+      card.append(create('span', 'maker-year', entry.year), create('h3', '', entry.title), create('p', '', entry.description));
+      if (entry.url) {
+        const link = create('a', 'maker-link', 'View on GitHub ');
+        const arrow = create('span', '', '↗');
+        arrow.setAttribute('aria-hidden', 'true');
+        link.append(arrow);
+        link.href = entry.url;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        card.append(link);
+      }
+      grid.append(card);
     });
   }
 
@@ -490,6 +556,9 @@
       renderGitHub();
       renderExperience();
       renderAbout();
+      renderAwards();
+      renderFoundations();
+      renderMaker();
       refreshGitHubCount(state.config.profile.github, state.config.profile.publicRepos);
     } catch (error) {
       console.error(error);

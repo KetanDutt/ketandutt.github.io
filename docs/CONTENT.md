@@ -38,8 +38,16 @@ Experience entries are displayed in file order, newest first. Use compact date r
 ## Profile and focus
 
 - `profile.publicRepos` is the fallback shown when GitHub’s API is unavailable. Update it periodically.
-- `profile.skills` renders the toolbox pills.
+- `profile.skills` renders the toolbox pills. Each entry has `name`, `group`, and an optional `note` shown on hover/focus.
+- `profile.specialties` is a flat list of short strings rendered as a compact chip row beneath the toolbox (e.g. monetization, CI/CD, analytics).
 - `focus` should represent current work, learning, and collaboration interests.
+
+## Education, certifications, and awards
+
+- `education` renders in the “Foundations” section, left column. Each entry: `{ "period", "credential", "school" }`.
+- `certifications` renders in the same section, right column. Each entry: `{ "period", "title", "issuer" }`. Use this for external training/courses/internships, not formal degrees.
+- `awards` powers the “Recognition” grid. Each entry: `{ "period", "title", "issuer", "description" }`. Keep descriptions to one sentence, and only include awards that are verifiable from the résumé or public record.
+- `maker` is an optional list of early/personal projects that don’t have a full project card (no live demo, or predate the developer’s GitHub usage). Each entry: `{ "title", "year", "description" }` with an optional `url` if a repository exists. Rendered in the “Before the games” section as lightweight cards, separate from the main `projects` grid.
 
 ## Verification checklist
 

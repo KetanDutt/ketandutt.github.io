@@ -465,12 +465,41 @@ h1 .line-accent { color: transparent; background: linear-gradient(100deg, var(--
 }
 .skill-pill:hover .skill-note, .skill-pill:focus-visible .skill-note { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-/* Recognition */
-.recognition { padding: clamp(30px, 5vw, 54px); display: grid; grid-template-columns: auto 1fr auto; gap: 32px; align-items: center; }
-.award-icon { width: 68px; height: 68px; display: grid; place-items: center; color: #4a3c12; background: linear-gradient(150deg, #ffe9ad, #d9ae52); border-radius: var(--r-md); font-size: 1.7rem; box-shadow: 0 14px 32px -12px rgba(217,174,82,.35), inset 0 1px 0 rgba(255,255,255,.5); flex-shrink: 0; }
-.recognition h2 { margin: 6px 0 0; font-size: clamp(1.7rem, 3.4vw, 2.6rem); letter-spacing: -0.03em; font-weight: 600; }
-.recognition p:not(.eyebrow) { margin: 10px 0 0; color: var(--muted); max-width: 480px; }
-.award-company { color: var(--muted); text-align: right; font-size: 0.88rem; flex-shrink: 0; }
+.specialty-row { margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--glass-border); display: flex; flex-wrap: wrap; gap: 8px 10px; }
+.specialty-chip { color: var(--muted-2); font-size: 0.78rem; }
+.specialty-chip:not(:last-child)::after { content: "·"; margin-left: 10px; color: var(--glass-border-strong); }
+
+/* Recognition / awards */
+.awards-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.award-card { padding: 26px; border: 1px solid var(--glass-border); border-radius: var(--r-md); background: rgba(255,255,255,.02); transition: transform var(--dur-sm) var(--ease), border-color var(--dur-sm) var(--ease); display: flex; gap: 18px; align-items: flex-start; }
+.award-card:hover { transform: translateY(-3px); border-color: var(--glass-border-strong); }
+.award-card .award-icon { width: 52px; height: 52px; flex-shrink: 0; display: grid; place-items: center; color: #4a3c12; background: linear-gradient(150deg, #ffe9ad, #d9ae52); border-radius: var(--r-sm); font-size: 1.25rem; box-shadow: 0 10px 24px -10px rgba(217,174,82,.35), inset 0 1px 0 rgba(255,255,255,.5); }
+.award-card h3 { margin: 4px 0 0; font-size: 1.1rem; font-weight: 600; letter-spacing: -0.02em; }
+.award-card p { margin: 8px 0 0; color: var(--muted); font-size: 0.86rem; }
+.award-meta { color: var(--muted-2); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; }
+
+/* Foundations */
+.foundations-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.foundations-label { margin: 0 0 20px; color: var(--muted); font-size: 0.92rem; font-weight: 600; }
+.foundations-list { display: flex; flex-direction: column; }
+.foundations-item { display: grid; grid-template-columns: 96px 1fr; gap: 18px; padding: 18px 0; border-top: 1px solid var(--glass-border); }
+.foundations-item:first-child { border-top: 0; }
+.foundations-period { color: var(--muted-2); font-size: 0.78rem; padding-top: 2px; font-variant-numeric: tabular-nums; }
+.foundations-title { margin: 0; font-size: 0.98rem; font-weight: 600; letter-spacing: -0.01em; }
+.foundations-sub { margin: 4px 0 0; color: var(--muted); font-size: 0.85rem; }
+
+/* Maker / early projects */
+.maker-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.maker-card { padding: 24px; border: 1px solid var(--glass-border); border-radius: var(--r-md); background: rgba(255,255,255,.02); transition: transform var(--dur-sm) var(--ease), border-color var(--dur-sm) var(--ease); }
+.maker-card:hover { transform: translateY(-3px); border-color: var(--glass-border-strong); }
+.maker-year { color: var(--muted-2); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.maker-card h3 { margin: 10px 0 8px; font-size: 1.05rem; font-weight: 600; letter-spacing: -0.02em; }
+.maker-card p { margin: 0; color: var(--muted); font-size: 0.86rem; }
+.maker-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; color: var(--text); font-size: 0.78rem; font-weight: 650; text-decoration: none; transition: gap var(--dur-sm) var(--ease), color var(--dur-sm); }
+.maker-link:hover { gap: 10px; color: var(--accent-soft); }
+
+
+/* Recognition (see also .awards-grid / .award-card below) */
 
 /* CTA */
 .cta-section { position: relative; text-align: center; padding-block: 160px; }
@@ -531,6 +560,9 @@ h1 .line-accent { color: transparent; background: linear-gradient(100deg, var(--
   .github-stats { grid-template-columns: repeat(2, 1fr); }
   .focus-grid { grid-template-columns: 1fr 1fr; }
   .project-card, .project-card.is-featured { grid-column: span 6; }
+  .foundations-grid { grid-template-columns: 1fr; gap: 44px; }
+  .maker-grid { grid-template-columns: 1fr 1fr; }
+  .awards-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 720px) {
@@ -569,8 +601,8 @@ h1 .line-accent { color: transparent; background: linear-gradient(100deg, var(--
   .focus-grid { grid-template-columns: 1fr; }
   .toolbox { padding: 28px 22px; }
 
-  .recognition { grid-template-columns: 1fr; text-align: left; gap: 18px; }
-  .award-company { text-align: left; }
+  .awards-grid, .maker-grid { grid-template-columns: 1fr; }
+  .foundations-item { grid-template-columns: 76px 1fr; gap: 12px; }
 
   .cta-section { padding-block: 110px; }
   .social-row { gap: 20px; flex-wrap: wrap; justify-content: center; }
