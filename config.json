@@ -2,7 +2,37 @@
   "profile": {
     "github": "KetanDutt",
     "publicRepos": 55,
-    "skills": ["Unity", "Godot", "Unreal Engine", "C#", "GDScript", "JavaScript", "TypeScript", "Python", "Phaser", "LibGDX", "BrightScript", "Node.js", "HTML & CSS", "PHP", "MySQL", "Arduino", "Git", "Photoshop"]
+    "tagline": "Lead Game Developer with 7+ years delivering high-quality 2D, 3D, AR, and browser-based games — 1M+ downloads across Unity, Unreal, Phaser, and Godot.",
+    "highlights": [
+      {"value": "7+", "label": "years shipping games"},
+      {"value": "1M+", "label": "downloads across titles"},
+      {"value": "14", "label": "freelance client projects"}
+    ],
+    "skills": [
+      {"name": "Unity", "group": "Engines", "note": "2D, 3D, AR & VR — 6+ years shipping titles."},
+      {"name": "Unreal Engine", "group": "Engines", "note": "Blueprints and C#, incl. Epic's Blueprint Ninja Challenge."},
+      {"name": "Godot", "group": "Engines", "note": "Full games such as UNO, built from scratch."},
+      {"name": "Phaser.io", "group": "Engines", "note": "Built a prototyping framework adopted for 15+ games."},
+      {"name": "LibGDX", "group": "Engines", "note": "Cross-platform 2D and 3D game development."},
+      {"name": "C#", "group": "Languages", "note": "Primary language for gameplay and editor tools."},
+      {"name": "JavaScript", "group": "Languages", "note": "Browser games, tools, and interactive sites."},
+      {"name": "GDScript", "group": "Languages", "note": "Godot scripting for rapid prototypes."},
+      {"name": "Python", "group": "Languages", "note": "Automation tooling, AI agents, and asset pipelines."},
+      {"name": "C++", "group": "Languages", "note": "Unreal Blueprints/C++ and Arduino firmware."},
+      {"name": "BrightScript", "group": "Languages", "note": "Connected TV apps for Roku and Fire TV."},
+      {"name": "TypeScript", "group": "Languages", "note": "Typed tooling for larger web projects."},
+      {"name": "ARKit", "group": "AR", "note": "Plane detection and scale-consistent AR puzzles on iOS."},
+      {"name": "ARCore", "group": "AR", "note": "Cross-device AR support for Android."},
+      {"name": "CI/CD", "group": "Pipeline", "note": "GitHub & GitLab Actions — cut deployment time by 40%."},
+      {"name": "Custom Editor Tools", "group": "Pipeline", "note": "Unity tools for level testing and batch lightmap baking."},
+      {"name": "Monetization & Analytics", "group": "Pipeline", "note": "IAP, ads, cross-promotion, ARPDAU and MAU tuning."},
+      {"name": "Node.js", "group": "Backend", "note": "Services and tooling for games and web apps."},
+      {"name": "PHP & MySQL", "group": "Backend", "note": "Backend services for game publishing and live ops."},
+      {"name": "Arduino", "group": "Hardware", "note": "Robotics and physical computing experiments."},
+      {"name": "Git & GitLab", "group": "Tools", "note": "Version control and pipelines across every project."},
+      {"name": "Agile & Scrum", "group": "Process", "note": "Running sprints for teams of up to 12 developers."},
+      {"name": "Photoshop", "group": "Tools", "note": "Asset preparation and visual polish."}
+    ]
   },
   "github": {
     "recentRepositories": [
@@ -17,21 +47,48 @@
     {"icon": "🤝", "title": "Open to", "text": "Game jams, open-source games, developer tools, and thoughtful collaborations."}
   ],
   "experience": [
-    {"period": "Mar 2023 — May 2024", "role": "Lead Software Engineer", "company": "Round The Clock Technologies · Noida", "summary": "Led a game-development team, ran Scrum delivery, and built Unity 2D, 3D, and AR prototypes for Android and iOS—improving delivery speed by 30%."},
-    {"period": "Nov 2021 — May 2022", "role": "Senior Game Developer", "company": "Extramarks Education · Noida", "summary": "Designed a reusable Phaser prototyping system adopted for 15+ games, shipped six games with it, and maintained existing Unity projects."},
-    {"period": "Jun 2018 — Nov 2021", "role": "Game Developer", "company": "Rendered Ideas · Mumbai", "summary": "Worked on 20+ 2D and 3D games using LibGDX, Unity, and Godot, including backend services, ads, IAP, cross-promotion, and multi-store publishing."},
-    {"period": "May 2017 — Jun 2018", "role": "Trainee Developer", "company": "Akashvaani.com · Gurugram", "summary": "Contributed to web and software applications through implementation, code review, debugging, and testing."}
+    {"period": "Jun 2022 — Present", "role": "Freelance Game Developer", "company": "Self-Employed", "location": "Remote", "summary": "Delivered 14 client projects end-to-end — scope, GDD, creative direction, development, and delivery — for mobile and web, collaborating with freelance artists and developers. Recruited and mentored junior developers, built Python tools for asset compression (TinyPNG API) and publishing prep, and implemented Phaser.js/HTML5 Canvas gameplay. CI/CD pipelines on GitHub & GitLab Actions cut deployment time by 40%, and custom Unity editor tools streamlined level testing, project setup, and batch lightmap/occlusion-map processing.", "focus": ["Unity", "Phaser", "Python", "CI/CD"]},
+    {"period": "Mar 2023 — May 2024", "role": "Lead Software Engineer", "company": "Round The Clock Technologies", "location": "Noida", "summary": "Led and scaled a team from 1 to 9 developers (12 at peak), owning hiring, onboarding, and mentorship alongside performance evaluations. Directed GDD creation and creative direction with clients across all Unity projects, ran Scrum ceremonies, and shipped Unity 2D, 3D, and AR (ARKit/ARCore) titles for Android and iOS — improving delivery speed by 30% through Agile workflow and tooling upgrades.", "focus": ["Unity", "AR", "Leadership", "Scrum"]},
+    {"period": "Nov 2021 — May 2022", "role": "Senior Game Developer", "company": "Extramarks Education", "location": "Noida", "summary": "Hired and mentored junior developers with project-specific onboarding, and designed a reusable Phaser prototyping framework that let the studio produce 15+ games faster — still in active use today. Delivered six optimized Unity games with improved stability and performance, and improved retention through refined gameplay loops and reward balancing. Awarded Rookie Rockstar within the first two months for rapid, impactful contributions.", "focus": ["Phaser", "Unity", "Tooling", "Mentoring"]},
+    {"period": "Jun 2018 — Nov 2021", "role": "Game Developer", "company": "Rendered Ideas Softgame", "location": "Mumbai", "summary": "Developed 20+ 2D and 3D games across Unity, LibGDX, and Godot, reaching 1M+ downloads on Google Play and the Amazon App Store. Optimized performance for low-spec platforms like Roku and Amazon Fire TV, implemented monetization strategies (IAP, ads, cross-promotion) informed by ARPDAU/MAU analysis, and built backend systems and server-side applications for live game operations.", "focus": ["LibGDX", "Unity", "Godot", "Monetization"]},
+    {"period": "May 2017 — Jun 2018", "role": "Trainee Developer", "company": "Akashvaani.com", "location": "Gurugram", "summary": "Assisted in web and software application development, participating in code review, debugging, and testing processes.", "focus": ["Web", "QA"]}
+  ],
+  "education": [
+    {"period": "2013 — 2017", "credential": "B. Tech, Information Technology", "school": "Kurukshetra University"},
+    {"period": "2013", "credential": "12th — CBSE (PCM)", "school": "Mira Model School"},
+    {"period": "2011", "credential": "10th — CBSE", "school": "Mira Model School"}
+  ],
+  "certifications": [
+    {"period": "2021", "title": "Advanced Blueprint Scripting", "issuer": "Epic Games / Unreal Engine"},
+    {"period": "Jun 2016", "title": "Hadoop & Big Data", "issuer": "IIHT"},
+    {"period": "Jun 2015", "title": "Ethical Hacking", "issuer": "Kyrion"},
+    {"period": "Aug 2016", "title": "Internship, DRDO Headquarters", "issuer": "Defence Research and Development Organisation"}
+  ],
+  "awards": [
+    {"period": "January 2022", "title": "Rookie Rockstar", "issuer": "Extramarks Education", "description": "Awarded for exceptional performance and rapid integration into the team, contributing significantly to project success within the first two months."},
+    {"period": "December 2021", "title": "Blueprint Ninja Challenge Winner", "issuer": "Epic Games / Unreal Engine", "description": "Completed five advanced Unreal Engine Blueprint courses in three weeks, earning three exclusive badges for mastery in Blueprint scripting."},
+    {"period": "2016", "title": "Third Prize — Robot Race", "issuer": "I.I.T.M. College", "description": "Wireless RC car built with an RF module, brushless DC motor, and servo steering."},
+    {"period": "2016", "title": "Third Prize — Treasure Hunt", "issuer": "P.I.E.T. College", "description": "Campus-wide treasure hunt competition."}
+  ],
+  "maker": [
+    {"title": "Robotic Arm", "year": "2016", "description": "An Arduino-based humanoid arm from shoulder to fingers, controlled by glove-mounted sensors — moves with the wearer's hand and could aid physically disabled individuals.", "url": "https://github.com/KetanDutt/RoboticArm"},
+    {"title": "Quadcopter", "year": "2017", "description": "An RF-controlled quadcopter with four brushless DC motors, an NRF module for wireless control, and a gyroscope + accelerometer for stability."},
+    {"title": "Li-Fi", "year": "2016", "description": "A light-based data transmission system using LED on/off patterns to send binary data, read by light sensors and displayed on a receiving device."},
+    {"title": "Remote-Controlled Car", "year": "2016", "description": "A wireless RC car using an RF module and brushless DC motor with servo steering — third prize at the I.I.T.M. Robot Race."},
+    {"title": "Specialized Search Engine", "year": "2016", "description": "A web app built with HTML, CSS, Bootstrap, JSP, and MySQL, with login/registration and database search across words, symbols, and numbers."}
   ],
   "projects": [
-    {"title": "JavaScript Platformer", "description": "A platforming experiment built directly for the browser. Explore the source while its Pages build is being repaired.", "category": "Web", "technologies": ["JavaScript", "Game Dev"], "source": "https://github.com/KetanDutt/JavaScript-Platformer", "updated": "2026", "color": "#7c69ff"},
-    {"title": "Easy Gmail Cleaner", "description": "A focused Gmail manager for quickly archiving, deleting, or marking batches of email as spam.", "category": "Tools", "technologies": ["JavaScript", "Gmail API"], "demo": "https://ketandutt.github.io/Email-Filter/", "source": "https://github.com/KetanDutt/Email-Filter", "updated": "2026", "color": "#51c8e9"},
-    {"title": "UNO in Godot", "description": "A complete player-versus-computer UNO card game with rules and an AI opponent.", "category": "Games", "technologies": ["Godot", "GDScript"], "demo": "https://ketandutt.github.io/UNO_Godot/", "source": "https://github.com/KetanDutt/UNO_Godot", "updated": "2026", "color": "#ff658b"},
-    {"title": "Car Parking Level Editor", "description": "A visual map generator and level-design tool for car parking game layouts.", "category": "Tools", "technologies": ["JavaScript", "Level Design"], "demo": "https://ketandutt.github.io/MapGenerator/", "source": "https://github.com/KetanDutt/MapGenerator", "updated": "2026", "color": "#65d895"},
-    {"title": "Smart Study Assistant", "description": "An AI-powered study assistant experiment for creating a more focused learning workflow.", "category": "AI", "technologies": ["Python", "AI Agents"], "source": "https://github.com/KetanDutt/SmartStudyAssistantAgent", "updated": "2026", "color": "#f2ba63"},
-    {"title": "Google Cloud GenAI Hackathon", "description": "A 2026 hackathon experiment exploring useful experiences with Google Cloud and Gemini.", "category": "AI", "technologies": ["TypeScript", "Gemini API"], "source": "https://github.com/KetanDutt/GoogleCloudGenAIHackathon2026", "updated": "2026", "color": "#6aa8ff"},
-    {"title": "Chemistry Game", "description": "An educational game that makes valence electrons and chemical bonding easier to understand.", "category": "Games", "technologies": ["Phaser", "JavaScript"], "demo": "https://ketandutt.github.io/ChemistryGame/", "source": "https://github.com/KetanDutt/ChemistryGame-Source", "updated": "2025", "color": "#b27aff"},
-    {"title": "Endless Runner", "description": "A playable 3D endless-runner prototype with obstacles and procedural gameplay elements.", "category": "Games", "technologies": ["Unity", "C#"], "demo": "https://ketandutt.github.io/RunnerGame_Built/", "source": "https://github.com/KetanDutt/RunnerGame", "updated": "2025", "color": "#ff8b5d"},
-    {"title": "Smarty Ants", "description": "Preserved browser builds demonstrating 3D running and character movement mechanics.", "category": "Games", "technologies": ["Unity", "WebGL"], "demo": "https://ketandutt.github.io/Ants_Demo/", "source": "https://github.com/KetanDutt/Ants_Demo", "updated": "2025", "color": "#8ed55d"},
-    {"title": "QR Code Generator", "description": "A practical browser tool that generates QR codes from CSV contact data.", "category": "Tools", "technologies": ["HTML", "JavaScript"], "demo": "https://ketandutt.github.io/QRCodeGenerator/", "source": "https://github.com/KetanDutt/QRCodeGenerator", "updated": "2025", "color": "#6dd6ca"}
+    {"title": "JavaScript Platformer", "description": "A platforming experiment built directly for the browser. Explore the source while its Pages build is being repaired.", "category": "Web", "technologies": ["JavaScript", "Game Dev"], "source": "https://github.com/KetanDutt/JavaScript-Platformer", "updated": "2026", "color": "#7c69ff", "image": "assets/projects/platformer.jpg", "featured": true},
+    {"title": "Ants AR", "description": "A Unity + ARKit/ARCore puzzle game built for Round The Clock Technologies. Players spawn ants in real-world space and guide them to solve puzzles, overcoming plane-detection and cross-device scale challenges.", "category": "AR", "technologies": ["Unity", "ARKit", "ARCore"], "source": "https://github.com/KetanDutt/Ants_AR", "updated": "2023", "color": "#3fd6c0", "image": "assets/projects/ants-ar.jpg", "featured": true},
+    {"title": "Easy Gmail Cleaner", "description": "A focused Gmail manager for quickly archiving, deleting, or marking batches of email as spam.", "category": "Tools", "technologies": ["JavaScript", "Gmail API"], "demo": "https://ketandutt.github.io/Email-Filter/", "source": "https://github.com/KetanDutt/Email-Filter", "updated": "2026", "color": "#51c8e9", "image": "assets/projects/gmail-cleaner.jpg"},
+    {"title": "UNO in Godot", "description": "A complete player-versus-computer UNO card game with rules and an AI opponent.", "category": "Games", "technologies": ["Godot", "GDScript"], "demo": "https://ketandutt.github.io/UNO_Godot/", "source": "https://github.com/KetanDutt/UNO_Godot", "updated": "2026", "color": "#ff658b", "image": "assets/projects/uno-godot.jpg"},
+    {"title": "Car Parking Level Editor", "description": "A visual map generator and level-design tool for car parking game layouts.", "category": "Tools", "technologies": ["JavaScript", "Level Design"], "demo": "https://ketandutt.github.io/MapGenerator/", "source": "https://github.com/KetanDutt/MapGenerator", "updated": "2026", "color": "#65d895", "image": "assets/projects/map-generator.jpg"},
+    {"title": "Smart Study Assistant", "description": "An AI-powered study assistant experiment for creating a more focused learning workflow.", "category": "AI", "technologies": ["Python", "AI Agents"], "source": "https://github.com/KetanDutt/SmartStudyAssistantAgent", "updated": "2026", "color": "#f2ba63", "image": "assets/projects/study-assistant.jpg"},
+    {"title": "Google Cloud GenAI Hackathon", "description": "A 2026 hackathon experiment exploring useful experiences with Google Cloud and Gemini.", "category": "AI", "technologies": ["TypeScript", "Gemini API"], "source": "https://github.com/KetanDutt/GoogleCloudGenAIHackathon2026", "updated": "2026", "color": "#6aa8ff", "image": "assets/projects/genai-hackathon.jpg"},
+    {"title": "Chemistry Game", "description": "An educational game that makes valence electrons and chemical bonding easier to understand.", "category": "Games", "technologies": ["Phaser", "JavaScript"], "demo": "https://ketandutt.github.io/ChemistryGame/", "source": "https://github.com/KetanDutt/ChemistryGame-Source", "updated": "2025", "color": "#b27aff", "image": "assets/projects/chemistry-game.jpg"},
+    {"title": "Endless Runner", "description": "A playable 3D endless-runner prototype with obstacles and procedural gameplay elements.", "category": "Games", "technologies": ["Unity", "C#"], "demo": "https://ketandutt.github.io/RunnerGame_Built/", "source": "https://github.com/KetanDutt/RunnerGame", "updated": "2025", "color": "#ff8b5d", "image": "assets/projects/endless-runner.jpg"},
+    {"title": "Robotic Arm", "description": "An Arduino-powered robotic humanoid arm controlled by glove-mounted sensors, moving in sync with the wearer's hand.", "category": "Hardware", "technologies": ["Arduino", "C++"], "source": "https://github.com/KetanDutt/RoboticArm", "updated": "2016", "color": "#e6a25a", "image": "assets/projects/robotic-arm.jpg"},
+    {"title": "Smarty Ants", "description": "Preserved browser builds demonstrating 3D running and character movement mechanics.", "category": "Games", "technologies": ["Unity", "WebGL"], "demo": "https://ketandutt.github.io/Ants_Demo/", "source": "https://github.com/KetanDutt/Ants_Demo", "updated": "2025", "color": "#8ed55d", "image": "assets/projects/smarty-ants.jpg"},
+    {"title": "QR Code Generator", "description": "A practical browser tool that generates QR codes from CSV contact data.", "category": "Tools", "technologies": ["HTML", "JavaScript"], "demo": "https://ketandutt.github.io/QRCodeGenerator/", "source": "https://github.com/KetanDutt/QRCodeGenerator", "updated": "2025", "color": "#6dd6ca", "image": "assets/projects/qr-generator.jpg"}
   ]
 }

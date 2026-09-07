@@ -22,7 +22,7 @@ This is a no-build static site optimized for GitHub Pages. Keeping the rendering
 
 ## Design system
 
-Tokens in `:root` define surfaces, typography colors, accent colors, shadows, and radii. The `.glass` primitive combines a translucent surface, subtle inner highlight, border, shadow, and backdrop blur. A solid fallback is supplied for browsers without backdrop-filter.
+`styles.css` implements a restrained, dark-first "Liquid Glass" design system. Tokens in `:root` define surfaces, typography colors, a sparingly used accent, glass material variables, radii, blur levels, and motion easing/duration. Reusable primitives (`.glass`, `.pill`, `.button`, `.filter-button`, `.skill-pill`) combine a translucent surface, subtle inner highlight, border, soft layered shadow, and backdrop blur — glass is applied selectively to navigation, floating controls, and important cards, while large text and body content sit directly on the background. A solid fallback is supplied for browsers without backdrop-filter, and all decorative motion is disabled under `prefers-reduced-motion`.
 
 ## Performance decisions
 
