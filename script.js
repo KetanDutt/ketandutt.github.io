@@ -536,6 +536,109 @@
     } catch { /* Static fallback keeps the portfolio useful offline and under API rate limits. */ }
   }
 
+  /* ---------------------------------- Marquee --------------------------------- */
+  // Languages, software and tools featured across the GitHub profile (README,
+  // config toolbox) and portfolio projects. Rendered with Devicon logos inside
+  // light rounded tiles so dark brand marks stay visible on the dark theme.
+  const MARQUEE_ICONS = [
+    // Game engines
+    { devicon: 'unity', label: 'Unity' },
+    { devicon: 'unrealengine', label: 'Unreal Engine' },
+    { devicon: 'godot', label: 'Godot' },
+    // Languages
+    { devicon: 'csharp', label: 'C#' },
+    { devicon: 'cplusplus', label: 'C++' },
+    { devicon: 'python', label: 'Python' },
+    { devicon: 'javascript', label: 'JavaScript' },
+    { devicon: 'typescript', label: 'TypeScript' },
+    // Web & backend
+    { devicon: 'nodejs', label: 'Node.js' },
+    { devicon: 'html5', label: 'HTML' },
+    { devicon: 'css3', label: 'CSS' },
+    { devicon: 'php', label: 'PHP' },
+    { devicon: 'mysql', label: 'MySQL' },
+    // Mobile & AR (ARKit / ARCore shipping)
+    { devicon: 'flutter', label: 'Flutter' },
+    { devicon: 'android', label: 'Android' },
+    { devicon: 'apple', label: 'iOS' },
+    // Hardware
+    { devicon: 'arduino', label: 'Arduino' },
+    // Version control & CI/CD
+    { devicon: 'git', label: 'Git' },
+    { devicon: 'github', label: 'GitHub' },
+    { devicon: 'gitlab', label: 'GitLab' },
+    { devicon: 'githubactions', label: 'GitHub Actions' },
+    // Tools & cloud
+    { devicon: 'photoshop', label: 'Photoshop' },
+    { devicon: 'googlecloud', label: 'Google Cloud' }
+  ];
+
+  const DEVICON_ICON_URL = devicon =>
+    `https://cdn.jsdelivr.net/npm/devicon@2.17.0/icons/${devicon}/${devicon}-original.svg`;
+
+  const createMarqueeChip = ({ devicon, label }) => {
+    const chip = document.createElement('span');
+    chip.className = 'marquee-chip';
+    chip.title = label;
+    const icon = document.createElement('img');
+    icon.className = 'marquee-icon';
+    icon.src = DEVICON_ICON_URL(devicon);
+    icon.width = 48;
+    icon.height = 48;
+    icon.loading = 'lazy';
+    icon.decoding = 'async';
+    icon.alt = '';
+    icon.setAttribute('draggable', 'false');
+    chip.appendChild(icon);
+    return chip;
+  };
+
+  // The loop uses two identical groups and translates by -50%. Each group must be
+  // at least as wide as the visible strip, so repeat the icons enough times to
+  // cover the widest viewport and keep the animation perfectly seamless.
+  function initializeMarquee() {
+    const track = $('#marqueeTrack');
+    const mask = $('#marqueeMask');
+    if (!track || !mask) return;
+
+    const buildGroup = hidden => {
+      const group = document.createElement('div');
+      group.className = 'marquee-group';
+      if (hidden) group.setAttribute('aria-hidden', 'true');
+      MARQUEE_ICONS.forEach(item => group.appendChild(createMarqueeChip(item)));
+      return group;
+    };
+
+    const rebuild = () => {
+      while (track.firstChild) track.removeChild(track.firstChild);
+      // Measure one full pass to decide how many repeats each half needs.
+      const probe = buildGroup(false);
+      track.appendChild(probe);
+      const passWidth = probe.offsetWidth || 1;
+      track.removeChild(probe);
+      const visible = Math.max(mask.clientWidth || 800, 1);
+      const repeats = Math.max(1, Math.ceil(visible / passWidth) + 1);
+      const makeHalf = hidden => {
+        const half = document.createElement('div');
+        half.className = 'marquee-group';
+        if (hidden) half.setAttribute('aria-hidden', 'true');
+        for (let index = 0; index < repeats; index += 1) {
+          MARQUEE_ICONS.forEach(item => half.appendChild(createMarqueeChip(item)));
+        }
+        return half;
+      };
+      track.appendChild(makeHalf(false));
+      track.appendChild(makeHalf(true));
+    };
+
+    rebuild();
+    let resizeTimer = null;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(rebuild, 150);
+    });
+  }
+
   /* ----------------------------------- Init ------------------------------------------ */
   async function initialize() {
     initializeTheme();
@@ -546,6 +649,7 @@
     initializeMagnetic();
     initializePortraitTilt();
     initializeModal();
+    initializeMarquee();
     $('#year').textContent = new Date().getFullYear();
     try {
       const response = await fetch('config.json');
