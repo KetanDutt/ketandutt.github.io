@@ -67,16 +67,6 @@
     }
   }
 
-  function makeExternalLink(url, label, symbol) {
-    const link = create('a', 'circle-link', symbol);
-    link.href = url;
-    link.target = '_blank';
-    link.rel = 'noopener noreferrer';
-    link.setAttribute('aria-label', label);
-    link.title = label;
-    return link;
-  }
-
   function renderProjects() {
     const grid = $('#projectsGrid');
     const allProjects = state.config.projects;
@@ -103,8 +93,20 @@
       const tags = create('div', 'tags');
       project.technologies.forEach(technology => tags.append(create('span', 'tag', technology)));
       const links = create('div', 'project-links');
-      if (project.demo) links.append(makeExternalLink(project.demo, `Open ${project.title} live demo`, '↗'));
-      links.append(makeExternalLink(project.source, `View ${project.title} source on GitHub`, '⌘'));
+      if (project.demo) {
+        const demoLink = create('a', 'project-action', 'Live demo ↗');
+        demoLink.href = project.demo;
+        demoLink.target = '_blank';
+        demoLink.rel = 'noopener noreferrer';
+        demoLink.setAttribute('aria-label', `Open ${project.title} live demo`);
+        links.append(demoLink);
+      }
+      const sourceLink = create('a', 'project-action', 'Source ↗');
+      sourceLink.href = project.source;
+      sourceLink.target = '_blank';
+      sourceLink.rel = 'noopener noreferrer';
+      sourceLink.setAttribute('aria-label', `View ${project.title} source on GitHub`);
+      links.append(sourceLink);
       bottom.append(tags, links);
       article.append(top, bottom);
       grid.append(article);
@@ -144,7 +146,12 @@
       const header = create('div', 'repo-header');
       const identity = create('div');
       identity.append(create('span', 'repo-kicker', `${repository.language} · Updated ${repository.updated}`), create('h3', '', repository.name));
-      header.append(identity, makeExternalLink(repository.url, `View ${repository.name} on GitHub`, '↗'));
+      const repositoryLink = create('a', 'repo-source-link', 'Repository ↗');
+      repositoryLink.href = repository.url;
+      repositoryLink.target = '_blank';
+      repositoryLink.rel = 'noopener noreferrer';
+      repositoryLink.setAttribute('aria-label', `View ${repository.name} on GitHub`);
+      header.append(identity, repositoryLink);
       card.append(header, create('p', '', repository.description));
       if (repository.demo) {
         const demo = create('a', 'repo-demo-link', 'Open live demo →');

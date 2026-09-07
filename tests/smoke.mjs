@@ -37,7 +37,15 @@ for (const [index, project] of config.projects.entries()) {
 
 const ids = [...html.matchAll(/\sid="([^"]+)"/g)].map(match => match[1]);
 assert.equal(new Set(ids).size, ids.length, 'HTML ids must be unique');
-for (const id of ['top', 'main', 'work', 'projectsGrid', 'experience', 'about', 'contact']) assert.ok(ids.includes(id), `Missing #${id}`);
+for (const id of ['top', 'main', 'work', 'projectsGrid', 'github', 'githubRepos', 'experience', 'about', 'contact']) assert.ok(ids.includes(id), `Missing #${id}`);
+
+const hrefs = [...html.matchAll(/\shref="([^"]+)"/g)].map(match => match[1]);
+for (const href of hrefs.filter(value => value.startsWith('#'))) assert.ok(ids.includes(href.slice(1)), `Internal link target ${href} does not exist`);
+const localHrefs = hrefs.filter(value => !/^(?:#|https?:|mailto:|tel:)/.test(value));
+await Promise.all(localHrefs.map(href => access(new URL(href.split(/[?#]/)[0], root))));
+assert.match(script, /showMore.*addEventListener/s, 'Show-more button must have a click handler');
+assert.match(script, /menuButton\.addEventListener\('click'/, 'Mobile navigation button must have a click handler');
+assert.match(script, /themeToggle.*addEventListener\('click'/s, 'Theme button must have a click handler');
 
 assert.equal(manifest.start_url, '/', 'Manifest should start at the site root');
 assert.equal(manifest.display, 'standalone', 'Manifest display mode should be standalone');

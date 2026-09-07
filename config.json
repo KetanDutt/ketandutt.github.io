@@ -6,7 +6,7 @@
   },
   "github": {
     "recentRepositories": [
-      {"name": "JavaScript-Platformer", "description": "A playable platforming experiment for the open web.", "language": "JavaScript", "updated": "Sep 2026", "url": "https://github.com/KetanDutt/JavaScript-Platformer", "demo": "https://ketandutt.github.io/JavaScript-Platformer/"},
+      {"name": "JavaScript-Platformer", "description": "A platforming experiment for the open web. Source is available while its Pages build is being repaired.", "language": "JavaScript", "updated": "Sep 2026", "url": "https://github.com/KetanDutt/JavaScript-Platformer"},
       {"name": "RoboticArm", "description": "An Arduino-powered robotic arm built with C++.", "language": "C++", "updated": "Sep 2026", "url": "https://github.com/KetanDutt/RoboticArm"},
       {"name": "MapGenerator", "description": "A browser-based map and parking-level generator.", "language": "JavaScript", "updated": "Sep 2026", "url": "https://github.com/KetanDutt/MapGenerator", "demo": "https://ketandutt.github.io/MapGenerator/"}
     ]
@@ -23,7 +23,7 @@
     {"period": "May 2017 — Jun 2018", "role": "Trainee Developer", "company": "Akashvaani.com · Gurugram", "summary": "Contributed to web and software applications through implementation, code review, debugging, and testing."}
   ],
   "projects": [
-    {"title": "JavaScript Platformer", "description": "A playable platforming experiment built directly for the browser.", "category": "Web", "technologies": ["JavaScript", "Game Dev"], "demo": "https://ketandutt.github.io/JavaScript-Platformer/", "source": "https://github.com/KetanDutt/JavaScript-Platformer", "updated": "2026", "color": "#7c69ff"},
+    {"title": "JavaScript Platformer", "description": "A platforming experiment built directly for the browser. Explore the source while its Pages build is being repaired.", "category": "Web", "technologies": ["JavaScript", "Game Dev"], "source": "https://github.com/KetanDutt/JavaScript-Platformer", "updated": "2026", "color": "#7c69ff"},
     {"title": "Easy Gmail Cleaner", "description": "A focused Gmail manager for quickly archiving, deleting, or marking batches of email as spam.", "category": "Tools", "technologies": ["JavaScript", "Gmail API"], "demo": "https://ketandutt.github.io/Email-Filter/", "source": "https://github.com/KetanDutt/Email-Filter", "updated": "2026", "color": "#51c8e9"},
     {"title": "UNO in Godot", "description": "A complete player-versus-computer UNO card game with rules and an AI opponent.", "category": "Games", "technologies": ["Godot", "GDScript"], "demo": "https://ketandutt.github.io/UNO_Godot/", "source": "https://github.com/KetanDutt/UNO_Godot", "updated": "2026", "color": "#ff658b"},
     {"title": "Car Parking Level Editor", "description": "A visual map generator and level-design tool for car parking game layouts.", "category": "Tools", "technologies": ["JavaScript", "Level Design"], "demo": "https://ketandutt.github.io/MapGenerator/", "source": "https://github.com/KetanDutt/MapGenerator", "updated": "2026", "color": "#65d895"},
