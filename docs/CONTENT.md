@@ -1,0 +1,48 @@
+# Content maintenance
+
+Most portfolio updates only require editing `config.json`.
+
+## Projects
+
+A project has the following shape:
+
+```json
+{
+  "title": "Project name",
+  "description": "One concise outcome-focused sentence.",
+  "category": "Games",
+  "technologies": ["Unity", "C#"],
+  "demo": "https://example.com/optional-demo",
+  "source": "https://github.com/KetanDutt/repository",
+  "updated": "2026",
+  "color": "#7c69ff"
+}
+```
+
+`source` is required. `demo` is optional and should be omitted when no working public experience exists. Categories automatically become filter buttons. Keep category names consistent.
+
+## Experience
+
+Experience entries are displayed in file order, newest first. Use compact date ranges and summarize responsibilities and evidence in one paragraph. Avoid unverifiable metrics.
+
+## Profile and focus
+
+- `profile.publicRepos` is the fallback shown when GitHub’s API is unavailable. Update it periodically.
+- `profile.skills` renders the toolbox pills.
+- `focus` should represent current work, learning, and collaboration interests.
+
+## Verification checklist
+
+Before publishing:
+
+1. Run `npm test`.
+2. Open every changed source/demo URL.
+3. Check text at 320 px, 768 px, and desktop widths.
+4. Check both color themes.
+5. Navigate all controls using only Tab, Shift+Tab, Enter, Space, and Escape.
+6. Confirm claims against the public repository or résumé.
+7. Update the reconciliation date in `README.md` after a substantial GitHub-profile refresh.
+
+## Public data source
+
+Repository details in this site were reconciled with <https://github.com/KetanDutt>. The browser only requests the public GitHub user endpoint to refresh the repository count; private data and credentials are never requested.

@@ -1,485 +1,217 @@
-// Load Configuration
-fetch('config.json')
-    .then(response => response.json())
-    .then(config => {
-        initializePortfolio(config);
-    })
-    .catch(error => {
-        console.error('Error loading config:', error);
-        document.getElementById('console-loader').innerHTML = '<p class="text-white text-center">Error loading configuration.<br>Please check console.</p>';
+(() => {
+  'use strict';
+
+  const state = { config: null, category: 'All', query: '', expanded: false };
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = (selector, root = document) => root.querySelector(selector);
+  const create = (tag, className, text) => {
+    const element = document.createElement(tag);
+    if (className) element.className = className;
+    if (text !== undefined) element.textContent = text;
+    return element;
+  };
+
+  function safeStorage(action, key, value) {
+    try { return action === 'get' ? localStorage.getItem(key) : localStorage.setItem(key, value); }
+    catch { return null; }
+  }
+
+  function initializeTheme() {
+    const saved = safeStorage('get', 'portfolio-theme');
+    const preferred = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    setTheme(saved === 'light' || saved === 'dark' ? saved : preferred);
+    $('#themeToggle').addEventListener('click', () => {
+      const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+      setTheme(next);
+      safeStorage('set', 'portfolio-theme', next);
     });
+  }
 
-function initializePortfolio(config) {
-    // Meta & Theme
-    document.title = config.meta.title;
-    const root = document.documentElement;
-    const colors = config.theme.colors;
-    for (const key in colors) {
-        root.style.setProperty(`--${key}-color`, colors[key]);
-    }
+  function setTheme(theme) {
+    document.documentElement.dataset.theme = theme;
+    $('meta[name="theme-color"]').content = theme === 'dark' ? '#080a11' : '#edf1f8';
+    const button = $('#themeToggle');
+    const nextTheme = theme === 'dark' ? 'light' : 'dark';
+    button.setAttribute('aria-label', `Switch to ${nextTheme} theme`);
+    button.title = `Switch to ${nextTheme} theme`;
+  }
 
-    // CV Download Button
-    const downloadBtn = document.getElementById('downloadCV');
-    if (config.settings.show_cv_download) {
-        downloadBtn.style.display = 'block';
-        downloadBtn.onclick = () => {
-            const link = document.createElement('a');
-            link.href = config.settings.cv_file_path;
-            link.download = config.settings.cv_file_path;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        };
-    }
-
-    // Profile
-    const profileImg = document.getElementById('profile-img');
-    profileImg.src = config.profile.image_url;
-    profileImg.alt = config.profile.name;
-    document.getElementById('profile-name').textContent = config.profile.name;
-    document.getElementById('profile-subtitle').textContent = config.profile.subtitle;
-
-    const badgesContainer = document.getElementById('profile-badges');
-    const badgesFragment = document.createDocumentFragment();
-    config.profile.badges.forEach(badge => {
-        const span = document.createElement('span');
-        span.className = `badge ${badge.color_class} me-1`;
-        span.textContent = badge.text;
-        badgesFragment.appendChild(span);
+  function initializeNavigation() {
+    const menuButton = $('#menuToggle');
+    const nav = $('#navLinks');
+    const closeMenu = () => { nav.classList.remove('open'); menuButton.setAttribute('aria-expanded', 'false'); menuButton.setAttribute('aria-label', 'Open navigation'); };
+    menuButton.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded', String(open));
+      menuButton.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
     });
-    badgesContainer.appendChild(badgesFragment);
+    nav.addEventListener('click', event => { if (event.target.matches('a')) closeMenu(); });
+    document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
+    document.addEventListener('click', event => { if (!event.target.closest('.nav')) closeMenu(); });
 
-    const socialBaseFragment = document.createDocumentFragment();
-    config.profile.social_links.forEach(link => {
-        const a = document.createElement('a');
-        a.href = link.url;
-        a.target = "_blank";
-        a.rel = "noopener noreferrer";
-        a.className = "text-white";
-        a.style.textDecoration = "none";
-        if (link.name) {
-            a.setAttribute('aria-label', link.name);
-        }
-        a.innerHTML = `<i class="${link.icon} fa-3x"></i>`;
-        socialBaseFragment.appendChild(a);
-    });
-
-    const renderSocialLinks = (containerId) => {
-        const container = document.getElementById(containerId);
-        container.innerHTML = '';
-        const fragment = socialBaseFragment.cloneNode(true);
-
-        if (containerId === 'contact-social-links') {
-            for (let i = 0; i < fragment.children.length; i++) {
-                fragment.children[i].classList.add('col-6');
-            }
-        }
-        container.appendChild(fragment);
-    };
-    renderSocialLinks('social-links');
-    renderSocialLinks('contact-social-links');
-
-
-    // Current Focus
-    const focusContainer = document.getElementById('current-focus-container');
-    const focusFragment = document.createDocumentFragment();
-    config.current_focus.forEach(item => {
-        const col = document.createElement('div');
-        col.className = 'col-md-6';
-        col.innerHTML = `
-            <div class="d-flex align-items-center mb-3">
-                <i class="${item.icon} fa-2x text-primary me-3"></i>
-                <div>
-                    <h3 class="h5 mb-1">${item.title}</h3>
-                    <p class="mb-0">${item.text}</p>
-                </div>
-            </div>
-        `;
-        focusFragment.appendChild(col);
-    });
-    focusContainer.appendChild(focusFragment);
-
-    // Summary
-    document.getElementById('summary-text').textContent = config.summary;
-
-    // Experience
-    const expContainer = document.getElementById('experience-container');
-    const expFragment = document.createDocumentFragment();
-    const boldRegex = /\*\*(.*?)\*\*/g;
-    config.experience.forEach(job => {
-        const card = document.createElement('div');
-        card.className = 'card experience-card p-4';
-
-        const listItems = job.description.map(desc => `<li>${desc.replace(boldRegex, '<strong>$1</strong>')}</li>`).join('');
-
-        card.innerHTML = `
-            <div class="d-flex align-items-start mb-3">
-                <img src="${job.logo}" alt="${job.company}" class="company-logo me-3" loading="lazy" width="50" height="50">
-                <div>
-                    <h3 class="h5 mb-1">${job.role}</h3>
-                    <div class="d-flex flex-wrap align-items-center mb-2">
-                        <span class="me-3">${job.company}</span>
-                        <span class="me-3"><i class="fas fa-map-marker-alt me-1"></i> ${job.location}</span>
-                        <span><i class="fas fa-calendar-alt me-1"></i> ${job.period}</span>
-                    </div>
-                </div>
-            </div>
-            <ul>${listItems}</ul>
-        `;
-        expFragment.appendChild(card);
-    });
-    expContainer.appendChild(expFragment);
-
-    // Skills
-    const renderSkillBars = (containerId, skills) => {
-        const container = document.getElementById(containerId);
-        const fragment = document.createDocumentFragment();
-        skills.forEach(skill => {
-            const div = document.createElement('div');
-            div.className = 'skill-bar-container';
-            let badgesHtml = '';
-            if (skill.tags) {
-                badgesHtml = '<div class="mt-2">' + skill.tags.map(tag => `<span class="badge bg-secondary me-1 mb-1">${tag}</span>`).join('') + '</div>';
-            }
-            div.innerHTML = `
-                <div class="skill-label">
-                    <span>${skill.name}</span>
-                    <span>${skill.level}</span>
-                </div>
-                <div class="skill-bar">
-                    <div class="skill-progress" style="width: ${skill.percentage}%"></div>
-                </div>
-                ${badgesHtml}
-            `;
-            fragment.appendChild(div);
-        });
-        container.appendChild(fragment);
-    };
-    renderSkillBars('skills-game-engines', config.skills.game_engines);
-    renderSkillBars('skills-languages', config.skills.programming_languages);
-
-    // Lazy load Chart.js only when the chart is about to come into view
-    const skillsRadarCanvas = document.getElementById('skillsRadar');
-
-    const chartObserver = new IntersectionObserver((entries, observer) => {
+    if ('IntersectionObserver' in window) {
+      const links = [...nav.querySelectorAll('a')];
+      const sections = links.map(link => $(link.getAttribute('href'))).filter(Boolean);
+      const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Disconnect observer to run only once
-                observer.disconnect();
-
-                // Dynamically load Chart.js
-                const script = document.createElement('script');
-                script.src = "https://cdn.jsdelivr.net/npm/chart.js";
-                script.onload = () => {
-                    initRadarChart(config.skills.radar_chart);
-                };
-                document.body.appendChild(script);
-            }
+          if (!entry.isIntersecting) return;
+          links.forEach(link => {
+            const active = link.getAttribute('href') === `#${entry.target.id}`;
+            link.classList.toggle('active', active);
+            if (active) link.setAttribute('aria-current', 'location');
+            else link.removeAttribute('aria-current');
+          });
         });
-    }, { threshold: 0.1, rootMargin: "200px" });
-
-    chartObserver.observe(skillsRadarCanvas);
-
-    function initRadarChart(chartData) {
-        const ctx = skillsRadarCanvas.getContext('2d');
-        new Chart(ctx, {
-            type: 'radar',
-            data: {
-                labels: chartData.labels,
-                datasets: [{
-                    label: 'Skill Level',
-                    data: chartData.data,
-                    backgroundColor: 'rgba(110, 72, 170, 0.2)',
-                    borderColor: 'rgba(110, 72, 170, 1)',
-                    borderWidth: 2,
-                    pointBackgroundColor: 'rgba(110, 72, 170, 1)',
-                    pointRadius: 4
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    r: {
-                        min: 0,
-                        max: 100,
-                        angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
-                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
-                        pointLabels: { color: '#fff', font: { size: 12 } },
-                        ticks: { display: false }
-                    }
-                },
-                plugins: { legend: { labels: { color: '#fff' } } }
-            }
-        });
+      }, { rootMargin: '-25% 0px -65%' });
+      sections.forEach(section => observer.observe(section));
     }
+  }
 
-    // Toolbox
-    const toolboxContainer = document.getElementById('toolbox-container');
-    const toolboxFragment = document.createDocumentFragment();
+  function makeExternalLink(url, label, symbol) {
+    const link = create('a', 'circle-link', symbol);
+    link.href = url;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.setAttribute('aria-label', label);
+    link.title = label;
+    return link;
+  }
 
-    const renderToolboxCategory = (title, items) => {
-        const col = document.createElement('div');
-        col.className = 'col-md-4 mb-4';
-        const itemsHtml = items.map(item => {
-            let iconHtml = '';
-            if (item.icon_url) {
-                iconHtml = `<img src="${item.icon_url}" width="20" height="20" class="me-1" loading="lazy">`;
-            } else if (item.icon_class) {
-                iconHtml = `<i class="${item.icon_class} me-1"></i>`;
-            }
-            return `<span class="badge bg-secondary p-2 d-flex align-items-center">${iconHtml} ${item.name}</span>`;
-        }).join('');
+  function renderProjects() {
+    const grid = $('#projectsGrid');
+    const allProjects = state.config.projects;
+    const normalizedQuery = state.query.trim().toLowerCase();
+    const matching = allProjects.filter(project => {
+      const categoryMatch = state.category === 'All' || project.category === state.category;
+      const searchable = `${project.title} ${project.description} ${project.category} ${project.technologies.join(' ')}`.toLowerCase();
+      return categoryMatch && searchable.includes(normalizedQuery);
+    });
+    const limited = !state.expanded && state.category === 'All' && !normalizedQuery;
+    const visible = limited ? matching.slice(0, 6) : matching;
+    grid.replaceChildren();
 
-        col.innerHTML = `
-            <div class="card experience-card p-4 h-100">
-                <h3 class="h5 mb-3">${title}</h3>
-                <div class="d-flex flex-wrap gap-2">${itemsHtml}</div>
-            </div>
-        `;
-        toolboxFragment.appendChild(col);
-    };
-    renderToolboxCategory("Game Engines", config.toolbox.game_engines);
-    renderToolboxCategory("Languages", config.toolbox.languages);
-    renderToolboxCategory("Tools & Platforms", config.toolbox.tools);
-    toolboxContainer.appendChild(toolboxFragment);
+    visible.forEach((project, index) => {
+      const article = create('article', 'project-card reveal');
+      article.style.setProperty('--project-glow', project.color);
+      article.style.setProperty('--project-tint', `${project.color}25`);
 
+      const top = create('div', 'project-top');
+      top.append(create('span', 'project-number', `${String(index + 1).padStart(2, '0')} · ${project.category} · ${project.updated}`));
+      top.append(create('h3', '', project.title), create('p', '', project.description));
 
-    // Projects
-    const projectsContainer = document.getElementById('projects-container');
-    const moreProjectsContainer = document.getElementById('moreProjects');
-    const showMoreBtn = document.getElementById('showMoreProjects');
-
-    const projectsFragment = document.createDocumentFragment();
-    const moreProjectsFragment = document.createDocumentFragment();
-    let hiddenProjectsCount = 0;
-
-    config.projects.forEach(project => {
-        const col = document.createElement('div');
-        col.className = 'col-md-6 mb-4';
-
-        const techBadges = project.technologies.map(t => `<span class="badge bg-secondary me-1">${t}</span>`).join('');
-
-        col.innerHTML = `
-            <div class="card experience-card h-100">
-                <div class="card-body">
-                    <h3 class="h5">${project.title}</h3>
-                    <p class="small">${project.subtitle}</p>
-                    <p class="mb-3">${project.description}</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>${techBadges}</div>
-                        <div>
-                            <a href="${project.demo_link}" target="_blank" class="btn btn-sm btn-outline-light me-1"><i class="fas fa-external-link-alt me-1"></i>Demo</a>
-                            <a href="${project.source_link}" target="_blank" class="btn btn-sm btn-outline-light"><i class="fab fa-github me-1"></i>Source</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
-
-        if (project.hidden_initially) {
-            moreProjectsFragment.appendChild(col);
-            hiddenProjectsCount++;
-        } else {
-            projectsFragment.appendChild(col);
-        }
+      const bottom = create('div', 'project-bottom');
+      const tags = create('div', 'tags');
+      project.technologies.forEach(technology => tags.append(create('span', 'tag', technology)));
+      const links = create('div', 'project-links');
+      if (project.demo) links.append(makeExternalLink(project.demo, `Open ${project.title} live demo`, '↗'));
+      links.append(makeExternalLink(project.source, `View ${project.title} source on GitHub`, '⌘'));
+      bottom.append(tags, links);
+      article.append(top, bottom);
+      grid.append(article);
     });
 
-    projectsContainer.appendChild(projectsFragment);
-    moreProjectsContainer.appendChild(moreProjectsFragment);
+    $('#emptyProjects').hidden = matching.length !== 0;
+    const showMore = $('#showMore');
+    const canExpand = allProjects.length > 6 && state.category === 'All' && !normalizedQuery;
+    showMore.hidden = !canExpand;
+    showMore.textContent = state.expanded ? 'Show fewer projects' : `Show all ${allProjects.length} projects`;
+    observeReveals(grid);
+  }
 
-    if (hiddenProjectsCount > 0) {
-        showMoreBtn.style.display = 'inline-block';
-        showMoreBtn.addEventListener('click', function() {
-            if (moreProjectsContainer.style.display === 'none') {
-                moreProjectsContainer.style.display = 'flex';
-                this.textContent = 'Show Less Projects';
-            } else {
-                moreProjectsContainer.style.display = 'none';
-                this.textContent = 'Show More Projects';
-            }
-        });
+  function initializeProjectControls() {
+    const categories = ['All', ...new Set(state.config.projects.map(project => project.category))];
+    const filters = $('#projectFilters');
+    categories.forEach(category => {
+      const button = create('button', 'filter-button', category);
+      button.type = 'button';
+      button.setAttribute('aria-pressed', String(category === state.category));
+      button.addEventListener('click', () => {
+        state.category = category;
+        state.expanded = category !== 'All';
+        [...filters.children].forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+        renderProjects();
+      });
+      filters.append(button);
+    });
+    $('#projectSearch').addEventListener('input', event => { state.query = event.target.value; renderProjects(); });
+    $('#showMore').addEventListener('click', () => { state.expanded = !state.expanded; renderProjects(); if (!state.expanded) $('#work').scrollIntoView(); });
+  }
+
+  function renderExperience() {
+    const container = $('#experienceList');
+    state.config.experience.forEach(job => {
+      const item = create('article', 'timeline-item reveal');
+      const period = create('div', 'timeline-period', job.period);
+      const role = create('div', 'timeline-role');
+      role.append(create('h3', '', job.role), create('p', '', job.company));
+      item.append(period, role, create('p', 'timeline-description', job.summary));
+      container.append(item);
+    });
+  }
+
+  function renderAbout() {
+    const skillCloud = $('#skillCloud');
+    state.config.profile.skills.forEach(skill => skillCloud.append(create('span', 'skill-pill', skill)));
+    const focusGrid = $('#focusGrid');
+    state.config.focus.forEach(item => {
+      const card = create('article', 'focus-card reveal');
+      card.append(create('div', 'focus-icon', item.icon), create('h3', '', item.title), create('p', '', item.text));
+      focusGrid.append(card);
+    });
+  }
+
+  function observeReveals(root = document) {
+    const items = [...root.querySelectorAll('.reveal:not(.is-visible)')];
+    if (reduceMotion || !('IntersectionObserver' in window)) { items.forEach(item => item.classList.add('is-visible')); return; }
+    const observer = new IntersectionObserver((entries, currentObserver) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('is-visible'); currentObserver.unobserve(entry.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px' });
+    items.forEach((item, index) => { item.style.transitionDelay = `${Math.min(index % 4, 3) * 70}ms`; observer.observe(item); });
+  }
+
+  async function refreshGitHubCount(username, fallback) {
+    const counter = $('#repoCount');
+    counter.textContent = fallback;
+    const cacheKey = `github-profile-${username}`;
+    try {
+      const cached = JSON.parse(safeStorage('get', cacheKey) || 'null');
+      if (cached && Date.now() - cached.savedAt < 3_600_000) { counter.textContent = cached.publicRepos; return; }
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 3500);
+      const response = await fetch(`https://api.github.com/users/${encodeURIComponent(username)}`, { signal: controller.signal, headers: { Accept: 'application/vnd.github+json' } });
+      clearTimeout(timeout);
+      if (!response.ok) return;
+      const profile = await response.json();
+      if (Number.isInteger(profile.public_repos)) {
+        counter.textContent = profile.public_repos;
+        safeStorage('set', cacheKey, JSON.stringify({ publicRepos: profile.public_repos, savedAt: Date.now() }));
+      }
+    } catch { /* Static fallback keeps the portfolio useful offline and under API rate limits. */ }
+  }
+
+  async function initialize() {
+    initializeTheme();
+    initializeNavigation();
+    $('#year').textContent = new Date().getFullYear();
+    try {
+      const response = await fetch('config.json');
+      if (!response.ok) throw new Error(`Configuration request failed: ${response.status}`);
+      state.config = await response.json();
+      initializeProjectControls();
+      renderProjects();
+      renderExperience();
+      renderAbout();
+      refreshGitHubCount(state.config.profile.github, state.config.profile.publicRepos);
+    } catch (error) {
+      console.error(error);
+      const errorMessage = create('p', 'empty-state glass', 'Project details could not be loaded. Please visit GitHub using the link above.');
+      $('#projectsGrid').replaceWith(errorMessage);
+      $('#showMore').hidden = true;
     }
+    observeReveals();
+  }
 
-    // Stats
-    const statsContainer = document.getElementById('stats-container');
-    const statsFragment = document.createDocumentFragment();
-    config.stats.forEach(stat => {
-        const col = document.createElement('div');
-        col.className = 'col-md-3 col-6 mb-4';
-        col.innerHTML = `
-            <div class="card experience-card p-3 h-100">
-                <div class="stat-icon mb-2">
-                    <i class="${stat.icon} fa-3x text-primary"></i>
-                </div>
-                <h3 class="h4 mb-0 counter" data-target="${stat.value}">${stat.value}</h3>
-                <p class="mb-0">${stat.label}</p>
-            </div>
-        `;
-        statsFragment.appendChild(col);
-    });
-    statsContainer.appendChild(statsFragment);
-    // Init counters
-    initCounters();
-
-    // Awards
-    const awardsContainer = document.getElementById('awards-container');
-    const awardsFragment = document.createDocumentFragment();
-    config.awards.forEach(award => {
-        const card = document.createElement('div');
-        card.className = 'card experience-card p-4';
-        card.innerHTML = `
-            <div class="d-flex align-items-start">
-                <div class="me-4"><i class="${award.icon} fa-3x ${award.icon_color}"></i></div>
-                <div>
-                    <h3 class="h5 mb-1">${award.title}</h3>
-                    <div class="d-flex flex-wrap align-items-center mb-2">
-                        <span class="me-3">${award.company}</span>
-                        <span><i class="fas fa-calendar-alt me-1"></i> ${award.date}</span>
-                    </div>
-                    <p class="mb-0">${award.description}</p>
-                </div>
-            </div>
-        `;
-        awardsFragment.appendChild(card);
-    });
-    awardsContainer.appendChild(awardsFragment);
-
-    // Education
-    const eduContainer = document.getElementById('education-container');
-    const eduFragment = document.createDocumentFragment();
-    config.education.forEach(edu => {
-            const card = document.createElement('div');
-        card.className = 'card experience-card p-4';
-        card.innerHTML = `
-            <div class="d-flex align-items-start">
-                <div class="me-4"><i class="${edu.icon} fa-3x text-primary"></i></div>
-                <div>
-                    <h3 class="h5 mb-1">${edu.title}</h3>
-                    <div class="d-flex flex-wrap align-items-center mb-2">
-                        <span class="me-3">${edu.institution}</span>
-                        <span><i class="fas fa-calendar-alt me-1"></i> ${edu.period}</span>
-                    </div>
-                </div>
-            </div>
-        `;
-        eduFragment.appendChild(card);
-    });
-    eduContainer.appendChild(eduFragment);
-
-    // Contact
-    const contactList = document.getElementById('contact-info-list');
-    contactList.innerHTML = `
-        <li class="mb-3"><i class="fas fa-envelope me-2 text-primary"></i> <a href="mailto:${config.contact.email_primary}" class="text-white">${config.contact.email_primary}</a></li>
-        <li class="mb-3"><i class="fas fa-envelope me-2 text-primary"></i> <a href="mailto:${config.contact.email_secondary}" class="text-white">${config.contact.email_secondary}</a></li>
-        <li class="mb-3"><i class="fas fa-phone me-2 text-primary"></i> <a href="tel:${config.contact.phone.replace(/[\s-]/g, '')}" class="text-white">${config.contact.phone}</a></li>
-        <li class="mb-3"><i class="fas fa-map-marker-alt me-2 text-primary"></i> <span>${config.contact.location}</span></li>
-    `;
-
-
-    // Particles
-    if (window.matchMedia("(max-width: 768px)").matches) {
-        config.particles.number.value = 20; // Reduce particles on mobile
-        config.particles.move.enable = true; // Ensure movement is enabled but maybe slower?
-    }
-    particlesJS('particles-js', config.particles);
-
-    // Hide Loader
-    const loader = document.getElementById('console-loader');
-    loader.style.opacity = '0';
-    setTimeout(function () {
-        loader.style.display = "none";
-        loader.classList.remove("d-flex");
-    }, 500);
-
-    // Observe Animations
-    observeAnimations();
-}
-
-function observeAnimations() {
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.experience-card').forEach(card => {
-        observer.observe(card);
-    });
-}
-
-function initCounters() {
-    const counters = document.querySelectorAll('.counter');
-    const speed = 200;
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const counter = entry.target;
-                const target = +counter.getAttribute('data-target');
-                let count = 0; // Start from 0
-                const increment = target / speed;
-
-                const updateCount = () => {
-                    count += increment;
-                    const newCount = Math.ceil(count);
-                    if (newCount < target) {
-                        counter.textContent = newCount;
-                        requestAnimationFrame(updateCount);
-                    } else {
-                        counter.textContent = target.toLocaleString() + "+";
-                    }
-                };
-                updateCount();
-                observer.unobserve(counter);
-            }
-        });
-    }, { threshold: 0.5 });
-
-    counters.forEach(counter => {
-        observer.observe(counter);
-    });
-}
-
-// Theme Toggle Logic
-document.addEventListener('DOMContentLoaded', function () {
-    // Theme toggle is hidden by default in CSS, if needed it can be re-enabled or controlled via config
-    const themeToggle = document.getElementById('themeToggle');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    let currentTheme = prefersDark ? 'dark' : 'light';
-
-    document.documentElement.setAttribute('data-theme', currentTheme);
-    updateThemeIcon();
-
-    themeToggle.addEventListener('click', function () {
-        currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', currentTheme);
-        updateThemeIcon();
-    });
-
-    function updateThemeIcon() {
-        const icon = themeToggle.querySelector('i');
-        if (currentTheme === 'dark') {
-            icon.classList.remove('fa-moon');
-            icon.classList.add('fa-sun');
-        } else {
-            icon.classList.remove('fa-sun');
-            icon.classList.add('fa-moon');
-        }
-    }
-});
-
-// Contact form handling (Keep as is)
-document.getElementById('contactForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-    Swal.fire({
-        title: 'Message Sent!',
-        text: 'Thank you for reaching out. I will get back to you soon.',
-        icon: 'success',
-        confirmButtonText: 'Great!',
-        theme: "dark"
-    });
-    this.reset();
-});
+  document.addEventListener('DOMContentLoaded', initialize);
+})();
