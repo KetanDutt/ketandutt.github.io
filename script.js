@@ -537,24 +537,40 @@
   }
 
   /* ---------------------------------- Marquee --------------------------------- */
-  // Languages, software and tools featured on the GitHub profile's "My Toolbox".
-  // Rendered as icons so the marquee loops seamlessly with no text or gaps.
+  // Languages, software and tools featured across the GitHub profile (README,
+  // config toolbox) and portfolio projects. Rendered as icons so the marquee
+  // loops seamlessly with no text or gaps.
   const MARQUEE_ICONS = [
+    // Game engines & frameworks
     { slug: 'unity', label: 'Unity' },
-    { slug: 'godot', label: 'Godot' },
     { slug: 'unreal', label: 'Unreal Engine' },
+    { slug: 'godot', label: 'Godot' },
+    // Languages
     { slug: 'cs', label: 'C#' },
+    { slug: 'cpp', label: 'C++' },
     { slug: 'python', label: 'Python' },
     { slug: 'js', label: 'JavaScript' },
     { slug: 'ts', label: 'TypeScript' },
+    // Web & backend
     { slug: 'nodejs', label: 'Node.js' },
     { slug: 'html', label: 'HTML' },
     { slug: 'css', label: 'CSS' },
     { slug: 'php', label: 'PHP' },
     { slug: 'mysql', label: 'MySQL' },
+    // Mobile & AR (ARKit / ARCore shipping)
     { slug: 'flutter', label: 'Flutter' },
+    { slug: 'androidstudio', label: 'Android' },
+    { slug: 'apple', label: 'iOS' },
+    // Hardware
     { slug: 'arduino', label: 'Arduino' },
-    { slug: 'git', label: 'Git' }
+    // Version control & CI/CD
+    { slug: 'git', label: 'Git' },
+    { slug: 'github', label: 'GitHub' },
+    { slug: 'gitlab', label: 'GitLab' },
+    { slug: 'githubactions', label: 'GitHub Actions' },
+    // Tools & cloud
+    { slug: 'ps', label: 'Photoshop' },
+    { slug: 'gcp', label: 'Google Cloud' }
   ];
 
   const createMarqueeIcon = label => {
