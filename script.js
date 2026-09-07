@@ -36,6 +36,14 @@
     button.title = `Switch to ${nextTheme} theme`;
   }
 
+  function initializeImageFallbacks() {
+    document.querySelectorAll('img[data-avatar]').forEach(image => {
+      const showFallback = () => image.classList.add('image-error');
+      image.addEventListener('error', showFallback, { once: true });
+      if (image.complete && image.naturalWidth === 0) showFallback();
+    });
+  }
+
   function initializeNavigation() {
     const menuButton = $('#menuToggle');
     const nav = $('#navLinks');
@@ -221,6 +229,7 @@
 
   async function initialize() {
     initializeTheme();
+    initializeImageFallbacks();
     initializeNavigation();
     $('#year').textContent = new Date().getFullYear();
     try {

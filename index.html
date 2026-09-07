@@ -87,17 +87,24 @@
     <section class="section shell github-section" id="github" aria-labelledby="github-title">
       <div class="section-heading"><div><p class="eyebrow">Open source footprint</p><h2 id="github-title">Always building<br>in public.</h2></div><p>Recent experiments and repositories from my public GitHub profile, spanning browser games, hardware, developer tools, and applied AI.</p></div>
       <div class="github-bento">
-        <article class="github-profile-card glass">
-          <div class="github-profile-top">
-            <img src="https://avatars.githubusercontent.com/u/30174373?v=4&size=160" alt="" width="80" height="80" loading="lazy">
-            <div><p class="eyebrow">@KetanDutt</p><h3>Ketan Dutt</h3><p>A passionate developer from India.</p></div>
-          </div>
-          <div class="github-facts" aria-label="GitHub profile facts">
-            <div><strong id="githubRepoCount">55</strong><span>Public repos</span></div>
-            <div><strong>2017</strong><span>Joined GitHub</span></div>
-            <div><strong>Delhi</strong><span>India</span></div>
-          </div>
-          <a class="button button-primary github-profile-link" href="https://github.com/KetanDutt" target="_blank" rel="noopener noreferrer">View GitHub profile <span aria-hidden="true">↗</span></a>
+        <article class="github-profile-card glass" aria-labelledby="github-profile-name">
+          <header class="github-profile-top">
+            <div class="github-avatar" aria-hidden="true">
+              <span>KD</span>
+              <img src="https://avatars.githubusercontent.com/u/30174373?v=4&size=160" alt="" width="80" height="80" loading="lazy" data-avatar>
+            </div>
+            <div class="github-profile-identity">
+              <span class="github-handle">@KetanDutt</span>
+              <h3 id="github-profile-name">Ketan Dutt</h3>
+              <p>A passionate developer from India.</p>
+            </div>
+          </header>
+          <ul class="github-facts" aria-label="GitHub profile facts">
+            <li><span class="github-fact-value" id="githubRepoCount">55</span><span class="github-fact-label">Public repositories</span></li>
+            <li><span class="github-fact-value">2017</span><span class="github-fact-label">Joined GitHub</span></li>
+            <li><span class="github-fact-value">Delhi</span><span class="github-fact-label">India</span></li>
+          </ul>
+          <a class="button button-primary github-profile-link" href="https://github.com/KetanDutt" target="_blank" rel="noopener noreferrer" aria-label="View Ketan Dutt’s GitHub profile">View GitHub profile <span aria-hidden="true">↗</span></a>
         </article>
         <div class="github-repos" id="githubRepos" aria-label="Recently updated GitHub repositories"></div>
       </div>
