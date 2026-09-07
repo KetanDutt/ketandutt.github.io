@@ -1,0 +1,12 @@
+{
+  "name": "ketan-dutt-portfolio",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Ketan Dutt's game development and software engineering portfolio",
+  "scripts": {
+    "dev": "python3 -m http.server 4173 --bind 0.0.0.0",
+    "test": "node --check script.js && node tests/smoke.mjs"
+  },
+  "engines": { "node": ">=18" },
+  "license": "UNLICENSED"
+}
