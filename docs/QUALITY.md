@@ -4,8 +4,9 @@
 
 - Semantic landmarks and ordered heading hierarchy
 - Skip link to bypass repeated navigation
-- Keyboard-operable menu, filters, theme control, and links
-- Escape closes mobile navigation
+- Keyboard-operable menu, filters, theme control, project cards, and links
+- Focus trapping and focus restoration for the mobile navigation and project dialog
+- Escape closes mobile navigation and project dialogs
 - Visible `:focus-visible` treatment
 - Text alternatives and descriptive accessible names
 - Status changes announced through the project grid’s live region
@@ -37,6 +38,6 @@ External links use `rel="noopener noreferrer"`. Dynamic portfolio fields are ins
 
 - Add an optimized local portrait (AVIF/WebP with fallback) to remove the remaining external hero-image dependency.
 - Add Playwright visual and keyboard regression checks if a CI/build dependency budget becomes acceptable.
-- Add project screenshots only when they can be consistently optimized and kept current.
+- Add responsive AVIF/WebP project-art variants if the site adopts a lightweight asset pipeline.
 - Introduce content-hashed assets and immutable caching if the project moves to a build pipeline.
 - Consider privacy-friendly analytics only with a defined purpose and consent strategy.

@@ -6,15 +6,16 @@ A fast, accessible, data-driven portfolio for [Ketan Dutt](https://github.com/Ke
 
 ## Highlights
 
-- Dark-first Liquid Glass design system with reusable glass primitives (`.glass`, `.pill`, `.button`) driven by CSS custom-property tokens
-- Cinematic hero with staged entrance motion, a floating glass portrait, and a pointer-reactive tilt
-- Editorial "Selected work" layout with a featured project, cinematic artwork, and a glass modal that expands from the selected card
-- Filterable and searchable project gallery with an animated glass filter indicator
+- Dark-first Liquid Glass system with centralized tokens for primary, secondary, tinted, and floating materials, plus shared blur, depth, geometry, and motion scales
+- Cinematic hero with staged entrance motion, a layered glass portrait, subtle pointer-reactive lighting, and restrained ambient depth
+- Editorial "Selected work" layout with cinematic artwork, responsive mixed-size cards, polished loading and empty states, and a floating project dialog
+- Filterable and searchable project gallery with an animated material indicator, live result count, and one-click filter reset
+- Floating navigation with a gliding active state, scroll progress, progressive material strength, and an intentional mobile navigation sheet
 - Dedicated GitHub profile bento with animated statistics, recent repositories, and live demos
 - Progressive GitHub repository-count refresh with caching and a static fallback
 - Scroll-linked experience timeline that highlights the active role
-- Motion that respects `prefers-reduced-motion`, with simplified effects on touch devices
-- Semantic HTML, keyboard navigation, skip link, visible focus styles, and meaningful labels
+- First-class dark and light palettes, a matching 404 view, and motion that respects `prefers-reduced-motion`
+- Semantic HTML, keyboard navigation, focus-trapped overlays, skip link, visible focus styles, and meaningful labels
 - Open Graph metadata, canonical URL, JSON-LD structured data, sitemap, robots rules, and web manifest
 - No runtime framework or package dependencies
 - Content separated into `config.json` for straightforward maintenance
@@ -36,7 +37,7 @@ Any static server works, for example `python3 -m http.server 4173`.
 npm test
 ```
 
-The test suite validates JavaScript syntax, required files, portfolio data, internal references, and key accessibility/SEO hooks. There are no packages to install.
+The test suite validates JavaScript syntax, required files, portfolio data, internal references, document structure, the design-token contract, and key accessibility/SEO hooks. There are no packages to install.
 
 ## Project structure
 

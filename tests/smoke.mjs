@@ -19,8 +19,19 @@ assert.match(html, /class="skip-link"/, 'Skip link is required');
 assert.match(html, /<main id="main">/, 'Main landmark is required');
 assert.match(html, /aria-label="Primary navigation"/, 'Navigation label is required');
 assert.match(css, /prefers-reduced-motion/, 'Reduced motion styles are required');
+assert.match(css, /\[data-theme="light"\]/, 'A first-class light palette is required');
+for (const token of ['--material-primary', '--material-secondary', '--material-tinted', '--material-floating', '--blur-sm', '--blur-md', '--blur-lg', '--radius-xl', '--duration-standard', '--z-dialog']) {
+  assert.ok(css.includes(token), `Missing design token ${token}`);
+}
+assert.match(html, /class="nav-indicator"/, 'The spatial navigation indicator is required');
+assert.match(html, /class="skeleton-card/, 'Project loading skeletons are required');
+assert.match(html, /id="clearProjectFilters"/, 'The project empty-state reset is required');
+assert.equal((html.match(/<\/body>/g) || []).length, 1, 'Document must have one closing body tag');
+assert.equal((html.match(/<\/html>/g) || []).length, 1, 'Document must have one closing html tag');
 assert.doesNotMatch(html, /bootstrap|font-awesome|particles\.js|sweetalert/i, 'Heavy legacy CDN dependencies should not return');
 assert.doesNotMatch(script, /innerHTML\s*=/, 'Structured config content should not be injected via innerHTML');
+assert.match(script, /create\('button', 'project-card-action'\)/, 'Project cards require a native keyboard control');
+assert.match(script, /\.inert\s*=\s*true/, 'Overlay focus isolation is required');
 
 assert.ok(Array.isArray(config.projects) && config.projects.length >= 8, 'At least eight portfolio projects are expected');
 assert.ok(Array.isArray(config.github.recentRepositories) && config.github.recentRepositories.length >= 3, 'Recent GitHub repositories are incomplete');

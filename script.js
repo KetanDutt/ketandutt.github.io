@@ -1,7 +1,18 @@
 (() => {
   'use strict';
 
-  const state = { config: null, category: 'All', query: '', expanded: false };
+  const state = {
+    config: null,
+    category: 'All',
+    query: '',
+    expanded: false,
+    lastFocused: null,
+    modalTimer: null,
+    menuOpen: false,
+    initialized: false,
+    tooltipResizeBound: false,
+    tooltipResizeTimer: null
+  };
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isTouch = window.matchMedia('(hover: none)').matches;
   const $ = (selector, root = document) => root.querySelector(selector);
@@ -22,7 +33,7 @@
   function setTheme(theme) {
     document.documentElement.dataset.theme = theme;
     const meta = $('meta[name="theme-color"]');
-    if (meta) meta.content = theme === 'dark' ? '#08090b' : '#f3f4f7';
+    if (meta) meta.content = theme === 'dark' ? '#080a0e' : '#f2f4f7';
     const button = $('#themeToggle');
     if (!button) return;
     const nextTheme = theme === 'dark' ? 'light' : 'dark';
@@ -57,46 +68,105 @@
     const nav = $('#siteNav');
     const menuButton = $('#menuToggle');
     const sheet = $('#navSheet');
+    const indicator = $('#navIndicator');
+    const progress = $('#navProgress');
+    const links = [...nav.querySelectorAll('.nav-links a')];
+    const sections = links.map(link => $(link.getAttribute('href'))).filter(Boolean);
+    let activeLink = null;
 
-    const setScrolled = () => nav.classList.toggle('is-scrolled', window.scrollY > 12);
-    setScrolled();
-    window.addEventListener('scroll', setScrolled, { passive: true });
+    const moveIndicator = link => {
+      if (!indicator || !link || link.offsetParent === null) return;
+      indicator.style.width = `${link.offsetWidth}px`;
+      indicator.style.transform = `translateX(${link.offsetLeft}px)`;
+      indicator.classList.add('is-visible');
+    };
+
+    const activateLink = link => {
+      activeLink = link || null;
+      links.forEach(item => {
+        const active = item === activeLink;
+        item.classList.toggle('active', active);
+        if (active) item.setAttribute('aria-current', 'location');
+        else item.removeAttribute('aria-current');
+      });
+      if (activeLink) moveIndicator(activeLink);
+      else if (indicator) indicator.classList.remove('is-visible');
+    };
+
+    const updateScrollState = () => {
+      nav.classList.toggle('is-scrolled', window.scrollY > 18);
+      const scrollable = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+      const ratio = Math.min(Math.max(window.scrollY / scrollable, 0), 1);
+      if (progress) progress.style.transform = `scaleX(${ratio})`;
+
+      const marker = window.scrollY + window.innerHeight * .38;
+      let nextLink = null;
+      sections.forEach((section, index) => {
+        if (section.offsetTop <= marker) nextLink = links[index];
+      });
+      if (nextLink !== activeLink) activateLink(nextLink);
+    };
+
+    updateScrollState();
+    window.addEventListener('scroll', updateScrollState, { passive: true });
+    window.addEventListener('resize', () => {
+      updateScrollState();
+      if (activeLink) moveIndicator(activeLink);
+    });
 
     const openMenu = () => {
+      state.menuOpen = true;
+      state.lastFocused = document.activeElement;
+      sheet.inert = false;
       sheet.classList.add('open');
       sheet.setAttribute('aria-hidden', 'false');
       menuButton.setAttribute('aria-expanded', 'true');
       menuButton.setAttribute('aria-label', 'Close navigation');
+      $('main').inert = true;
+      $('.footer').inert = true;
       document.body.style.overflow = 'hidden';
     };
-    const closeMenu = () => {
+    const closeMenu = ({ restoreFocus = false } = {}) => {
+      if (!state.menuOpen) return;
+      state.menuOpen = false;
       sheet.classList.remove('open');
       sheet.setAttribute('aria-hidden', 'true');
+      sheet.inert = true;
       menuButton.setAttribute('aria-expanded', 'false');
       menuButton.setAttribute('aria-label', 'Open navigation');
+      $('main').inert = false;
+      $('.footer').inert = false;
       document.body.style.overflow = '';
+      if (restoreFocus) menuButton.focus();
     };
     menuButton.addEventListener('click', () => {
-      if (sheet.classList.contains('open')) closeMenu(); else openMenu();
+      if (state.menuOpen) closeMenu(); else openMenu();
     });
-    sheet.addEventListener('click', event => { if (event.target.matches('a')) closeMenu(); });
-    document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
+    sheet.addEventListener('click', event => { if (event.target.closest('a')) closeMenu({ restoreFocus: true }); });
+    document.addEventListener('keydown', event => {
+      if (!state.menuOpen) return;
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        closeMenu({ restoreFocus: true });
+        return;
+      }
+      if (event.key !== 'Tab') return;
+      const menuFocusables = [menuButton, ...sheet.querySelectorAll('a[href]')];
+      const first = menuFocusables[0];
+      const last = menuFocusables[menuFocusables.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
 
-    if ('IntersectionObserver' in window) {
-      const links = [...nav.querySelectorAll('.nav-links a')];
-      const sections = links.map(link => $(link.getAttribute('href'))).filter(Boolean);
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (!entry.isIntersecting) return;
-          links.forEach(link => {
-            const active = link.getAttribute('href') === `#${entry.target.id}`;
-            link.classList.toggle('active', active);
-            if (active) link.setAttribute('aria-current', 'location');
-            else link.removeAttribute('aria-current');
-          });
-        });
-      }, { rootMargin: '-25% 0px -65%' });
-      sections.forEach(section => observer.observe(section));
+    window.addEventListener('load', updateScrollState, { once: true });
+    if ('ResizeObserver' in window) {
+      const layoutObserver = new ResizeObserver(updateScrollState);
+      layoutObserver.observe($('#main'));
     }
   }
 
@@ -104,7 +174,7 @@
   function initializeBackToTop() {
     const button = $('#backTop');
     if (!button) return;
-    const update = () => button.style.opacity = window.scrollY > 600 ? '1' : '.4';
+    const update = () => button.classList.toggle('is-emphasized', window.scrollY > 600);
     update();
     window.addEventListener('scroll', update, { passive: true });
   }
@@ -121,7 +191,7 @@
       glow.classList.add('is-active');
       if (raf) return;
       raf = requestAnimationFrame(() => {
-        glow.style.transform = `translate3d(${x - 240}px, ${y - 240}px, 0)`;
+        glow.style.transform = `translate3d(${x}px, ${y}px, 0)`;
         raf = null;
       });
     });
@@ -153,9 +223,38 @@
       const rect = stage.getBoundingClientRect();
       const relX = (event.clientX - rect.left) / rect.width - 0.5;
       const relY = (event.clientY - rect.top) / rect.height - 0.5;
-      card.style.transform = `perspective(1000px) rotateY(${relX * 8}deg) rotateX(${relY * -8}deg) scale(1.015)`;
+      card.style.setProperty('--sheen-x', `${(relX + .5) * 100}%`);
+      card.style.setProperty('--sheen-y', `${(relY + .5) * 100}%`);
+      card.style.transform = `perspective(1000px) rotateY(${relX * 6}deg) rotateX(${relY * -6}deg) scale(1.012)`;
     });
-    stage.addEventListener('pointerleave', () => { card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)'; });
+    stage.addEventListener('pointerleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+      card.style.setProperty('--sheen-x', '50%');
+      card.style.setProperty('--sheen-y', '30%');
+    });
+  }
+
+  /* ------------------------- Pointer-aware surface light ------------------------- */
+  function initializeSurfaceLighting() {
+    if (isTouch || reduceMotion) return;
+    let frame = null;
+    let activeSurface = null;
+    let pointerX = 0;
+    let pointerY = 0;
+    document.addEventListener('pointermove', event => {
+      const surface = event.target.closest('.project-card');
+      if (!surface) return;
+      activeSurface = surface;
+      pointerX = event.clientX;
+      pointerY = event.clientY;
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        const rect = activeSurface.getBoundingClientRect();
+        activeSurface.style.setProperty('--pointer-x', `${pointerX - rect.left}px`);
+        activeSurface.style.setProperty('--pointer-y', `${pointerY - rect.top}px`);
+        frame = null;
+      });
+    }, { passive: true });
   }
 
   /* ------------------------------- Counters ------------------------------------ */
@@ -163,8 +262,8 @@
     const target = Number(element.dataset.count);
     if (element.dataset.static || Number.isNaN(target)) { element.textContent = element.dataset.static || target; return; }
     const suffix = element.dataset.suffix || '';
-    if (reduceMotion) { element.textContent = target + suffix; return; }
-    const duration = 1200;
+    if (reduceMotion || element.hasAttribute('data-immediate')) { element.textContent = target + suffix; return; }
+    const duration = 900;
     const start = performance.now();
     const step = now => {
       const progress = Math.min((now - start) / duration, 1);
@@ -193,8 +292,12 @@
       image.src = project.image;
       image.alt = '';
       image.loading = 'lazy';
+      image.decoding = 'async';
       image.width = 960;
       image.height = 600;
+      const markLoaded = () => image.classList.add('is-loaded');
+      image.addEventListener('load', markLoaded, { once: true });
+      if (image.complete && image.naturalWidth > 0) markLoaded();
       return image;
     }
     const empty = create('div', 'project-media-empty');
@@ -209,9 +312,6 @@
     const article = create('article', 'project-card reveal');
     if (project.featured) article.classList.add('is-featured');
     article.style.setProperty('--tint', `${project.color}26`);
-    article.setAttribute('role', 'button');
-    article.setAttribute('tabindex', '0');
-    article.setAttribute('aria-label', `View details for ${project.title}`);
     article.dataset.index = String(index);
     article.dataset.hasImage = String(Boolean(project.image));
 
@@ -234,13 +334,11 @@
     bottom.append(tags, cta);
     body.append(bottom);
 
-    article.append(media, body);
-
-    const openHandler = () => openProjectModal(project);
-    article.addEventListener('click', openHandler);
-    article.addEventListener('keydown', event => {
-      if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openHandler(); }
-    });
+    const action = create('button', 'project-card-action');
+    action.type = 'button';
+    action.setAttribute('aria-label', `View details for ${project.title}`);
+    action.addEventListener('click', () => openProjectModal(project));
+    article.append(media, body, action);
 
     return article;
   }
@@ -257,9 +355,18 @@
     const limited = !state.expanded && state.category === 'All' && !normalizedQuery;
     const visible = limited ? matching.slice(0, 6) : matching;
     grid.replaceChildren();
+    grid.classList.remove('is-loading');
+    grid.setAttribute('aria-busy', 'false');
 
     visible.forEach((project, index) => grid.append(buildProjectCard(project, index)));
 
+    const count = $('#projectCount');
+    if (count) {
+      const projectWord = matching.length === 1 ? 'project' : 'projects';
+      count.textContent = visible.length < matching.length
+        ? `${visible.length} of ${matching.length} ${projectWord}`
+        : `${matching.length} ${projectWord}`;
+    }
     $('#emptyProjects').hidden = matching.length !== 0;
     const showMore = $('#showMore');
     const canExpand = allProjects.length > 6 && state.category === 'All' && !normalizedQuery;
@@ -270,12 +377,9 @@
 
   function moveFilterIndicator(button) {
     const indicator = $('.filter-indicator');
-    const filters = $('#projectFilters');
     if (!indicator || !button) return;
-    const filterRect = filters.getBoundingClientRect();
-    const rect = button.getBoundingClientRect();
-    indicator.style.width = `${rect.width}px`;
-    indicator.style.transform = `translateX(${rect.left - filterRect.left}px)`;
+    indicator.style.width = `${button.offsetWidth}px`;
+    indicator.style.transform = `translateX(${button.offsetLeft}px)`;
   }
 
   function initializeProjectControls() {
@@ -286,24 +390,49 @@
     categories.forEach(category => {
       const button = create('button', 'filter-button', category);
       button.type = 'button';
-      if (category === state.category) button.classList.add('is-active');
+      const selected = category === state.category;
+      button.classList.toggle('is-active', selected);
+      button.setAttribute('aria-pressed', String(selected));
       button.addEventListener('click', () => {
         state.category = category;
         state.expanded = category !== 'All';
-        [...filters.querySelectorAll('.filter-button')].forEach(item => item.classList.toggle('is-active', item === button));
+        [...filters.querySelectorAll('.filter-button')].forEach(item => {
+          const active = item === button;
+          item.classList.toggle('is-active', active);
+          item.setAttribute('aria-pressed', String(active));
+        });
         moveFilterIndicator(button);
+        button.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'nearest', inline: 'center' });
         renderProjects();
       });
       filters.append(button);
     });
+    moveFilterIndicator($('.filter-button.is-active'));
     requestAnimationFrame(() => moveFilterIndicator($('.filter-button.is-active')));
     window.addEventListener('resize', () => moveFilterIndicator($('.filter-button.is-active')));
 
-    $('#projectSearch').addEventListener('input', event => { state.query = event.target.value; renderProjects(); });
+    const search = $('#projectSearch');
+    search.addEventListener('input', event => { state.query = event.target.value; renderProjects(); });
     $('#showMore').addEventListener('click', () => {
       state.expanded = !state.expanded;
       renderProjects();
       if (!state.expanded) $('#work').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
+    });
+
+    $('#clearProjectFilters').addEventListener('click', () => {
+      state.category = 'All';
+      state.query = '';
+      state.expanded = false;
+      search.value = '';
+      const allButton = [...filters.querySelectorAll('.filter-button')].find(button => button.textContent === 'All');
+      [...filters.querySelectorAll('.filter-button')].forEach(button => {
+        const active = button === allButton;
+        button.classList.toggle('is-active', active);
+        button.setAttribute('aria-pressed', String(active));
+      });
+      moveFilterIndicator(allButton);
+      renderProjects();
+      search.focus();
     });
   }
 
@@ -331,32 +460,71 @@
     sourceLink.href = project.source; sourceLink.target = '_blank'; sourceLink.rel = 'noopener noreferrer';
     links.append(sourceLink);
 
-    backdrop.hidden = false;
-    requestAnimationFrame(() => backdrop.classList.add('open'));
-    document.body.style.overflow = 'hidden';
+    clearTimeout(state.modalTimer);
     state.lastFocused = document.activeElement;
-    $('#modalClose').focus();
+    backdrop.hidden = false;
+    backdrop.setAttribute('aria-hidden', 'false');
+    $('main').inert = true;
+    $('.site-header').inert = true;
+    $('.footer').inert = true;
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(() => {
+      backdrop.classList.add('open');
+      $('#modalClose').focus();
+    });
   }
 
   function closeProjectModal() {
     const backdrop = $('#modalBackdrop');
+    if (backdrop.hidden) return;
     backdrop.classList.remove('open');
+    backdrop.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
-    setTimeout(() => { backdrop.hidden = true; }, 350);
-    if (state.lastFocused) state.lastFocused.focus();
+    $('main').inert = false;
+    $('.site-header').inert = false;
+    $('.footer').inert = false;
+    const returnTarget = state.lastFocused;
+    state.modalTimer = setTimeout(() => {
+      backdrop.hidden = true;
+      if (returnTarget?.isConnected) returnTarget.focus();
+    }, reduceMotion ? 0 : 400);
   }
 
   function initializeModal() {
+    const backdrop = $('#modalBackdrop');
     $('#modalClose').addEventListener('click', closeProjectModal);
-    $('#modalBackdrop').addEventListener('click', event => { if (event.target === $('#modalBackdrop')) closeProjectModal(); });
-    document.addEventListener('keydown', event => { if (event.key === 'Escape' && !$('#modalBackdrop').hidden) closeProjectModal(); });
+    backdrop.addEventListener('click', event => { if (event.target === backdrop) closeProjectModal(); });
+    document.addEventListener('keydown', event => {
+      if (backdrop.hidden) return;
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        closeProjectModal();
+        return;
+      }
+      if (event.key !== 'Tab') return;
+      const focusable = [...backdrop.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])')]
+        .filter(element => !element.hidden && element.getClientRects().length);
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
   }
 
   /* -------------------------------- GitHub -------------------------------------- */
   function renderGitHub() {
     const container = $('#githubRepos');
+    container.replaceChildren();
+    container.classList.remove('is-loading');
+    container.setAttribute('aria-busy', 'false');
     state.config.github.recentRepositories.forEach(repository => {
-      const card = create('article', 'github-repo-card glass');
+      const card = create('li', 'github-repo-card glass');
       const header = create('div', 'repo-header');
       const identity = create('div');
       identity.append(create('span', 'repo-kicker', `${repository.language} · Updated ${repository.updated}`), create('h3', '', repository.name));
@@ -364,7 +532,7 @@
       repositoryLink.href = repository.url;
       repositoryLink.target = '_blank';
       repositoryLink.rel = 'noopener noreferrer';
-      repositoryLink.setAttribute('aria-label', `View ${repository.name} on GitHub`);
+      repositoryLink.setAttribute('aria-label', `Repository for ${repository.name} on GitHub`);
       header.append(identity, repositoryLink);
       card.append(header, create('p', '', repository.description));
       if (repository.demo) {
@@ -378,9 +546,44 @@
     });
   }
 
+  /* ------------------------------ Interface icons ------------------------------- */
+  const ICONS = {
+    build: [
+      ['path', { d: 'M8.5 8.5h7a5 5 0 0 1 4.82 3.68l1 3.67a2.5 2.5 0 0 1-4.04 2.59l-1.95-1.69H8.67l-1.95 1.69a2.5 2.5 0 0 1-4.04-2.59l1-3.67A5 5 0 0 1 8.5 8.5Z' }],
+      ['path', { d: 'M7 11.5v3m-1.5-1.5h3M16.5 12.25h.01M18.25 14h.01' }]
+    ],
+    explore: [
+      ['circle', { cx: '12', cy: '12', r: '2.25' }],
+      ['path', { d: 'M19.5 12c0 4.14-3.36 7.5-7.5 7.5S4.5 16.14 4.5 12 7.86 4.5 12 4.5c2.28 0 4.32 1.02 5.7 2.62' }],
+      ['path', { d: 'M12 2.5c2.4 2.07 3.75 5.47 3.75 9.5S14.4 19.43 12 21.5M2.5 12h19' }]
+    ],
+    collaborate: [
+      ['circle', { cx: '9', cy: '8', r: '3' }],
+      ['path', { d: 'M3.5 19c.4-3.3 2.16-5 5.5-5s5.1 1.7 5.5 5M15.5 5.5a3 3 0 0 1 0 5.8M16.5 14c2.45.33 3.78 1.88 4 4.5' }]
+    ],
+    award: [
+      ['path', { d: 'm12 3 2.5 5.06 5.58.81-4.04 3.94.96 5.56-5-2.63-5 2.63.96-5.56-4.04-3.94 5.58-.81L12 3Z' }]
+    ]
+  };
+
+  function createSvgIcon(name, className = 'ui-icon') {
+    const namespace = 'http://www.w3.org/2000/svg';
+    const svg = document.createElementNS(namespace, 'svg');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('aria-hidden', 'true');
+    if (className) svg.setAttribute('class', className);
+    (ICONS[name] || ICONS.explore).forEach(([tag, attributes]) => {
+      const child = document.createElementNS(namespace, tag);
+      Object.entries(attributes).forEach(([attribute, value]) => child.setAttribute(attribute, value));
+      svg.append(child);
+    });
+    return svg;
+  }
+
   /* ------------------------------- Experience ------------------------------------ */
   function renderExperience() {
     const container = $('#experienceList');
+    container.replaceChildren();
     state.config.experience.forEach((job, index) => {
       const item = create('article', 'timeline-item reveal');
       if (index === 0) item.classList.add('is-active');
@@ -412,8 +615,22 @@
   }
 
   /* ---------------------------------- About --------------------------------------- */
+  function alignSkillTooltips() {
+    const gutter = 12;
+    const notes = $$('.skill-note');
+    notes.forEach(note => note.style.setProperty('--tooltip-offset', '0px'));
+    const measurements = notes.map(note => ({ note, rect: note.getBoundingClientRect() }));
+    measurements.forEach(({ note, rect }) => {
+      let offset = 0;
+      if (rect.left < gutter) offset = gutter - rect.left;
+      else if (rect.right > window.innerWidth - gutter) offset = window.innerWidth - gutter - rect.right;
+      note.style.setProperty('--tooltip-offset', `${offset}px`);
+    });
+  }
+
   function renderAbout() {
     const skillCloud = $('#skillCloud');
+    skillCloud.replaceChildren();
     state.config.profile.skills.forEach(skill => {
       const pill = create('span', 'skill-pill');
       pill.tabIndex = 0;
@@ -424,14 +641,28 @@
       }
       skillCloud.append(pill);
     });
+    alignSkillTooltips();
+    if (!state.tooltipResizeBound) {
+      state.tooltipResizeBound = true;
+      window.addEventListener('resize', () => {
+        clearTimeout(state.tooltipResizeTimer);
+        state.tooltipResizeTimer = setTimeout(alignSkillTooltips, 100);
+      });
+    }
     const specialtyRow = $('#specialtyRow');
     if (specialtyRow && Array.isArray(state.config.profile.specialties)) {
-      state.config.profile.specialties.forEach(specialty => specialtyRow.append(create('span', 'specialty-chip', specialty)));
+      state.config.profile.specialties.forEach(specialty => {
+        specialtyRow.append(create('li', 'specialty-chip', specialty));
+      });
     }
     const focusGrid = $('#focusGrid');
+    focusGrid.replaceChildren();
     state.config.focus.forEach(item => {
       const card = create('article', 'focus-card reveal');
-      card.append(create('span', 'focus-icon', item.icon), create('h3', '', item.title), create('p', '', item.text));
+      const icon = create('span', 'focus-icon');
+      const iconName = item.title === 'Building' ? 'build' : item.title === 'Open to' ? 'collaborate' : 'explore';
+      icon.append(createSvgIcon(iconName));
+      card.append(icon, create('h3', '', item.title), create('p', '', item.text));
       focusGrid.append(card);
     });
   }
@@ -440,10 +671,12 @@
   function renderAwards() {
     const grid = $('#awardsGrid');
     if (!grid || !Array.isArray(state.config.awards)) return;
+    grid.replaceChildren();
     state.config.awards.forEach(award => {
       const card = create('article', 'award-card reveal');
-      const icon = create('div', 'award-icon', '✦');
+      const icon = create('div', 'award-icon');
       icon.setAttribute('aria-hidden', 'true');
+      icon.append(createSvgIcon('award'));
       const copy = create('div');
       copy.append(create('span', 'award-meta', `${award.issuer} · ${award.period}`), create('h3', '', award.title), create('p', '', award.description));
       card.append(icon, copy);
@@ -455,6 +688,8 @@
   function renderFoundations() {
     const educationList = $('#educationList');
     const certificationList = $('#certificationList');
+    educationList?.replaceChildren();
+    certificationList?.replaceChildren();
     if (educationList && Array.isArray(state.config.education)) {
       state.config.education.forEach(entry => {
         const item = create('div', 'foundations-item');
@@ -481,9 +716,12 @@
   function renderMaker() {
     const grid = $('#makerGrid');
     if (!grid || !Array.isArray(state.config.maker)) return;
-    state.config.maker.forEach(entry => {
+    grid.replaceChildren();
+    state.config.maker.forEach((entry, index) => {
       const card = create('article', 'maker-card reveal');
-      card.append(create('span', 'maker-year', entry.year), create('h3', '', entry.title), create('p', '', entry.description));
+      const itemIndex = create('span', 'maker-index', String(index + 1).padStart(2, '0'));
+      itemIndex.setAttribute('aria-hidden', 'true');
+      card.append(itemIndex, create('span', 'maker-year', entry.year), create('h3', '', entry.title), create('p', '', entry.description));
       if (entry.url) {
         const link = create('a', 'maker-link', 'View on GitHub ');
         const arrow = create('span', '', '↗');
@@ -507,7 +745,7 @@
         if (entry.isIntersecting) { entry.target.classList.add('is-visible'); currentObserver.unobserve(entry.target); }
       });
     }, { threshold: 0.08, rootMargin: '0px 0px -40px' });
-    items.forEach((item, index) => { item.style.transitionDelay = `${Math.min(index % 4, 3) * 80}ms`; observer.observe(item); });
+    items.forEach((item, index) => { item.style.transitionDelay = `${Math.min(index % 3, 2) * 50}ms`; observer.observe(item); });
   }
 
   /* ------------------------------- GitHub live count --------------------------------- */
@@ -580,16 +818,20 @@
     const chip = document.createElement('span');
     chip.className = 'marquee-chip';
     chip.title = label;
+    const iconWrap = create('span', 'marquee-icon-wrap');
+    const fallback = create('span', 'marquee-icon-fallback', label.slice(0, 1));
     const icon = document.createElement('img');
     icon.className = 'marquee-icon';
     icon.src = DEVICON_ICON_URL(devicon);
-    icon.width = 48;
-    icon.height = 48;
+    icon.width = 24;
+    icon.height = 24;
     icon.loading = 'lazy';
     icon.decoding = 'async';
     icon.alt = '';
     icon.setAttribute('draggable', 'false');
-    chip.appendChild(icon);
+    icon.addEventListener('error', () => iconWrap.classList.add('is-error'), { once: true });
+    iconWrap.append(fallback, icon);
+    chip.append(iconWrap, create('span', 'marquee-chip-label', label));
     return chip;
   };
 
@@ -614,10 +856,11 @@
       // Measure one full pass to decide how many repeats each half needs.
       const probe = buildGroup(false);
       track.appendChild(probe);
-      const passWidth = probe.offsetWidth || 1;
+      const estimatedPassWidth = MARQUEE_ICONS.length * 112;
+      const passWidth = probe.offsetWidth || estimatedPassWidth;
       track.removeChild(probe);
       const visible = Math.max(mask.clientWidth || 800, 1);
-      const repeats = Math.max(1, Math.ceil(visible / passWidth) + 1);
+      const repeats = Math.min(4, Math.max(1, Math.ceil(visible / passWidth) + 1));
       const makeHalf = hidden => {
         const half = document.createElement('div');
         half.className = 'marquee-group';
@@ -641,6 +884,8 @@
 
   /* ----------------------------------- Init ------------------------------------------ */
   async function initialize() {
+    if (state.initialized) return;
+    state.initialized = true;
     initializeTheme();
     initializeImageFallbacks();
     initializeNavigation();
@@ -648,6 +893,7 @@
     initializeCursorGlow();
     initializeMagnetic();
     initializePortraitTilt();
+    initializeSurfaceLighting();
     initializeModal();
     initializeMarquee();
     $('#year').textContent = new Date().getFullYear();
