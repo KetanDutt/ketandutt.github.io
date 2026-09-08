@@ -18,11 +18,11 @@ This is a no-build static site optimized for GitHub Pages. Keeping the rendering
 3. Projects, experience, and skills are rendered using DOM APIs and `textContent` rather than interpolated HTML.
 4. Project filters/search update the local view without additional network calls.
 5. A non-blocking GitHub API request refreshes the public repository count. The response is cached for one hour and times out after 3.5 seconds.
-6. Intersection observers reveal content and highlight navigation without scroll-event listeners.
+6. Intersection observers reveal content on demand; a lightweight passive scroll state updates the navigation indicator, material strength, and progress line.
 
 ## Design system
 
-`styles.css` implements a restrained, dark-first "Liquid Glass" design system. Tokens in `:root` define surfaces, typography colors, a sparingly used accent, glass material variables, radii, blur levels, and motion easing/duration. Reusable primitives (`.glass`, `.pill`, `.button`, `.filter-button`, `.skill-pill`) combine a translucent surface, subtle inner highlight, border, soft layered shadow, and backdrop blur — glass is applied selectively to navigation, floating controls, and important cards, while large text and body content sit directly on the background. A solid fallback is supplied for browsers without backdrop-filter, and all decorative motion is disabled under `prefers-reduced-motion`.
+`styles.css` implements a restrained, dark-first "Liquid Glass" design system. Tokens in `:root` define four material strengths (primary, secondary, tinted, and floating), semantic typography colors, blur levels, ambient shadows, geometry, spacing, animation timing, easing, and spatial z-index layers. Reusable primitives (`.glass`, `.pill`, `.button`, `.filter-button`, `.skill-pill`) combine translucency, controlled saturation, an internal edge highlight, and soft depth. Glass is reserved for navigation, floating controls, dialogs, and hierarchy-bearing surfaces; editorial content remains directly on the canvas. Light mode has its own material values rather than an inverted palette. Solid fallbacks cover browsers without backdrop filtering, while `prefers-reduced-motion` removes non-essential transforms, continuous movement, and smooth scrolling.
 
 ## Performance decisions
 

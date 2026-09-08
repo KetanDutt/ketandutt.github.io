@@ -1,9 +1,9 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#08090b">
+  <meta name="theme-color" content="#080a0e">
   <meta name="color-scheme" content="dark light">
   <meta name="description" content="Portfolio of Ketan Dutt, a lead game developer and software engineer from Delhi with 7+ years and 1M+ downloads across Unity, Unreal Engine, Phaser, and Godot.">
   <meta name="author" content="Ketan Dutt">
@@ -17,7 +17,17 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="site.webmanifest">
   <link rel="preconnect" href="https://avatars.githubusercontent.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="preload" href="config.json" as="fetch" crossorigin="anonymous">
+  <script>
+    try {
+      const savedTheme = localStorage.getItem('portfolio-theme');
+      const systemTheme = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      const initialTheme = savedTheme === 'light' || savedTheme === 'dark' ? savedTheme : systemTheme;
+      document.documentElement.dataset.theme = initialTheme;
+      document.querySelector('meta[name="theme-color"]').content = initialTheme === 'dark' ? '#080a0e' : '#f2f4f7';
+    } catch (_) { /* The dark document default remains available. */ }
+  </script>
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
   <script type="application/ld+json">
@@ -33,7 +43,7 @@
     "sameAs": ["https://github.com/KetanDutt", "https://www.linkedin.com/in/ketan-dutt-006104b7/"]
   }
   </script>
-  <title>Ketan Dutt — Game Developer & Software Engineer</title>
+  <title>Ketan Dutt — Game Developer &amp; Software Engineer</title>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -49,8 +59,9 @@
 
   <header class="site-header" id="top">
     <nav class="nav" id="siteNav" aria-label="Primary navigation">
-      <a class="brand" href="#top" aria-label="Ketan Dutt, home"><span class="brand-mark">KD</span><span class="brand-name">Ketan&nbsp;Dutt</span></a>
+      <a class="brand" href="#top" aria-label="KD Ketan Dutt, home"><span class="brand-mark" aria-hidden="true">KD</span><span class="brand-name">Ketan&nbsp;Dutt</span></a>
       <div class="nav-links" id="navLinks">
+        <span class="nav-indicator" id="navIndicator" aria-hidden="true"></span>
         <a href="#work"><span>Work</span></a>
         <a href="#github"><span>GitHub</span></a>
         <a href="#experience"><span>Experience</span></a>
@@ -66,10 +77,11 @@
           <span class="menu-bar"></span><span class="menu-bar"></span>
         </button>
       </div>
+      <span class="nav-progress" id="navProgress" aria-hidden="true"></span>
     </nav>
   </header>
 
-  <div class="nav-sheet" id="navSheet" aria-hidden="true">
+  <div class="nav-sheet" id="navSheet" aria-hidden="true" inert>
     <div class="nav-sheet-inner">
       <a href="#work">Work</a>
       <a href="#github">GitHub</a>
@@ -83,29 +95,30 @@
   <main id="main">
     <section class="hero shell" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <p class="pill pill-status hero-in" style="--d:0"><span class="status-dot"></span> Open to meaningful collaborations</p>
+        <p class="pill pill-status hero-in hero-delay-0"><span class="status-dot"></span> Open to meaningful collaborations</p>
         <h1 id="hero-title">
-          <span class="line hero-in" style="--d:1">I build worlds</span>
-          <span class="line line-accent hero-in" style="--d:2">worth playing.</span>
+          <span class="line hero-in hero-delay-1">I build worlds</span>
+          <span class="line line-accent hero-in hero-delay-2">worth playing.</span>
         </h1>
-        <p class="hero-lede hero-in" style="--d:3">I'm <strong>Ketan Dutt</strong>, a lead game developer and software engineer from Delhi with 7+ years shipping 2D, 3D, AR, and browser games — 1M+ downloads across Unity, Unreal Engine, Phaser, and Godot.</p>
-        <div class="hero-actions hero-in" style="--d:4">
+        <p class="hero-lede hero-in hero-delay-3">I'm <strong>Ketan Dutt</strong>, a lead game developer and software engineer from Delhi with 7+ years shipping 2D, 3D, AR, and browser games — 1M+ downloads across Unity, Unreal Engine, Phaser, and Godot.</p>
+        <div class="hero-actions hero-in hero-delay-4">
           <a class="button button-primary" href="#work" data-magnetic>Explore my work <span class="arrow arrow-down" aria-hidden="true">↓</span></a>
           <a class="button button-secondary" href="https://github.com/KetanDutt" target="_blank" rel="noopener noreferrer" data-magnetic>GitHub <span class="arrow" aria-hidden="true">↗</span></a>
         </div>
-        <ul class="hero-meta hero-in" style="--d:5" aria-label="Profile highlights">
-          <li><strong id="repoCount" data-count="55">0</strong><span>public repositories</span></li>
-          <li><strong data-count="1" data-suffix="M+">0</strong><span>downloads across titles</span></li>
-          <li><strong data-count="7" data-suffix="+">0</strong><span>years shipping games</span></li>
+        <ul class="hero-meta hero-in hero-delay-5">
+          <li><strong id="repoCount" data-count="55" data-immediate>55</strong><span>public repositories</span></li>
+          <li><strong data-count="1" data-suffix="M+" data-immediate>1M+</strong><span>downloads across titles</span></li>
+          <li><strong data-count="7" data-suffix="+" data-immediate>7+</strong><span>years shipping games</span></li>
         </ul>
       </div>
 
-      <div class="hero-visual" aria-label="Portrait of Ketan Dutt">
-        <div class="portrait-stage hero-in" style="--d:2">
+      <div class="hero-visual">
+        <div class="portrait-stage hero-in hero-delay-2">
           <div class="portrait-glow" aria-hidden="true"></div>
           <div class="portrait-card" id="portraitCard">
             <div class="portrait-sheen" aria-hidden="true"></div>
-            <img src="https://avatars.githubusercontent.com/u/30174373?v=4&size=600" alt="Ketan Dutt" width="520" height="520" fetchpriority="high">
+            <div class="portrait-fallback" aria-hidden="true"><span>KD</span><small>Player 01 · Developer</small></div>
+            <img src="https://avatars.githubusercontent.com/u/30174373?v=4&size=600" alt="Ketan Dutt" width="520" height="520" fetchpriority="high" data-avatar>
             <div class="portrait-caption">
               <span class="status-dot"></span>
               <div><strong>Game developer</strong><small>Delhi, India · UTC +5:30</small></div>
@@ -118,9 +131,18 @@
           </div>
         </div>
       </div>
+
+      <a class="hero-scroll hero-in hero-delay-6" href="#work" aria-label="Scroll to selected work">
+        <span>Scroll to explore</span>
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 5v14m0 0 5-5m-5 5-5-5"/></svg>
+      </a>
     </section>
 
     <section class="marquee" aria-label="Languages, software, and tools I use — Unity, Unreal Engine, Godot, C#, C++, Python, JavaScript, TypeScript, Node.js, HTML, CSS, PHP, MySQL, Flutter, Android, iOS, Arduino, Git, GitHub, GitLab, GitHub Actions, Photoshop, and Google Cloud">
+      <div class="marquee-heading shell" aria-hidden="true">
+        <span>Toolchain</span>
+        <span>Engines · code · craft</span>
+      </div>
       <div class="marquee-mask" id="marqueeMask">
         <div class="marquee-track" id="marqueeTrack"></div>
       </div>
@@ -137,15 +159,27 @@
 
       <div class="project-toolbar reveal" role="group" aria-label="Filter projects">
         <div class="filters" id="projectFilters"></div>
-        <label class="search">
-          <span class="sr-only">Search projects</span>
-          <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m16 16 4 4"/></svg>
-          <input id="projectSearch" type="search" placeholder="Search projects…" autocomplete="off">
-        </label>
+        <div class="project-tools-end">
+          <output class="project-count" id="projectCount" for="projectSearch">Loading work…</output>
+          <label class="search">
+            <span class="sr-only">Search projects</span>
+            <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m16 16 4 4"/></svg>
+            <input id="projectSearch" type="search" placeholder="Search projects…" autocomplete="off">
+          </label>
+        </div>
       </div>
 
-      <div class="projects-grid" id="projectsGrid" aria-live="polite"></div>
-      <p class="empty-state glass" id="emptyProjects" hidden>No matching projects. Try another filter.</p>
+      <div class="projects-grid is-loading" id="projectsGrid" aria-live="polite" aria-busy="true">
+        <div class="skeleton-card skeleton-featured" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="skeleton-card skeleton-featured" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="skeleton-card" aria-hidden="true"><span></span><span></span><span></span></div>
+      </div>
+      <div class="empty-state glass" id="emptyProjects" hidden>
+        <span class="empty-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4M8.5 11h5"/></svg></span>
+        <h3>No projects found</h3>
+        <p>Try a different search or return to the full collection.</p>
+        <button class="button button-secondary" id="clearProjectFilters" type="button">Clear filters</button>
+      </div>
       <div class="center"><button class="button button-secondary" id="showMore" type="button">Show all projects</button></div>
     </section>
 
@@ -190,9 +224,13 @@
               <p>A passionate developer from India.</p>
             </div>
           </header>
-          <a class="button button-primary github-profile-link" href="https://github.com/KetanDutt" target="_blank" rel="noopener noreferrer" aria-label="View Ketan Dutt's GitHub profile" data-magnetic>View GitHub profile <span class="arrow" aria-hidden="true">↗</span></a>
+          <a class="button button-primary github-profile-link" href="https://github.com/KetanDutt" target="_blank" rel="noopener noreferrer" data-magnetic>View GitHub profile <span class="arrow" aria-hidden="true">↗</span></a>
         </article>
-        <div class="github-repos" id="githubRepos" aria-label="Recently updated GitHub repositories"></div>
+        <ul class="github-repos is-loading" id="githubRepos" aria-busy="true">
+          <li class="repo-skeleton" aria-hidden="true"><span></span><span></span></li>
+          <li class="repo-skeleton" aria-hidden="true"><span></span><span></span></li>
+          <li class="repo-skeleton" aria-hidden="true"><span></span><span></span></li>
+        </ul>
       </div>
     </section>
 
@@ -218,19 +256,19 @@
         </article>
         <div class="about-detail-stack">
           <div class="detail-card glass reveal">
-            <span class="detail-icon" aria-hidden="true">🎮</span>
+            <span class="detail-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8.5 8.5h7a5 5 0 0 1 4.82 3.68l1 3.67a2.5 2.5 0 0 1-4.04 2.59l-1.95-1.69H8.67l-1.95 1.69a2.5 2.5 0 0 1-4.04-2.59l1-3.67A5 5 0 0 1 8.5 8.5Z"/><path d="M7 11.5v3m-1.5-1.5h3M16.5 12.25h.01M18.25 14h.01"/></svg></span>
             <p>Game development</p>
           </div>
           <div class="detail-card glass reveal">
-            <span class="detail-icon" aria-hidden="true">✏️</span>
+            <span class="detail-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m4 16.5-.75 4.25L7.5 20 19 8.5a2.12 2.12 0 0 0-3-3L4.5 17Z"/><path d="m14.5 7 3 3M3.25 20.75 7.5 20"/></svg></span>
             <p>Comics</p>
           </div>
           <div class="detail-card glass reveal">
-            <span class="detail-icon" aria-hidden="true">🎸</span>
+            <span class="detail-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 18V6l10-2v12"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/><path d="M9 9.5 19 7.5"/></svg></span>
             <p>Guitar</p>
           </div>
           <div class="detail-card glass reveal">
-            <span class="detail-icon" aria-hidden="true">🥁</span>
+            <span class="detail-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="15.5" rx="7" ry="4.5"/><path d="M5 15.5V18c0 2.5 3.13 4.5 7 4.5s7-2 7-4.5v-2.5M7 2l8 9M17 2 9 11"/></svg></span>
             <p>Drums</p>
           </div>
         </div>
@@ -242,7 +280,7 @@
         <p class="eyebrow">Toolbox</p>
         <h3>Ideas move faster with the right tools.</h3>
         <div class="skill-cloud" id="skillCloud"></div>
-        <div class="specialty-row" id="specialtyRow" aria-label="Specialties"></div>
+        <ul class="specialty-row" id="specialtyRow"></ul>
       </div>
     </section>
 
@@ -300,25 +338,26 @@
           <a href="https://www.linkedin.com/in/ketan-dutt-006104b7/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <a href="Ketan_Dutt_CV.pdf" download>Résumé</a>
         </div>
+        <p class="contact-availability"><span class="status-dot"></span> Delhi based · Collaborating worldwide</p>
       </div>
     </section>
   </main>
 
   <footer class="footer shell">
-    <a class="brand" href="#top"><span class="brand-mark">KD</span><span>Ketan Dutt</span></a>
+    <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">KD</span><span>Ketan Dutt</span></a>
     <p>Designed &amp; built with curiosity · <span id="year">2026</span></p>
     <a class="back-top" href="#top" id="backTop">Back to top ↑</a>
   </footer>
 
   <noscript><div class="noscript">JavaScript is disabled. Core contact links still work, but project listings require JavaScript.</div></noscript>
 
-  <div class="modal-backdrop" id="modalBackdrop" hidden>
+  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true" hidden>
     <div class="modal-sheet" id="modalSheet" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <button class="modal-close" id="modalClose" type="button" aria-label="Close project details">✕</button>
+      <button class="modal-close" id="modalClose" type="button" aria-label="Close project details"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
       <div class="modal-media" id="modalMedia"></div>
       <div class="modal-body">
         <p class="eyebrow" id="modalMeta"></p>
-        <h2 id="modalTitle"></h2>
+        <h2 id="modalTitle">Project details</h2>
         <p id="modalDescription"></p>
         <div class="tags" id="modalTags"></div>
         <div class="project-links" id="modalLinks"></div>
