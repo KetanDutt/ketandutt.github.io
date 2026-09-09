@@ -54,6 +54,15 @@ const hrefs = [...html.matchAll(/\shref="([^"]+)"/g)].map(match => match[1]);
 for (const href of hrefs.filter(value => value.startsWith('#'))) assert.ok(ids.includes(href.slice(1)), `Internal link target ${href} does not exist`);
 const localHrefs = hrefs.filter(value => !/^(?:#|https?:|mailto:|tel:)/.test(value));
 await Promise.all(localHrefs.map(href => access(new URL(href.split(/[?#]/)[0], root))));
+
+// GitHub Pages serves paths case-sensitively. Validate every local image source so
+// a filename-case mismatch cannot silently ship another broken portrait or card.
+const imageSources = [...html.matchAll(/<img\b[^>]*\ssrc="([^"]+)"/g)].map(match => match[1]);
+const localImageSources = imageSources.filter(value => !/^(?:https?:|data:)/.test(value));
+await Promise.all(localImageSources.map(src => access(new URL(src.split(/[?#]/)[0], root))));
+assert.ok(localImageSources.includes('assets/ketan.jpg'), 'Hero portrait must use the case-correct asset path');
+assert.ok(localImageSources.includes('assets/ketan160.jpg'), 'GitHub portrait must use the case-correct asset path');
+assert.equal((html.match(/class="orbit-pill"/g) || []).length, 10, 'The hero skill orbit should contain ten skills');
 assert.match(script, /showMore.*addEventListener/s, 'Show-more button must have a click handler');
 assert.match(script, /menuButton\.addEventListener\('click'/, 'Mobile navigation button must have a click handler');
 assert.match(script, /themeToggle.*addEventListener\('click'/s, 'Theme button must have a click handler');
