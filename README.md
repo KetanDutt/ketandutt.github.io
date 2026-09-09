@@ -7,7 +7,7 @@ A fast, accessible, data-driven portfolio for [Ketan Dutt](https://github.com/Ke
 ## Highlights
 
 - Dark-first Liquid Glass system with centralized tokens for primary, secondary, tinted, and floating materials, plus shared blur, depth, geometry, and motion scales
-- Cinematic hero with staged entrance motion, a layered glass portrait, subtle pointer-reactive lighting, and restrained ambient depth
+- Cinematic hero with staged entrance motion, a layered glass portrait, subtle pointer-reactive lighting, restrained ambient depth, and a skill orbit of tools circling the portrait
 - Editorial "Selected work" layout with cinematic artwork, responsive mixed-size cards, polished loading and empty states, and a floating project dialog
 - Filterable and searchable project gallery with an animated material indicator, live result count, and one-click filter reset
 - Floating navigation with a gliding active state, scroll progress, progressive material strength, and an intentional mobile navigation sheet
