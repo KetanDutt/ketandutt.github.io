@@ -777,7 +777,7 @@ h1 .line-accent {
 .hero-delay-6 { --d: 6; }
 
 .hero-visual { position: relative; z-index: 1; min-width: 0; display: grid; place-items: center; }
-.portrait-stage { position: relative; width: min(430px, 92%); perspective: 1200px; }
+.portrait-stage { position: relative; --orbit-duration: 54s; width: min(430px, 92%); perspective: 1200px; }
 .portrait-stage::before {
   content: "";
   position: absolute;
@@ -892,18 +892,90 @@ h1 .line-accent {
 .portrait-caption strong { font-size: .86rem; font-weight: 620; }
 .portrait-caption small { color: rgba(232,237,245,.64); font-size: .7rem; }
 
-.skill-orbit { position: absolute; inset: 0; z-index: 6; pointer-events: none; }
-.pill-float {
+/* The orbit container sits one layer below the portrait card so each chip
+   tucks behind the photo while crossing it, and emerges above, below, and
+   around its edges — like satellites orbiting the portrait. */
+.skill-orbit { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.orbit-pill {
   position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  animation: orbit-run var(--orbit-duration) linear infinite;
+  will-change: transform;
+}
+.orbit-pill .pill {
+  position: absolute;
+  margin: 0;
+  min-height: 30px;
+  padding: 5px 12px;
+  white-space: nowrap;
   color: var(--color-text);
   background: var(--material-floating);
-  box-shadow: var(--shadow-md), inset 0 1px 0 var(--edge-highlight);
-  animation: float-soft 7s ease-in-out infinite;
+  box-shadow: var(--shadow-sm), inset 0 1px 0 var(--edge-highlight);
+  font-size: .72rem;
+  font-weight: 620;
+  /* No backdrop blur here: six continuously moving blurred layers would
+     force constant re-composites, and the chips only cross flat canvas. */
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  animation: orbit-float 6.5s ease-in-out infinite;
 }
-.float-a { top: 4%; left: -10%; }
-.float-b { top: 43%; right: -13%; animation-delay: -2.3s; }
-.float-c { bottom: 5%; left: -2%; animation-delay: -4.6s; }
-@keyframes float-soft { 50% { transform: translateY(-7px); } }
+/* Phase the orbit so the six chips stay evenly spaced on the ellipse. */
+.orbit-pill-0 { animation-delay: 0s; }
+.orbit-pill-1 { animation-delay: calc(var(--orbit-duration) / -6); }
+.orbit-pill-2 { animation-delay: calc(var(--orbit-duration) / -3); }
+.orbit-pill-3 { animation-delay: calc(var(--orbit-duration) / -2); }
+.orbit-pill-4 { animation-delay: calc(var(--orbit-duration) * -2 / 3); }
+.orbit-pill-5 { animation-delay: calc(var(--orbit-duration) * -5 / 6); }
+.orbit-pill-0 .pill { animation-delay: -1.1s; }
+.orbit-pill-1 .pill { animation-delay: -0.6s; }
+.orbit-pill-2 .pill { animation-delay: -2.9s; }
+.orbit-pill-3 .pill { animation-delay: -4.3s; }
+.orbit-pill-4 .pill { animation-delay: -1.7s; }
+.orbit-pill-5 .pill { animation-delay: -5.4s; }
+@keyframes orbit-float {
+  0%, 100% { transform: translate(-50%, -50%); }
+  50% { transform: translate(-50%, calc(-50% - 7px)); }
+}
+/* One smooth elliptical pass around the portrait (semi-axes 214px x 285px).
+   The path is sampled every 11.25deg so chips move at a constant pace. */
+@keyframes orbit-run {
+  0% { transform: translate3d(214px, 0px, 0); }
+  3.125% { transform: translate3d(209.89px, 55.6px, 0); }
+  6.25% { transform: translate3d(197.71px, 109.06px, 0); }
+  9.375% { transform: translate3d(177.93px, 158.34px, 0); }
+  12.5% { transform: translate3d(151.32px, 201.53px, 0); }
+  15.625% { transform: translate3d(118.89px, 236.97px, 0); }
+  18.75% { transform: translate3d(81.89px, 263.31px, 0); }
+  21.875% { transform: translate3d(41.75px, 279.52px, 0); }
+  25% { transform: translate3d(0px, 285px, 0); }
+  28.125% { transform: translate3d(-41.75px, 279.52px, 0); }
+  31.25% { transform: translate3d(-81.89px, 263.31px, 0); }
+  34.375% { transform: translate3d(-118.89px, 236.97px, 0); }
+  37.5% { transform: translate3d(-151.32px, 201.53px, 0); }
+  40.625% { transform: translate3d(-177.93px, 158.34px, 0); }
+  43.75% { transform: translate3d(-197.71px, 109.06px, 0); }
+  46.875% { transform: translate3d(-209.89px, 55.6px, 0); }
+  50% { transform: translate3d(-214px, 0px, 0); }
+  53.125% { transform: translate3d(-209.89px, -55.6px, 0); }
+  56.25% { transform: translate3d(-197.71px, -109.06px, 0); }
+  59.375% { transform: translate3d(-177.93px, -158.34px, 0); }
+  62.5% { transform: translate3d(-151.32px, -201.53px, 0); }
+  65.625% { transform: translate3d(-118.89px, -236.97px, 0); }
+  68.75% { transform: translate3d(-81.89px, -263.31px, 0); }
+  71.875% { transform: translate3d(-41.75px, -279.52px, 0); }
+  75% { transform: translate3d(0px, -285px, 0); }
+  78.125% { transform: translate3d(41.75px, -279.52px, 0); }
+  81.25% { transform: translate3d(81.89px, -263.31px, 0); }
+  84.375% { transform: translate3d(118.89px, -236.97px, 0); }
+  87.5% { transform: translate3d(151.32px, -201.53px, 0); }
+  90.625% { transform: translate3d(177.93px, -158.34px, 0); }
+  93.75% { transform: translate3d(197.71px, -109.06px, 0); }
+  96.875% { transform: translate3d(209.89px, -55.6px, 0); }
+  100% { transform: translate3d(214px, 0px, 0); }
+}
 
 .hero-scroll {
   position: absolute;
@@ -1661,7 +1733,7 @@ h1 .line-accent {
   .portrait-stage { width: min(390px, 94%); }
   .portrait-stage::before { inset: 8% 3% -5% 10%; transform: rotate(1.5deg); }
   .portrait-glow { inset: -8%; }
-  .float-b { right: -3%; }
+  .skill-orbit { transform: scale(.907); }
   .portrait-card { min-height: 475px; }
   .timeline-item { grid-template-columns: 150px minmax(190px, .8fr) minmax(260px, 1.2fr); gap: 22px; }
 }
@@ -1822,6 +1894,18 @@ h1 .line-accent {
   .hero-in { opacity: 1 !important; transform: none !important; filter: none !important; }
   .cursor-glow { display: none !important; }
   .marquee-track { animation: none; }
+  /* Keep the skill chips legible without motion: arrange them statically
+     around the portrait, tucking behind its edges. */
+  .orbit-pill,
+  .orbit-pill .pill { animation: none !important; }
+  .orbit-pill { top: auto; left: auto; width: auto; height: auto; }
+  .orbit-pill .pill { position: static; transform: none; }
+  .orbit-pill-0 { top: -16px; left: 8%; }
+  .orbit-pill-1 { top: 44%; right: -10px; }
+  .orbit-pill-2 { bottom: -10px; left: 14%; }
+  .orbit-pill-3 { top: -16px; right: 8%; }
+  .orbit-pill-4 { top: 46%; left: -10px; }
+  .orbit-pill-5 { bottom: -10px; right: 14%; }
 }
 
 @media (hover: none), (pointer: coarse) {
