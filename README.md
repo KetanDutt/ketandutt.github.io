@@ -1,19 +1,19 @@
 # Ketan Dutt — Portfolio
 
-A fast, accessible, data-driven portfolio for [Ketan Dutt](https://github.com/KetanDutt), game developer and software engineer. The site uses a restrained, dark-first "Liquid Glass" interface inspired by Apple's modern design language — translucent materials, spatial depth, and intentional motion — while remaining lightweight and usable without a framework.
+A fast, accessible, data-driven portfolio for [Ketan Dutt](https://github.com/KetanDutt), game developer and software engineer. The site uses a restrained spatial interface with translucent materials, a system sans-serif typeface, and project artwork as the primary visual focus, while remaining lightweight and usable without a framework.
 
 **Live site:** [ketandutt.github.io](https://ketandutt.github.io/)
 
 ## Highlights
 
-- Dark-first Liquid Glass system with centralized tokens for primary, secondary, tinted, and floating materials, plus shared blur, depth, geometry, and motion scales
-- Cinematic hero with staged entrance motion, a layered glass portrait, subtle pointer-reactive lighting, restrained ambient depth, and a skill orbit of tools circling the portrait
+- Dark and light palettes with centralized glass, color, spacing, geometry, and motion tokens
+- Spacious hero with a portrait, concise career highlights, and a static list of tools
 - Editorial "Selected work" layout with cinematic artwork, responsive mixed-size cards, polished loading and empty states, and a floating project dialog
-- Filterable and searchable project gallery with an animated material indicator, live result count, and one-click filter reset
-- Floating navigation with a gliding active state, scroll progress, progressive material strength, and an intentional mobile navigation sheet
-- Dedicated GitHub profile bento with animated statistics, recent repositories, and live demos
+- Filterable and searchable project gallery with a live result count and one-click filter reset
+- Floating glass navigation with a gliding active state, scroll progress, and a mobile navigation sheet
+- GitHub profile section with statistics, recent repositories, and live demos
 - Progressive GitHub repository-count refresh with caching and a static fallback
-- Scroll-linked experience timeline that highlights the active role
+- Experience timeline with career details and areas of focus
 - First-class dark and light palettes, a matching 404 view, and motion that respects `prefers-reduced-motion`
 - Semantic HTML, keyboard navigation, focus-trapped overlays, skip link, visible focus styles, and meaningful labels
 - Open Graph metadata, canonical URL, JSON-LD structured data, sitemap, robots rules, and web manifest
@@ -82,6 +82,10 @@ See [docs/CONTENT.md](docs/CONTENT.md) for the full workflow. Details were recon
 ## Deployment
 
 The repository is designed for GitHub Pages and requires no build step. Push changes to the publishing branch and GitHub Pages serves the root directory. See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) for setup and release checks.
+
+## Design attribution
+
+The editorial refinement adapts principles from [Unslop](https://github.com/heydamir/unslop) by Damir Sokolovsky (@heydamir), licensed under CC BY 4.0.
 
 ## License
 

@@ -4,7 +4,7 @@
   "description": "Game developer and software engineer portfolio",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#080a0e",
-  "theme_color": "#080a0e",
+  "background_color": "#10151c",
+  "theme_color": "#10151c",
   "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any"}]
 }
