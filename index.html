@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#080a0e">
+  <meta name="theme-color" content="#10151c">
   <meta name="color-scheme" content="dark light">
   <meta name="description" content="Portfolio of Ketan Dutt, a lead game developer and software engineer from Delhi with 7+ years and 1M+ downloads across Unity, Unreal Engine, Phaser, and Godot.">
   <meta name="author" content="Ketan Dutt">
@@ -26,7 +26,7 @@
       const systemTheme = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
       const initialTheme = savedTheme === 'light' || savedTheme === 'dark' ? savedTheme : systemTheme;
       document.documentElement.dataset.theme = initialTheme;
-      document.querySelector('meta[name="theme-color"]').content = initialTheme === 'dark' ? '#080a0e' : '#f2f4f7';
+      document.querySelector('meta[name="theme-color"]').content = initialTheme === 'dark' ? '#10151c' : '#edf1f3';
     } catch (_) { /* The dark document default remains available. */ }
   </script>
   <link rel="stylesheet" href="styles.css">
@@ -151,7 +151,7 @@
         <span>Toolchain</span>
         <span>Engines · code · craft</span>
       </div>
-      <div class="marquee-mask" id="marqueeMask">
+      <div class="marquee-mask" id="marqueeMask" tabindex="0" role="region" aria-label="Scroll through tools">
         <div class="marquee-track" id="marqueeTrack"></div>
       </div>
     </section>
