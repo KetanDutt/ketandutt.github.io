@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#10151c">
+  <meta name="theme-color" content="#080a0e">
   <meta name="color-scheme" content="dark light">
   <meta name="robots" content="noindex">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -15,7 +15,7 @@
       const preferred = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
       const theme = saved === 'light' || saved === 'dark' ? saved : preferred;
       document.documentElement.dataset.theme = theme;
-      document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#10151c' : '#edf1f3';
+      document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#080a0e' : '#f2f4f7';
     } catch (_) { /* The dark default remains available in private browsing. */ }
   </script>
 </head>

@@ -14,6 +14,7 @@
     tooltipResizeTimer: null
   };
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isTouch = window.matchMedia('(hover: none)').matches;
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
   const create = (tag, className, text) => {
@@ -32,7 +33,7 @@
   function setTheme(theme) {
     document.documentElement.dataset.theme = theme;
     const meta = $('meta[name="theme-color"]');
-    if (meta) meta.content = theme === 'dark' ? '#10151c' : '#edf1f3';
+    if (meta) meta.content = theme === 'dark' ? '#080a0e' : '#f2f4f7';
     const button = $('#themeToggle');
     if (!button) return;
     const nextTheme = theme === 'dark' ? 'light' : 'dark';
@@ -176,6 +177,84 @@
     const update = () => button.classList.toggle('is-emphasized', window.scrollY > 600);
     update();
     window.addEventListener('scroll', update, { passive: true });
+  }
+
+  /* ------------------------------ Cursor glow --------------------------------- */
+  function initializeCursorGlow() {
+    if (isTouch || reduceMotion) return;
+    const glow = $('#cursorGlow');
+    if (!glow) return;
+    let raf = null;
+    let x = 0, y = 0;
+    window.addEventListener('pointermove', event => {
+      x = event.clientX; y = event.clientY;
+      glow.classList.add('is-active');
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        glow.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+        raf = null;
+      });
+    });
+    document.addEventListener('pointerleave', () => glow.classList.remove('is-active'));
+  }
+
+  /* ------------------------------ Magnetic buttons ---------------------------- */
+  function initializeMagnetic() {
+    if (isTouch || reduceMotion) return;
+    $$('[data-magnetic]').forEach(element => {
+      const strength = 14;
+      element.addEventListener('pointermove', event => {
+        const rect = element.getBoundingClientRect();
+        const relX = event.clientX - rect.left - rect.width / 2;
+        const relY = event.clientY - rect.top - rect.height / 2;
+        element.style.transform = `translate(${(relX / rect.width) * strength}px, ${(relY / rect.height) * strength}px)`;
+      });
+      element.addEventListener('pointerleave', () => { element.style.transform = ''; });
+    });
+  }
+
+  /* ------------------------------ Portrait tilt -------------------------------- */
+  function initializePortraitTilt() {
+    if (isTouch || reduceMotion) return;
+    const stage = $('.portrait-stage');
+    const card = $('#portraitCard');
+    if (!stage || !card) return;
+    stage.addEventListener('pointermove', event => {
+      const rect = stage.getBoundingClientRect();
+      const relX = (event.clientX - rect.left) / rect.width - 0.5;
+      const relY = (event.clientY - rect.top) / rect.height - 0.5;
+      card.style.setProperty('--sheen-x', `${(relX + .5) * 100}%`);
+      card.style.setProperty('--sheen-y', `${(relY + .5) * 100}%`);
+      card.style.transform = `perspective(1000px) rotateY(${relX * 6}deg) rotateX(${relY * -6}deg) scale(1.012)`;
+    });
+    stage.addEventListener('pointerleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+      card.style.setProperty('--sheen-x', '50%');
+      card.style.setProperty('--sheen-y', '30%');
+    });
+  }
+
+  /* ------------------------- Pointer-aware surface light ------------------------- */
+  function initializeSurfaceLighting() {
+    if (isTouch || reduceMotion) return;
+    let frame = null;
+    let activeSurface = null;
+    let pointerX = 0;
+    let pointerY = 0;
+    document.addEventListener('pointermove', event => {
+      const surface = event.target.closest('.project-card');
+      if (!surface) return;
+      activeSurface = surface;
+      pointerX = event.clientX;
+      pointerY = event.clientY;
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        const rect = activeSurface.getBoundingClientRect();
+        activeSurface.style.setProperty('--pointer-x', `${pointerX - rect.left}px`);
+        activeSurface.style.setProperty('--pointer-y', `${pointerY - rect.top}px`);
+        frame = null;
+      });
+    }, { passive: true });
   }
 
   /* ------------------------------- Counters ------------------------------------ */
@@ -756,7 +835,9 @@
     return chip;
   };
 
-  // A single scrollable list keeps the toolchain available without continuous motion.
+  // The loop uses two identical groups and translates by -50%. Each group must be
+  // at least as wide as the visible strip, so repeat the icons enough times to
+  // cover the widest viewport and keep the animation perfectly seamless.
   function initializeMarquee() {
     const track = $('#marqueeTrack');
     const mask = $('#marqueeMask');
@@ -770,7 +851,35 @@
       return group;
     };
 
-    track.replaceChildren(buildGroup(false));
+    const rebuild = () => {
+      while (track.firstChild) track.removeChild(track.firstChild);
+      // Measure one full pass to decide how many repeats each half needs.
+      const probe = buildGroup(false);
+      track.appendChild(probe);
+      const estimatedPassWidth = MARQUEE_ICONS.length * 112;
+      const passWidth = probe.offsetWidth || estimatedPassWidth;
+      track.removeChild(probe);
+      const visible = Math.max(mask.clientWidth || 800, 1);
+      const repeats = Math.min(4, Math.max(1, Math.ceil(visible / passWidth) + 1));
+      const makeHalf = hidden => {
+        const half = document.createElement('div');
+        half.className = 'marquee-group';
+        if (hidden) half.setAttribute('aria-hidden', 'true');
+        for (let index = 0; index < repeats; index += 1) {
+          MARQUEE_ICONS.forEach(item => half.appendChild(createMarqueeChip(item)));
+        }
+        return half;
+      };
+      track.appendChild(makeHalf(false));
+      track.appendChild(makeHalf(true));
+    };
+
+    rebuild();
+    let resizeTimer = null;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(rebuild, 150);
+    });
   }
 
   /* ----------------------------------- Init ------------------------------------------ */
@@ -781,6 +890,10 @@
     initializeImageFallbacks();
     initializeNavigation();
     initializeBackToTop();
+    initializeCursorGlow();
+    initializeMagnetic();
+    initializePortraitTilt();
+    initializeSurfaceLighting();
     initializeModal();
     initializeMarquee();
     $('#year').textContent = new Date().getFullYear();
