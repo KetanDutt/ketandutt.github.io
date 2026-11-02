@@ -1,49 +1,64 @@
 {
   "profile": {
     "github": "KetanDutt",
-    "publicRepos": 55,
-    "tagline": "Lead Game Developer with 7+ years delivering high-quality 2D, 3D, AR, and browser-based games — 1M+ downloads across Unity, Unreal, Phaser, and Godot.",
+    "publicRepos": 60,
+    "tagline": "Lead Game Developer & Software Engineer with 7+ years delivering high-quality 2D, 3D, AR, and browser-based games and developer tools — 1M+ downloads across Unity, Unreal, Phaser, Godot, and Python.",
     "highlights": [
       {"value": "7+", "label": "years shipping games"},
       {"value": "1M+", "label": "downloads across titles"},
       {"value": "14", "label": "freelance client projects"}
     ],
+    "specialties": [
+      "Gameplay Logic & AI",
+      "Pipeline Automation",
+      "Performance Optimization",
+      "CI/CD & DevOps",
+      "Custom Unity Editor Tools",
+      "ARKit & ARCore",
+      "Mobile Optimization",
+      "Monetization & Analytics"
+    ],
     "skills": [
-      {"name": "Unity", "group": "Engines", "note": "2D, 3D, AR & VR — 6+ years shipping titles."},
-      {"name": "Unreal Engine", "group": "Engines", "note": "Blueprints and C#, incl. Epic's Blueprint Ninja Challenge."},
-      {"name": "Godot", "group": "Engines", "note": "Full games such as UNO, built from scratch."},
+      {"name": "Unity", "group": "Engines", "note": "2D, 3D, AR & VR — 6+ years shipping commercial titles."},
+      {"name": "Unreal Engine", "group": "Engines", "note": "Blueprints and C++, incl. Epic's Blueprint Ninja Challenge."},
+      {"name": "Godot", "group": "Engines", "note": "Complete games such as UNO, built from scratch with GDScript."},
       {"name": "Phaser.io", "group": "Engines", "note": "Built a prototyping framework adopted for 15+ games."},
       {"name": "LibGDX", "group": "Engines", "note": "Cross-platform 2D and 3D game development."},
-      {"name": "C#", "group": "Languages", "note": "Primary language for gameplay and editor tools."},
-      {"name": "JavaScript", "group": "Languages", "note": "Browser games, tools, and interactive sites."},
-      {"name": "GDScript", "group": "Languages", "note": "Godot scripting for rapid prototypes."},
-      {"name": "Python", "group": "Languages", "note": "Automation tooling, AI agents, and asset pipelines."},
+      {"name": "C#", "group": "Languages", "note": "Primary language for gameplay systems and custom editor tools."},
+      {"name": "Python", "group": "Languages", "note": "Automation tooling, OpenAI-compatible proxies, and AI agents."},
+      {"name": "JavaScript", "group": "Languages", "note": "Browser games, PWAs, tools, and interactive web applications."},
+      {"name": "TypeScript", "group": "Languages", "note": "Typed web apps, API clients, and modern developer tooling."},
+      {"name": "GDScript", "group": "Languages", "note": "Godot scripting for rapid prototypes and complete card games."},
       {"name": "C++", "group": "Languages", "note": "Unreal Blueprints/C++ and Arduino firmware."},
-      {"name": "BrightScript", "group": "Languages", "note": "Connected TV apps for Roku and Fire TV."},
-      {"name": "TypeScript", "group": "Languages", "note": "Typed tooling for larger web projects."},
+      {"name": "Kotlin", "group": "Languages", "note": "Native Android applications and utility tooling."},
+      {"name": "BrightScript", "group": "Languages", "note": "Connected TV channels and screensavers for Roku and Fire TV."},
+      {"name": "FastAPI", "group": "Backend", "note": "High-performance Python APIs, SSE streaming, and proxy services."},
       {"name": "ARKit", "group": "AR", "note": "Plane detection and scale-consistent AR puzzles on iOS."},
-      {"name": "ARCore", "group": "AR", "note": "Cross-device AR support for Android."},
-      {"name": "CI/CD", "group": "Pipeline", "note": "GitHub & GitLab Actions — cut deployment time by 40%."},
-      {"name": "Custom Editor Tools", "group": "Pipeline", "note": "Unity tools for level testing and batch lightmap baking."},
-      {"name": "Monetization & Analytics", "group": "Pipeline", "note": "IAP, ads, cross-promotion, ARPDAU and MAU tuning."},
+      {"name": "ARCore", "group": "AR", "note": "Cross-device AR support and environment tracking on Android."},
+      {"name": "CI/CD", "group": "Pipeline", "note": "GitHub & GitLab Actions — automated testing, linting, and deployment."},
+      {"name": "Custom Editor Tools", "group": "Pipeline", "note": "Unity tools for level testing, character generation, and lightmap baking."},
+      {"name": "Monetization & Analytics", "group": "Pipeline", "note": "IAP, rewarded ads, cross-promotion, ARPDAU and MAU tuning."},
       {"name": "Node.js", "group": "Backend", "note": "Services and tooling for games and web apps."},
       {"name": "PHP & MySQL", "group": "Backend", "note": "Backend services for game publishing and live ops."},
-      {"name": "Arduino", "group": "Hardware", "note": "Robotics and physical computing experiments."},
-      {"name": "Git & GitLab", "group": "Tools", "note": "Version control and pipelines across every project."},
+      {"name": "Arduino", "group": "Hardware", "note": "Robotics, Li-Fi, and physical computing experiments."},
+      {"name": "Git & GitHub", "group": "Tools", "note": "Version control, open-source projects, and automated workflows."},
       {"name": "Agile & Scrum", "group": "Process", "note": "Running sprints for teams of up to 12 developers."},
-      {"name": "Photoshop", "group": "Tools", "note": "Asset preparation and visual polish."}
+      {"name": "Photoshop", "group": "Tools", "note": "Asset preparation, texture atlases, and visual polish."}
     ]
   },
   "github": {
     "recentRepositories": [
-      {"name": "JavaScript-Platformer", "description": "A platforming experiment for the open web. Source is available while its Pages build is being repaired.", "language": "JavaScript", "updated": "Sep 2026", "url": "https://github.com/KetanDutt/JavaScript-Platformer"},
-      {"name": "RoboticArm", "description": "An Arduino-powered robotic arm built with C++.", "language": "C++", "updated": "Sep 2026", "url": "https://github.com/KetanDutt/RoboticArm"},
-      {"name": "MapGenerator", "description": "A browser-based map and parking-level generator.", "language": "JavaScript", "updated": "Sep 2026", "url": "https://github.com/KetanDutt/MapGenerator", "demo": "https://ketandutt.github.io/MapGenerator/"}
+      {"name": "SpotlightStudio", "description": "Archive and gallery of ~7,500 Windows Spotlight wallpapers — async crawling, perceptual deduplication, Liquid Glass PWA, Expo mobile app, and Roku TV channel.", "language": "Python", "updated": "Nov 2026", "url": "https://github.com/KetanDutt/SpotlightStudio", "demo": "https://ketandutt.github.io/SpotlightStudio/"},
+      {"name": "gemini-web2api", "description": "Convert Google Gemini web into an OpenAI-compatible API. Zero auth, single-binary, tool calling, JSON mode, streaming SSE, and built-in web console.", "language": "Python", "updated": "Nov 2026", "url": "https://github.com/KetanDutt/gemini-web2api"},
+      {"name": "FightingDemo", "description": "Monkey Mayhem — production-grade 2D fighting game demo built with Phaser 3 & Vite, featuring adaptive opponent AI, input buffering, frame data, and WebAudio synth.", "language": "JavaScript", "updated": "Nov 2026", "url": "https://github.com/KetanDutt/FightingDemo", "demo": "https://ketandutt.github.io/FightingDemo/"},
+      {"name": "UNO_Godot", "description": "Complete player-vs-computer UNO card game built from scratch in Godot using GDScript, custom AI decision logic, and full card game rules.", "language": "GDScript", "updated": "Oct 2026", "url": "https://github.com/KetanDutt/UNO_Godot", "demo": "https://ketandutt.github.io/UNO_Godot/"},
+      {"name": "Email-Filter", "description": "A focused Gmail Manager web application to quickly inspect, mark, archive, or batch-delete emails and spam.", "language": "JavaScript", "updated": "Oct 2026", "url": "https://github.com/KetanDutt/Email-Filter", "demo": "https://ketandutt.github.io/Email-Filter/"},
+      {"name": "Blob-Runner3D-Clone", "description": "Unity3D clone of Blob Runner with custom in-engine Blob Character Creator tool for real-time jelly-like physics on mobile.", "language": "C#", "updated": "Oct 2026", "url": "https://github.com/KetanDutt/Blob-Runner3D-Clone"}
     ]
   },
   "focus": [
-    {"icon": "🎮", "title": "Building", "text": "Playable browser experiences, an UNO game in Godot, and game-development experiments."},
-    {"icon": "🤖", "title": "Exploring", "text": "AI agents, smart study tools, game AI, multiplayer networking, and design patterns."},
+    {"icon": "🎮", "title": "Building", "text": "Playable browser games (Fighting Demo, UNO in Godot), Spotlight Studio wallpaper archive, and game-dev experiments."},
+    {"icon": "🤖", "title": "Exploring", "text": "AI agents, reverse-engineered LLM proxies, smart study tools, game AI, multiplayer networking, and design patterns."},
     {"icon": "🤝", "title": "Open to", "text": "Game jams, open-source games, developer tools, and thoughtful collaborations."}
   ],
   "experience": [
@@ -75,20 +90,28 @@
     {"title": "Quadcopter", "year": "2017", "description": "An RF-controlled quadcopter with four brushless DC motors, an NRF module for wireless control, and a gyroscope + accelerometer for stability."},
     {"title": "Li-Fi", "year": "2016", "description": "A light-based data transmission system using LED on/off patterns to send binary data, read by light sensors and displayed on a receiving device."},
     {"title": "Remote-Controlled Car", "year": "2016", "description": "A wireless RC car using an RF module and brushless DC motor with servo steering — third prize at the I.I.T.M. Robot Race."},
-    {"title": "Specialized Search Engine", "year": "2016", "description": "A web app built with HTML, CSS, Bootstrap, JSP, and MySQL, with login/registration and database search across words, symbols, and numbers."}
+    {"title": "Specialized Search Engine", "year": "2016", "description": "A web app built with HTML, CSS, Bootstrap, JSP, and MySQL, with login/registration and database search across words, symbols, and numbers."},
+    {"title": "Hybrid Endless Runner Game", "year": "2016", "description": "A Unity 3D endless runner in C# where players jump over obstacles, engineered with a hybrid build running across Windows, Linux, Android, iOS, and Mac."}
   ],
   "projects": [
-    {"title": "JavaScript Platformer", "description": "A platforming experiment built directly for the browser. Explore the source while its Pages build is being repaired.", "category": "Web", "technologies": ["JavaScript", "Game Dev"], "source": "https://github.com/KetanDutt/JavaScript-Platformer", "updated": "2026", "color": "#7c69ff", "image": "assets/projects/platformer.jpg", "featured": true},
-    {"title": "Ants AR", "description": "A Unity + ARKit/ARCore puzzle game built for Round The Clock Technologies. Players spawn ants in real-world space and guide them to solve puzzles, overcoming plane-detection and cross-device scale challenges.", "category": "AR", "technologies": ["Unity", "ARKit", "ARCore"], "source": "https://github.com/KetanDutt/Ants_AR", "updated": "2023", "color": "#3fd6c0", "image": "assets/projects/ants-ar.jpg", "featured": true},
+    {"title": "UNO in Godot", "description": "A complete player-versus-computer UNO card game with rules and an AI opponent, built from scratch in Godot.", "category": "Games", "technologies": ["Godot", "GDScript"], "demo": "https://ketandutt.github.io/UNO_Godot/", "source": "https://github.com/KetanDutt/UNO_Godot", "updated": "2026", "color": "#ff658b", "image": "assets/projects/uno-godot.jpg", "featured": true},
+    {"title": "Monkey Mayhem", "description": "A production-ready 2D fighting game demo built with Phaser 3 & Vite, featuring adaptive opponent AI, input buffering, frame data, and WebAudio synth.", "category": "Games", "technologies": ["Phaser", "JavaScript", "Vite", "WebAudio"], "demo": "https://ketandutt.github.io/FightingDemo/", "source": "https://github.com/KetanDutt/FightingDemo", "updated": "2026", "color": "#e056fd", "featured": true},
+    {"title": "Ants AR", "description": "A Unity + ARKit/ARCore puzzle game built for Round The Clock Technologies where players spawn ants in real-world space to solve puzzles.", "category": "AR", "technologies": ["Unity", "ARKit", "ARCore"], "source": "https://github.com/KetanDutt/Ants_AR", "updated": "2023", "color": "#3fd6c0", "image": "assets/projects/ants-ar.jpg"},
     {"title": "Easy Gmail Cleaner", "description": "A focused Gmail manager for quickly archiving, deleting, or marking batches of email as spam.", "category": "Tools", "technologies": ["JavaScript", "Gmail API"], "demo": "https://ketandutt.github.io/Email-Filter/", "source": "https://github.com/KetanDutt/Email-Filter", "updated": "2026", "color": "#51c8e9", "image": "assets/projects/gmail-cleaner.jpg"},
-    {"title": "UNO in Godot", "description": "A complete player-versus-computer UNO card game with rules and an AI opponent.", "category": "Games", "technologies": ["Godot", "GDScript"], "demo": "https://ketandutt.github.io/UNO_Godot/", "source": "https://github.com/KetanDutt/UNO_Godot", "updated": "2026", "color": "#ff658b", "image": "assets/projects/uno-godot.jpg"},
+    {"title": "Spotlight Studio", "description": "An archive and gallery of ~7,500 Windows Spotlight wallpapers with perceptual deduplication, Liquid Glass PWA, Expo mobile client, and Roku TV channel.", "category": "Tools", "technologies": ["Python", "FastAPI", "PWA", "BrightScript", "Expo"], "demo": "https://ketandutt.github.io/SpotlightStudio/", "source": "https://github.com/KetanDutt/SpotlightStudio", "updated": "2026", "color": "#739b8b", "image": "assets/projects/spotlight-studio.jpg"},
+    {"title": "Gemini Web2API", "description": "Converts Google Gemini's web interface into a zero-auth, OpenAI-compatible streaming API with tool calling, JSON mode, and a bench-instrument web console.", "category": "AI", "technologies": ["Python", "API", "Streaming", "Docker"], "source": "https://github.com/KetanDutt/gemini-web2api", "updated": "2026", "color": "#4f8cff", "image": "assets/projects/gemini-web2api.png"},
+    {"title": "Blob Runner 3D Clone", "description": "A Unity 3D runner clone featuring a custom in-engine Blob Character Creator tool engineered for jelly-like physics on mobile devices.", "category": "Games", "technologies": ["Unity", "C#", "Mobile Dev"], "source": "https://github.com/KetanDutt/Blob-Runner3D-Clone", "updated": "2026", "color": "#22c55e"},
+    {"title": "Super Mario 3D Platformer", "description": "A 3D platformer prototype in Unity and C# recreating Super Mario 3D World style movement physics, dynamic camera, and custom animations.", "category": "Games", "technologies": ["Unity", "C#", "3D Animation"], "source": "https://github.com/KetanDutt/3D-Mario-platforming-game", "updated": "2026", "color": "#ef4444"},
+    {"title": "JavaScript Platformer", "description": "A platforming experiment built directly for the browser with responsive physics and tile-based level design.", "category": "Web", "technologies": ["JavaScript", "HTML5 Canvas", "Game Dev"], "source": "https://github.com/KetanDutt/JavaScript-Platformer", "updated": "2026", "color": "#7c69ff", "image": "assets/projects/platformer.jpg"},
     {"title": "Car Parking Level Editor", "description": "A visual map generator and level-design tool for car parking game layouts.", "category": "Tools", "technologies": ["JavaScript", "Level Design"], "demo": "https://ketandutt.github.io/MapGenerator/", "source": "https://github.com/KetanDutt/MapGenerator", "updated": "2026", "color": "#65d895", "image": "assets/projects/map-generator.jpg"},
     {"title": "Smart Study Assistant", "description": "An AI-powered study assistant experiment for creating a more focused learning workflow.", "category": "AI", "technologies": ["Python", "AI Agents"], "source": "https://github.com/KetanDutt/SmartStudyAssistantAgent", "updated": "2026", "color": "#f2ba63", "image": "assets/projects/study-assistant.jpg"},
-    {"title": "Google Cloud GenAI Hackathon", "description": "A 2026 hackathon experiment exploring useful experiences with Google Cloud and Gemini.", "category": "AI", "technologies": ["TypeScript", "Gemini API"], "source": "https://github.com/KetanDutt/GoogleCloudGenAIHackathon2026", "updated": "2026", "color": "#6aa8ff", "image": "assets/projects/genai-hackathon.jpg"},
+    {"title": "Google Cloud GenAI Hackathon", "description": "A 2026 hackathon experiment exploring multimodal experiences with Google Cloud and Gemini API.", "category": "AI", "technologies": ["TypeScript", "Gemini API"], "source": "https://github.com/KetanDutt/GoogleCloudGenAIHackathon2026", "updated": "2026", "color": "#6aa8ff", "image": "assets/projects/genai-hackathon.jpg"},
     {"title": "Chemistry Game", "description": "An educational game that makes valence electrons and chemical bonding easier to understand.", "category": "Games", "technologies": ["Phaser", "JavaScript"], "demo": "https://ketandutt.github.io/ChemistryGame/", "source": "https://github.com/KetanDutt/ChemistryGame-Source", "updated": "2025", "color": "#b27aff", "image": "assets/projects/chemistry-game.jpg"},
     {"title": "Endless Runner", "description": "A playable 3D endless-runner prototype with obstacles and procedural gameplay elements.", "category": "Games", "technologies": ["Unity", "C#"], "demo": "https://ketandutt.github.io/RunnerGame_Built/", "source": "https://github.com/KetanDutt/RunnerGame", "updated": "2025", "color": "#ff8b5d", "image": "assets/projects/endless-runner.jpg"},
-    {"title": "Robotic Arm", "description": "An Arduino-powered robotic humanoid arm controlled by glove-mounted sensors, moving in sync with the wearer's hand.", "category": "Hardware", "technologies": ["Arduino", "C++"], "source": "https://github.com/KetanDutt/RoboticArm", "updated": "2016", "color": "#e6a25a", "image": "assets/projects/robotic-arm.jpg"},
+    {"title": "Accelerometer Studio", "description": "A browser-based sensor experimentation tool to simulate, visualize, and export raw multi-axis accelerometer telemetry.", "category": "Tools", "technologies": ["JavaScript", "Sensors", "Data Export"], "demo": "https://ketandutt.github.io/Accelerometer/", "source": "https://github.com/KetanDutt/Accelerometer", "updated": "2026", "color": "#06b6d4"},
+    {"title": "Random Maze Generator", "description": "Randomized 3D maze creation for Unity based on a modified version of Prim's algorithm for procedural level design.", "category": "Games", "technologies": ["Unity", "C#", "Algorithms"], "source": "https://github.com/KetanDutt/Maze-Random-Generator-Unity", "updated": "2026", "color": "#a855f7"},
     {"title": "Smarty Ants", "description": "Preserved browser builds demonstrating 3D running and character movement mechanics.", "category": "Games", "technologies": ["Unity", "WebGL"], "demo": "https://ketandutt.github.io/Ants_Demo/", "source": "https://github.com/KetanDutt/Ants_Demo", "updated": "2025", "color": "#8ed55d", "image": "assets/projects/smarty-ants.jpg"},
-    {"title": "QR Code Generator", "description": "A practical browser tool that generates QR codes from CSV contact data.", "category": "Tools", "technologies": ["HTML", "JavaScript"], "demo": "https://ketandutt.github.io/QRCodeGenerator/", "source": "https://github.com/KetanDutt/QRCodeGenerator", "updated": "2025", "color": "#6dd6ca", "image": "assets/projects/qr-generator.jpg"}
+    {"title": "QR Code Generator", "description": "A practical browser tool that generates QR codes from CSV contact data.", "category": "Tools", "technologies": ["HTML", "JavaScript"], "demo": "https://ketandutt.github.io/QRCodeGenerator/", "source": "https://github.com/KetanDutt/QRCodeGenerator", "updated": "2025", "color": "#6dd6ca", "image": "assets/projects/qr-generator.jpg"},
+    {"title": "Robotic Arm", "description": "An Arduino-powered robotic humanoid arm controlled by glove-mounted sensors, moving in sync with the wearer's hand.", "category": "Hardware", "technologies": ["Arduino", "C++"], "source": "https://github.com/KetanDutt/RoboticArm", "updated": "2016", "color": "#e6a25a", "image": "assets/projects/robotic-arm.jpg"}
   ]
 }

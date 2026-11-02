@@ -68,7 +68,7 @@ Edit `config.json`. Each project supports:
 - `image` (optional path under `assets/projects/`) for the cinematic card artwork
 - `featured` (optional boolean) to give a project the large, full-width treatment
 
-See [docs/CONTENT.md](docs/CONTENT.md) for the full workflow. Details were reconciled with the public [KetanDutt GitHub profile](https://github.com/KetanDutt) on September 7, 2026.
+See [docs/CONTENT.md](docs/CONTENT.md) for the full workflow. Details were reconciled with the public [KetanDutt GitHub profile](https://github.com/KetanDutt) on November 2, 2026.
 
 ## Documentation
 
